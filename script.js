@@ -1,4 +1,4 @@
-/* Native scrolling, one scheduled frame, four independent spatial scenes. */
+/* Native scrolling, one scheduled frame, eight independent spatial scenes. */
 (() => {
   'use strict';
   const $ = selector => document.querySelector(selector);
@@ -8,16 +8,22 @@
   const ease = amount => amount * amount * (3 - 2 * amount);
   const style = (element, property, value, unit = '') => element?.style.setProperty(`--${property}`, `${value}${unit}`);
   const root = document.documentElement;
+  root.classList.add('butter-clean');
   const reduce = matchMedia('(prefers-reduced-motion: reduce)');
   const wide = matchMedia('(min-width: 901px) and (min-height: 620px)');
   const fine = matchMedia('(hover: hover) and (pointer: fine)');
   const motionButton = $('.motion-toggle');
   let savedMotion = null;
   try { savedMotion = localStorage.getItem('design-daily-motion'); } catch {}
-  let motion = !reduce.matches;
+  let motion = savedMotion === null ? !reduce.matches : savedMotion === 'on' && !reduce.matches;
   let frame = 0;
   let geometry = new Map();
   const chapters = $$('[data-chapter]');
+  const caseSection = $('.case-section');
+  const caseSteps = $('.case-steps li');
+  const brandDesk = $('.morrow-desk');
+  const brandObjects = $('.morrow-objects');
+  const brandCampaign = $('.morrow-campaign');
   const hero = $('.hero');
   const work = $('.work-section');
   const system = $('.system-section');
@@ -101,6 +107,12 @@
       post.innerHTML = item.html;
     });
     posts = $$('.social-post');
+    if ('IntersectionObserver' in window) {
+      const revealObserver = new IntersectionObserver(entries => entries.forEach(entry => {
+        if (entry.isIntersecting) { entry.target.classList.add('is-visible'); revealObserver.unobserve(entry.target); }
+      }), { threshold: .18 });
+      posts.forEach(post => revealObserver.observe(post));
+    } else posts.forEach(post => post.classList.add('is-visible'));
     $('.content-grid').setAttribute('aria-label', 'Four stages of a brand identity design journey');
     $('.content-section .section-meta span:last-child').textContent = 'The designer journey';
     $('.content-foot span').textContent = 'A designer journey / Studio concept';
@@ -148,7 +160,7 @@
     projectButtons.forEach((button, i) => button.setAttribute('aria-pressed', String(i === index)));
   }
   function resetTransforms() {
-    [hero, heroArt, manifesto, interlude, system, content, contact, ...cards, ...posts, ...Object.values(layers)].forEach(element => element?.removeAttribute('style'));
+    [caseSection, brandDesk, brandObjects, brandCampaign, hero, heroArt, manifesto, interlude, system, content, contact, ...cards, ...posts, ...Object.values(layers)].forEach(element => element?.removeAttribute('style'));
   }
   function setMotion(enabled, preservePlace = true) {
     // If the setting changes mid-page, hold the reader in the same chapter.
@@ -248,6 +260,20 @@
     $('.scroll-status-label').textContent = chapter.dataset.chapter;
     if (!motion) return;
     const pinned = wide.matches;
+    const caseProgress = pinned ? ease(progress(caseSection, true)) : .6;
+    style(caseSection, 'case-progress', caseProgress);
+    const caseStep = Math.min(2, Math.floor(caseProgress * 3));
+    caseSteps.forEach((step,index) => step.classList.toggle('active', !pinned || index === caseStep));
+    $('.case-phase').textContent = ['01 / Start with the brief','02 / Make the idea visible','03 / Take it into the world'][caseStep];
+    const deskProgress = pinned ? ease(progress(brandDesk, true)) : .65;
+    style(brandDesk, 'spread', deskProgress);
+    style(brandDesk, 'desk-turn', mix(-14, 9, deskProgress), 'deg');
+    $('.desk-cue').textContent = deskProgress < .35 ? '01 / The first impression' : deskProgress < .72 ? '02 / Every detail connects' : '03 / Ready for the everyday';
+    const objectProgress = pinned ? ease(progress(brandObjects, true)) : .5;
+    style(brandObjects, 'object-progress', objectProgress);
+    const campaignProgress = pinned ? ease(progress(brandCampaign, true)) : .75;
+    style(brandCampaign, 'campaign-progress', campaignProgress);
+    $('.campaign-cue').textContent = campaignProgress < .5 ? '01 / A street-level hello' : '02 / A daily conversation';
     const hp = progress(hero, pinned);
     if (pinned) {
       style(hero, 'copy-y', -hp * 70, 'px'); style(hero, 'copy-opacity', 1 - hp * .25);
