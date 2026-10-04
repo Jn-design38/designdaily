@@ -1,0 +1,748 @@
+/* Portfolio, Case Studies, and Morrow Showcase with Framer Motion-inspired Interactions */
+
+/* Selected Work Section */
+.portfolio-section {
+  background-color: var(--paper);
+}
+
+.portfolio-header {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 32px;
+  align-items: end;
+  margin-bottom: clamp(36px, 5vw, 54px);
+}
+
+.portfolio-header h2 {
+  font-size: clamp(32px, 4.5vw, 52px);
+  font-weight: 700;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.portfolio-header p {
+  font-size: 15px;
+  color: var(--text-muted);
+}
+
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: clamp(24px, 3.5vw, 40px);
+  margin-bottom: 32px;
+}
+
+/* Portfolio Card with Spring Hover & Focus */
+.portfolio-card {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  transition: transform 280ms var(--ease-spring), box-shadow 280ms ease, border-color 200ms ease;
+  will-change: transform;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: var(--border-strong);
+  box-shadow: 0 16px 36px rgba(16, 17, 15, 0.08);
+}
+
+.portfolio-card:active {
+  transform: translateY(-1px) scale(0.995);
+}
+
+.portfolio-card:focus-within {
+  border-color: var(--orange);
+}
+
+.portfolio-feature {
+  grid-column: 1 / 2;
+}
+
+.portfolio-column {
+  grid-column: 2 / 3;
+  display: flex;
+  flex-direction: column;
+  gap: clamp(24px, 3.5vw, 40px);
+}
+
+.portfolio-cover {
+  position: relative;
+  background-color: #b8d2d7;
+  padding: clamp(24px, 3.5vw, 36px);
+  aspect-ratio: 16 / 11;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+}
+
+.portfolio-cover-form {
+  background-color: #f7a072;
+}
+
+.portfolio-cover-still {
+  background-color: #d8e59a;
+}
+
+.portfolio-cover img {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+  max-height: 82%;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 12px 24px rgba(16, 17, 15, 0.15));
+  transition: transform 380ms var(--ease-out-expo);
+  will-change: transform;
+}
+
+.portfolio-card:hover .portfolio-cover img {
+  transform: scale(1.04) translateY(-3px);
+}
+
+.portfolio-cover-photo img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: none;
+  transition: transform 400ms var(--ease-out-expo);
+}
+
+.portfolio-card:hover .portfolio-cover-photo img {
+  transform: scale(1.03);
+}
+
+.portfolio-cover-tag {
+  position: relative;
+  z-index: 2;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink);
+  background-color: rgba(245, 243, 238, 0.92);
+  backdrop-filter: blur(4px);
+  padding: 4px 10px;
+  border-radius: var(--radius-sm);
+  display: inline-block;
+  align-self: flex-start;
+  transition: transform 180ms var(--ease-spring);
+}
+
+.portfolio-card:hover .portfolio-cover-tag {
+  transform: translateY(-1px);
+}
+
+.portfolio-cover-title {
+  position: relative;
+  z-index: 2;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.portfolio-body {
+  padding: 20px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background-color: #ffffff;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.portfolio-info h3 {
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.portfolio-info p {
+  font-size: 12.5px;
+  color: var(--text-muted);
+}
+
+.portfolio-arrow {
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--orange);
+  transition: transform 200ms var(--ease-spring);
+}
+
+.portfolio-card:hover .portfolio-arrow {
+  transform: translate(3px, -2px);
+}
+
+.portfolio-foot {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.portfolio-note {
+  font-size: 12px;
+  color: var(--text-light);
+}
+
+/* Morrow Dedicated Case Study Section */
+.morrow-section {
+  background-color: #faf9f6;
+}
+
+.morrow-hero {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: clamp(32px, 5vw, 64px);
+  align-items: start;
+  margin-bottom: clamp(40px, 6vw, 64px);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: clamp(32px, 5vw, 48px);
+}
+
+.morrow-title-group h2 {
+  font-size: clamp(32px, 4.5vw, 54px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 16px;
+}
+
+.morrow-title-group p {
+  font-size: 16px;
+  color: var(--text-muted);
+  line-height: 1.55;
+  max-width: 580px;
+}
+
+.morrow-specs {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  transition: transform 240ms var(--ease-spring), box-shadow 240ms ease;
+}
+
+.morrow-specs:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 17, 15, 0.05);
+}
+
+.palette-group label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  display: block;
+  margin-bottom: 8px;
+}
+
+.palette-chips {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+
+.palette-chip {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.palette-color {
+  height: 38px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(16, 17, 15, 0.1);
+  transition: transform 200ms var(--ease-spring);
+}
+
+.palette-color:hover {
+  transform: translateY(-2px) scale(1.05);
+}
+
+.palette-espresso { background-color: #2b1d17; }
+.palette-terracotta { background-color: #d2613d; }
+.palette-morning { background-color: #b8d2d7; }
+.palette-cream { background-color: #f4efe6; }
+
+.palette-chip span {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+.palette-chip small {
+  font-size: 10px;
+  color: var(--text-light);
+}
+
+.morrow-specs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 14px;
+}
+
+.morrow-specs-list strong {
+  color: var(--ink);
+}
+
+/* Morrow Subsections */
+.case-subsection {
+  margin-bottom: clamp(40px, 6vw, 64px);
+}
+
+.case-subhead {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.case-subhead h3 {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.case-subhead span {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-weight: 500;
+}
+
+/* Morrow Identity Grid */
+.identity-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 20px;
+}
+
+.artwork-frame {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 240ms var(--ease-spring), box-shadow 240ms ease, border-color 180ms ease;
+  will-change: transform;
+}
+
+.artwork-frame:hover {
+  transform: translateY(-3px);
+  border-color: var(--border-strong);
+  box-shadow: 0 10px 24px rgba(16, 17, 15, 0.05);
+}
+
+.artwork-frame img {
+  max-width: 100%;
+  height: auto;
+  object-fit: contain;
+  transition: transform 300ms var(--ease-out-expo);
+}
+
+.artwork-frame:hover img {
+  transform: scale(1.02);
+}
+
+.stationery-stack {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+/* Packaging & Objects Grid */
+.objects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.object-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  transition: transform 260ms var(--ease-spring), box-shadow 260ms ease, border-color 180ms ease;
+  will-change: transform;
+}
+
+.object-card:hover {
+  transform: translateY(-4px) scale(1.01);
+  border-color: var(--border-strong);
+  box-shadow: 0 12px 28px rgba(16, 17, 15, 0.06);
+}
+
+.object-card-image {
+  height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+  width: 100%;
+}
+
+.object-card-image img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  transition: transform 320ms var(--ease-out-expo);
+}
+
+.object-card:hover .object-card-image img {
+  transform: scale(1.04) translateY(-2px);
+}
+
+.object-card h4 {
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.object-card p {
+  font-size: 12px;
+  color: var(--text-muted);
+}
+
+/* Campaign & Social Grid */
+.campaign-grid {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.billboard-display {
+  background-color: #10110f;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 260ms var(--ease-spring), box-shadow 260ms ease;
+}
+
+.billboard-display:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(16, 17, 15, 0.2);
+}
+
+.social-trio {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+}
+
+.social-card {
+  background-color: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  transition: transform 240ms var(--ease-spring), box-shadow 240ms ease;
+  will-change: transform;
+}
+
+.social-card:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 8px 20px rgba(16, 17, 15, 0.08);
+}
+
+.social-card img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+.social-card figcaption {
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-align: center;
+}
+
+/* Campaign Case Studies Interactive Section with Smooth Crossfade & Slide */
+.case-section {
+  background-color: var(--paper);
+}
+
+.case-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.case-brands-tabs {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.case-tab {
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 600;
+  border: 1px solid var(--border);
+  background-color: var(--paper-card);
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  transition: transform 180ms var(--ease-spring), color 140ms ease, background-color 140ms ease, border-color 140ms ease, box-shadow 180ms ease;
+  will-change: transform;
+}
+
+.case-tab:hover {
+  color: var(--ink);
+  border-color: var(--ink);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(16, 17, 15, 0.06);
+}
+
+.case-tab.is-active,
+.case-tab[aria-pressed="true"] {
+  background-color: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+  box-shadow: 0 4px 12px rgba(16, 17, 15, 0.15);
+}
+
+/* Crossfade & Slide Transition Container */
+.case-display-card {
+  background-color: var(--paper-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: clamp(24px, 4vw, 44px);
+  display: grid;
+  grid-template-columns: 1fr 1.15fr;
+  gap: clamp(28px, 4vw, 54px);
+  align-items: center;
+  transition: opacity 240ms var(--ease-out-expo), transform 240ms var(--ease-out-expo), box-shadow 260ms ease, border-color 200ms ease;
+  will-change: opacity, transform;
+}
+
+.case-display-card:hover {
+  box-shadow: 0 12px 32px rgba(16, 17, 15, 0.05);
+}
+
+/* State when crossfading out */
+.case-display-card.is-switching {
+  opacity: 0;
+  transform: translateY(8px) scale(0.995);
+  pointer-events: none;
+}
+
+/* State when crossfading in */
+.case-display-card.is-entering {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.case-details,
+.case-visuals {
+  transition: opacity 220ms var(--ease-out-expo), transform 220ms var(--ease-out-expo);
+}
+
+.case-display-card.is-switching .case-details {
+  opacity: 0;
+  transform: translateY(6px);
+}
+
+.case-display-card.is-switching .case-visuals {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.case-details {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.case-kicker {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--orange);
+}
+
+.case-title {
+  font-size: clamp(28px, 3.8vw, 44px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.025em;
+  color: var(--ink);
+}
+
+.case-steps {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  border-top: 1px solid var(--border-subtle);
+  padding-top: 20px;
+}
+
+.case-step-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 12px;
+}
+
+.case-step-num {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--orange);
+}
+
+.case-step-content h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 2px;
+}
+
+.case-step-content p {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+
+.case-visuals {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.case-visual-main {
+  background-color: var(--paper-subtle);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  overflow: hidden;
+  transition: transform 260ms var(--ease-spring), box-shadow 260ms ease;
+}
+
+.case-visual-main:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(16, 17, 15, 0.06);
+}
+
+.case-visual-main img {
+  width: 100%;
+  height: auto;
+  border-radius: 2px;
+}
+
+.case-visual-secondary {
+  display: grid;
+  grid-template-columns: 1.3fr 0.7fr;
+  gap: 12px;
+}
+
+.case-visual-secondary img {
+  width: 100%;
+  height: auto;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border);
+  background-color: var(--paper-subtle);
+  transition: transform 240ms var(--ease-spring);
+}
+
+.case-visual-secondary img:hover {
+  transform: translateY(-2px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr;
+  }
+  .portfolio-column {
+    grid-column: 1 / 2;
+  }
+  .morrow-hero, .identity-grid, .campaign-grid, .case-display-card {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .objects-grid {
+    grid-template-columns: 1fr;
+  }
+  .case-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .stationery-stack {
+    grid-template-columns: 1fr;
+  }
+  .social-trio {
+    grid-template-columns: 1fr;
+  }
+  .palette-chips {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .case-visual-secondary {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  .portfolio-card,
+  .portfolio-cover img,
+  .portfolio-cover-photo img,
+  .portfolio-arrow,
+  .case-display-card,
+  .case-details,
+  .case-visuals,
+  .case-tab,
+  .artwork-frame,
+  .object-card,
+  .social-card {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}
