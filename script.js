@@ -290,67 +290,55 @@
     });
   };
 
-  // --- PROCESS 3D CARD STACK ---
-  const processSection = document.querySelector('[data-process]');
-  const pcards = [...document.querySelectorAll('.pcard')];
-  const psteps = [...document.querySelectorAll('.process-steps button')];
-  const pline = document.querySelector('.process-line');
+  // --- PROCESS FLOW (from Web reference 3) ---
+  const flowSection = document.querySelector('#process');
+  const flowSteps = [...document.querySelectorAll('[data-flow-step]')];
+  const flowObjects = [...document.querySelectorAll('[data-flow-object]')];
+  const flowCounter = document.querySelector('.flow-counter-current');
+  const flowCounterBar = document.querySelector('.flow-counter i');
 
-  const updateProcess = () => {
-    if (!processSection || !pcards.length) return;
+  const updateFlow = () => {
+    if (!flowSection || !flowObjects.length) return;
     const isDesktop = window.innerWidth > 860 && !reduceMotion.matches;
     if (!isDesktop) {
-      pcards.forEach(c => {
-        c.style.transform = '';
-        c.style.opacity = '';
+      flowObjects.forEach(obj => {
+        obj.style.removeProperty('--flow-x');
+        obj.style.removeProperty('--flow-y');
+        obj.style.removeProperty('--flow-z');
+        obj.style.removeProperty('--flow-r');
+        obj.style.removeProperty('--flow-scale');
+        obj.style.removeProperty('--flow-opacity');
       });
       return;
     }
+    const range = Math.max(1, flowSection.offsetHeight - window.innerHeight);
+    const progress = clamp(-flowSection.getBoundingClientRect().top / range);
+    const active = Math.min(flowObjects.length - 1, Math.round(progress * (flowObjects.length - 1)));
 
-    const range = Math.max(1, processSection.offsetHeight - window.innerHeight);
-    const progress = clamp(-processSection.getBoundingClientRect().top / range);
-    pline?.style.setProperty('--pp', progress.toFixed(3));
-
-    const stepFloat = progress * (pcards.length - 1);
-    const active = Math.min(pcards.length - 1, Math.floor(stepFloat));
-    const subProgress = stepFloat - active;
-
-    pcards.forEach((card, index) => {
-      if (index < active) {
-        // Scrolled away: flies up and out
-        card.style.transform = 'translate3d(0, -125%, 0) rotateX(18deg) scale(0.92)';
-        card.style.opacity = '0';
-        card.style.pointerEvents = 'none';
-      } else if (index === active) {
-        // Active card: transitions up slightly as user completes step
-        const liftY = -(subProgress * 15);
-        card.style.transform = `translate3d(0, ${liftY.toFixed(1)}px, 0) scale(1)`;
-        card.style.opacity = '1';
-        card.style.pointerEvents = 'auto';
-      } else {
-        // Upcoming cards stacked behind
-        const d = index - active;
-        const stackY = (d * 18 - subProgress * 18).toFixed(1);
-        const stackZ = (-d * 70 + subProgress * 70).toFixed(1);
-        const stackScale = (1 - d * 0.045 + subProgress * 0.045).toFixed(3);
-        const stackOpacity = Math.max(0, 1 - d * 0.28 + subProgress * 0.28).toFixed(3);
-        card.style.transform = `translate3d(0, ${stackY}px, ${stackZ}px) scale(${stackScale})`;
-        card.style.opacity = stackOpacity;
-        card.style.pointerEvents = 'none';
-      }
+    flowObjects.forEach((object, index) => {
+      const distance = index - active;
+      object.style.setProperty('--flow-x', `${distance * 24}px`);
+      object.style.setProperty('--flow-y', `${Math.abs(distance) * 16}px`);
+      object.style.setProperty('--flow-z', `${-Math.abs(distance) * 120}px`);
+      object.style.setProperty('--flow-r', `${distance * -3.5}deg`);
+      object.style.setProperty('--flow-scale', `${1 - Math.min(0.13, Math.abs(distance) * 0.035)}`);
+      object.style.setProperty('--flow-opacity', `${clamp(1.12 - Math.abs(distance) * 0.23, 0.14, 1)}`);
+      object.classList.toggle('is-active', index === active);
     });
 
-    const activeStepIdx = Math.min(pcards.length - 1, Math.round(stepFloat));
-    psteps.forEach((btn, idx) => {
-      btn.closest('li')?.classList.toggle('is-active', idx === activeStepIdx);
-    });
+    flowSteps.forEach((step, index) => step.classList.toggle('is-active', index === active));
+    if (flowCounter) flowCounter.textContent = String(active + 1).padStart(2, '0');
+    if (flowCounterBar) {
+      const pct = Math.round(((active + 1) / flowObjects.length) * 100);
+      flowCounterBar.style.background = `linear-gradient(90deg, var(--yellow) 0 ${pct}%, rgba(255, 255, 255, 0.25) ${pct}% 100%)`;
+    }
   };
 
-  psteps.forEach(btn => {
-    btn.addEventListener('click', () => {
-      if (!processSection) return;
-      const idx = Number(btn.dataset.step);
-      const target = processSection.offsetTop + (processSection.offsetHeight - window.innerHeight) * (idx / (pcards.length - 1));
+  flowSteps.forEach(step => {
+    step.querySelector('button')?.addEventListener('click', () => {
+      if (!flowSection) return;
+      const index = Number(step.dataset.flowStep);
+      const target = flowSection.offsetTop + (flowSection.offsetHeight - window.innerHeight) * (index / (flowObjects.length - 1));
       window.scrollTo({ top: target, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
     });
   });
@@ -448,7 +436,7 @@
     updateHero();
     updateStatement();
     updateWork();
-    updateProcess();
+    updateFlow();
     updateSocial();
     updateShelf();
     isTicking = false;
