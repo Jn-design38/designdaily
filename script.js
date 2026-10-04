@@ -140,17 +140,16 @@
   const heroProgress = document.querySelector('.hero-progress b');
   const pieces = [...document.querySelectorAll('.piece')];
 
-  // Base 3D cluster coordinates on right side of desktop screen
+  // 4 Focused Showcase Pieces on right side of desktop screen:
+  // a: Frosted identity cards (Julkarnine - Graphic Designer)
+  // b: Bhumi Rice Cakes Gable Gift Box (architectural 3D packaging)
+  // c: Aura Skincare Face Wash Bottle (sleek cosmetic product)
+  // d: All Organics Brand Canvas Tote (lifestyle merchandise)
   const pieceConfigs = {
-    a: { bx: 220, by: -150, bz: 80, rx: 4, ry: -8, rz: -4, ex: 460, ey: -320, ez: 300, er: -18 },
-    b: { bx: 360, by: -50,  bz: -20, rx: -5, ry: -12, rz: 6, ex: 580, ey: -110, ez: -150, er: 20 },
-    c: { bx: 180, by: 100,  bz: 150, rx: 6, ry: 10,  rz: -5, ex: 380, ey: 280,  ez: 420, er: -22 },
-    d: { bx: 400, by: 150,  bz: 200, rx: 8, ry: -14, rz: 8,  ex: 640, ey: 360,  ez: 480, er: 28 },
-    e: { bx: -20, by: -200, bz: -90, rx: -6, ry: 6,  rz: 3,  ex: -120, ey: -400, ez: -220, er: 12 },
-    f: { bx: 60,  by: 190,  bz: 100, rx: 5, ry: 8,   rz: -8, ex: -10,  ey: 420,  ez: 240, er: -20 },
-    g: { bx: 40,  by: -10,  bz: -10, rx: 3, ry: -4,  rz: -6, ex: -50,  ey: -50,  ez: -90, er: -15 },
-    h: { bx: 280, by: -240, bz: 130, rx: 10, ry: -6, rz: 12, ex: 500, ey: -440, ez: 340, er: 32 },
-    i: { bx: -70, by: 70,   bz: 170, rx: 4, ry: 12,  rz: -10, ex: -280, ey: 180, ez: 380, er: -26 }
+    a: { bx: 160, by: 110, bz: 140, rx: 16, ry: -12, rz: -7, ex: 160, ey: 440, ez: 450, er: -24 },
+    b: { bx: 300, by: -20, bz: 40,  rx: 4,  ry: -16, rz: 5,  ex: 540, ey: -130, ez: 200, er: 18 },
+    c: { bx: 80,  by: -110, bz: 20, rx: 6,  ry: 14,  rz: -6, ex: -80, ey: -360, ez: 160, er: -16 },
+    d: { bx: 420, by: 90,  bz: -30, rx: -5, ry: -8,  rz: 7,  ex: 680, ey: 300,  ez: -60, er: 24 }
   };
 
   let mouseX = 0, mouseY = 0, currentTiltX = 0, currentTiltY = 0;
