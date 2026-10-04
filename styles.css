@@ -67,3 +67,9 @@ em{font-style:normal;color:var(--orange);font-weight:300}
 
 @media(max-width:600px){.process-flow{min-height:1650px;padding-bottom:35px}.flow-sticky{padding-top:25px}.flow-copy{margin-bottom:26px}.flow-steps{gap:0 5px}.flow-steps button strong{font-size:11px}.flow-steps button small{font-size:7px;line-height:1.2}.flow-stage{height:430px}.flow-object{width:90%;border-radius:14px}.flow-object>strong{font-size:clamp(24px,8.3vw,34px)}}
 
+/* Portfolio-led hero accents. */
+.hero-orb{aspect-ratio:16/9!important}
+.hero-star{position:absolute;z-index:6;width:clamp(42px,5vw,82px);filter:drop-shadow(0 15px 15px #17181630);animation:star-float 8s ease-in-out infinite}
+.hero-star-a{left:-1%;top:4%;transform:rotate(-13deg);animation-delay:-1s}.hero-star-b{right:-2%;top:38%;width:clamp(30px,3.6vw,58px);transform:rotate(18deg);animation-delay:-4s}.hero-star-c{left:20%;bottom:2%;width:clamp(25px,3vw,48px);transform:rotate(5deg);animation-delay:-6s}
+@keyframes star-float{0%,100%{translate:0 0 rotate(0deg)}50%{translate:0 -12px rotate(5deg)}}
+
