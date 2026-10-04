@@ -14,7 +14,7 @@
   const motionButton = $('.motion-toggle');
   let savedMotion = null;
   try { savedMotion = localStorage.getItem('design-daily-motion'); } catch {}
-  let motion = savedMotion === null ? !reduce.matches : savedMotion === 'on' && !reduce.matches;
+  let motion = !reduce.matches;
   let frame = 0;
   let geometry = new Map();
   const chapters = $$('[data-chapter]');
@@ -30,7 +30,9 @@
   const projectButtons = $$('[data-go-project]');
   const layers = { logo: $('.layer-logo'), palette: $('.layer-palette'), layout: $('.layer-layout') };
   const systemSteps = $$('.system-steps li');
-  const posts = $$('.social-post');
+  let posts = $$('.social-post');
+  let serviceCards = [];
+  let serviceSteps = [];
   const reading = $('.reading-text');
   // Keep the heading's accessible name intact while revealing its individual words.
   const accessibleReading = reading.textContent;
@@ -52,6 +54,79 @@
   splitWords(reading);
   const words = $$('.reading-text .word');
   let selectedProject = -1;
+
+  function configureJourney() {
+    const heading = $('.content-heading h2');
+    const intro = $('.content-heading p');
+    if (heading) heading.innerHTML = 'From sketch.<br><span class="light-type">To seen.</span>';
+    if (intro) intro.innerHTML = 'A designer turns a rough thought into a brand people notice.<br>One clear idea, carried all the way through.';
+    if (interlude) {
+      interlude.setAttribute('aria-label', 'Services from one brand idea');
+      interlude.innerHTML = `<div class="service-head"><div><span class="kicker">One idea. Every angle.</span><h2>Make the idea<br><span class="light-type">travel further.</span></h2></div><p>One clear point of view, carried into every place<br>your audience meets the brand.</p></div><div class="service-layout"><ol class="service-list" aria-label="Services"><li class="is-active" data-service="identity"><span>01</span><div><strong>Brand identity</strong><small>Find the voice and the visual rules.</small></div></li><li data-service="packaging"><span>02</span><div><strong>Packaging</strong><small>Make the shelf feel unmistakably yours.</small></div></li><li data-service="posters"><span>03</span><div><strong>Posters &amp; campaigns</strong><small>Give the idea a room to speak.</small></div></li><li data-service="billboard"><span>04</span><div><strong>Billboard &amp; space</strong><small>Turn attention into a place people remember.</small></div></li><li data-service="social"><span>05</span><div><strong>Social content</strong><small>Keep the system moving every day.</small></div></li></ol><div class="service-stage" aria-live="polite"><div class="service-stage-top"><span>Sandbox Lounge / applications</span><span class="service-stage-count">01 / 05</span></div><div class="service-cards"><figure class="service-card service-identity is-active"><img src="assets/service-identity.png" alt="Sandbox Lounge brand identity board with navy, charcoal, slate blue, and golden yellow materials" loading="lazy"><figcaption><span>01 / IDENTITY</span><strong>The system starts<br>with a point of view.</strong></figcaption></figure><figure class="service-card service-packaging"><img src="assets/service-packaging.png" alt="Sandbox Lounge packaging mockup with navy coffee bag and golden yellow symbol" loading="lazy"><figcaption><span>02 / PACKAGING</span><strong>Put the idea<br>in their hands.</strong></figcaption></figure><figure class="service-card service-posters"><img src="assets/service-posters.png" alt="Sandbox Lounge poster mockup on a deep navy wall with golden yellow graphic" loading="lazy"><figcaption><span>03 / CAMPAIGNS</span><strong>Let the idea<br>take up space.</strong></figcaption></figure><figure class="service-card service-billboard"><img src="assets/service-billboard.png" alt="Sandbox Lounge billboard and facade mockup at dusk" loading="lazy"><figcaption><span>04 / PLACE</span><strong>Make the world<br>recognise it.</strong></figcaption></figure><figure class="service-card service-social"><img src="assets/service-social.png" alt="Sandbox Lounge social media campaign mockup on a phone and square cards" loading="lazy"><figcaption><span>05 / SOCIAL</span><strong>Keep it familiar<br>in the everyday.</strong></figcaption></figure></div></div></div><div class="interlude-foot"><span>A logo is the beginning.</span><span>The system is what makes it yours.</span></div>`;
+      serviceSteps = $$('.service-list li');
+      serviceCards = $$('.service-card');
+    }
+    const systemHeading = $('.system-copy h2');
+    const systemIntro = $('.system-intro');
+    if (systemHeading) systemHeading.innerHTML = 'A clear route.<br><span class="light-type">More than a mark.</span>';
+    if (systemIntro) systemIntro.textContent = 'Start with evidence, shape a direction, then make it useful in the places your clients meet people.';
+    const systemCopy = [['01', 'Find the direction.', 'Search the category, gather signals, define the opportunity.'], ['02', 'Build the system.', 'Turn the direction into a clear visual language people can recognise.'], ['03', 'Make it useful.', 'Give clients assets they can use, repeat, and grow with.']];
+    systemSteps.forEach((step, index) => {
+      const [number, title, copy] = systemCopy[index];
+      step.querySelector('span').textContent = number;
+      step.querySelector('h3').textContent = title;
+      step.querySelector('p').textContent = copy;
+    });
+    const systemCards = [
+      ['layer-logo', '01 / DISCOVER', 'Find the direction.', 'Search the category. Gather the signals. Define the opportunity.', 'web search  ·  positioning  ·  direction'],
+      ['layer-palette', '02 / DESIGN', 'Build the system.', 'Shape the mark, palette, type, and templates into one language.', 'concept  ·  critique  ·  identity system'],
+      ['layer-layout', '03 / BENEFIT', 'Make it useful.', 'Give clients a toolkit they can use, repeat, and grow with.', 'clarity  ·  consistency  ·  momentum']
+    ];
+    systemCards.forEach(([className, kicker, title, copy, tags]) => {
+      const card = $(`.${className}`);
+      if (!card) return;
+      card.innerHTML = `<div class="system-card-content"><span class="system-card-kicker">${kicker}</span><strong>${title}</strong><p>${copy}</p><small>${tags}</small></div>`;
+      card.setAttribute('aria-label', `${kicker}. ${title} ${copy}`);
+    });
+    const journey = [
+      { className: 'journey-sketch', html: '<img src="assets/journey-sketch-v2.png" alt="Graph-paper sketchbook with pencil studies for an architectural identity" width="1024" height="1536" loading="lazy"><span>01 / THE SKETCH</span><div class="journey-caption"><strong>It starts<br>on paper.</strong><small>One shape worth following.</small></div>' },
+      { className: 'journey-direction', html: '<img src="assets/journey-identity-v2.png" alt="Orange, black and cream identity specimens developed from the sketches" width="1024" height="1536" loading="lazy"><span>02 / THE IDENTITY</span><div class="journey-caption"><strong>Then it<br>finds a voice.</strong><small>The idea becomes a system.</small></div>' },
+      { className: 'journey-scene', html: '<img src="assets/journey-seen-v2.png" alt="A visitor viewing the finished architectural identity in a lobby" width="1024" height="1536" loading="lazy"><span>03 / THE WORLD</span><div class="journey-caption"><strong>Now people<br>see it.</strong><small>From the studio to real spaces.</small></div>' },
+      { className: 'journey-growth', html: '<span>04 / THE MOMENTUM</span><div class="growth-orbit" aria-hidden="true"><i></i><i></i><i></i></div><div class="growth-stat"><small>ILLUSTRATIVE VIEWERS</small><strong class="viewer-count">1,200</strong><span>↗</span></div><div class="journey-caption"><strong>Attention<br>grows.</strong><small>A consistent brand earns another look.</small></div>' }
+    ];
+    posts.forEach((post, index) => {
+      const item = journey[index];
+      if (!item) { post.remove(); return; }
+      post.className = `social-post ${item.className}`;
+      post.innerHTML = item.html;
+    });
+    posts = $$('.social-post');
+    $('.content-grid').setAttribute('aria-label', 'Four stages of a brand identity design journey');
+    $('.content-section .section-meta span:last-child').textContent = 'The designer journey';
+    $('.content-foot span').textContent = 'A designer journey / Studio concept';
+    $('.content-foot .text-link').innerHTML = 'See how the system scales <span class="link-line" aria-hidden="true"></span>';
+    $('.process-heading p').textContent = 'A short, clear path from question to useful files.';
+    const processCopy = [['01', 'Brief it.', 'One clear problem.'], ['02', 'Make it.', 'A direction with a reason.'], ['03', 'Shape it.', 'Focused feedback, fewer loops.'], ['04', 'Use it.', 'Files ready for the next move.']];
+    $$('.process-list article').forEach((article, index) => {
+      const [number, title, copy] = processCopy[index];
+      article.querySelector('span').textContent = number;
+      article.querySelector('h3').textContent = title;
+      article.querySelector('p').textContent = copy;
+    });
+    $('.offers-section .section-meta span:first-child').textContent = '06 / Pick your path';
+    $('.offers-heading h2').innerHTML = 'Pick a<br><span class="light-type">good start.</span>';
+    $('.offers-heading p').innerHTML = 'Choose your next move.<br>We will make the scope clear.';
+    $$('.offer-card').forEach((card, index, all) => {
+      card.setAttribute('tabindex', '0');
+      card.dataset.package = String(index + 1).padStart(2, '0');
+      const activate = () => all.forEach(item => item.classList.toggle('is-active', item === card));
+      card.addEventListener('pointerenter', activate);
+      card.addEventListener('focus', activate);
+      card.addEventListener('click', activate);
+      card.addEventListener('keydown', event => { if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); activate(); } });
+    });
+  }
+  configureJourney();
 
   function measure() {
     geometry = new Map([...chapters, ...cards].map(element => {
@@ -176,11 +251,12 @@
     const hp = progress(hero, pinned);
     if (pinned) {
       style(hero, 'copy-y', -hp * 70, 'px'); style(hero, 'copy-opacity', 1 - hp * .25);
-      style(hero, 'photo-x', hp * 115, 'px'); style(hero, 'photo-y', -hp * 100, 'px'); style(hero, 'photo-z', -hp * 150, 'px');
-      style(hero, 'photo-ry', mix(-12, -32, hp), 'deg'); style(hero, 'photo-r', mix(8, 20, hp), 'deg');
-      style(hero, 'type-x', -hp * 105, 'px'); style(hero, 'type-y', hp * 100, 'px'); style(hero, 'type-z', mix(60, 160, hp), 'px');
-      style(hero, 'type-ry', mix(12, 28, hp), 'deg'); style(hero, 'type-r', mix(-10, -20, hp), 'deg');
-      style(hero, 'label-y', -hp * 170, 'px'); style(hero, 'swatch-x', hp * 80, 'px'); style(hero, 'swatch-y', hp * 40, 'px');
+      style(hero, 'photo-x', hp * 42, 'px'); style(hero, 'photo-y', -hp * 34, 'px'); style(hero, 'photo-z', -hp * 28, 'px');
+      style(hero, 'photo-ry', mix(-7, -14, hp), 'deg'); style(hero, 'photo-r', mix(5, 9, hp), 'deg');
+      style(hero, 'type-x', -hp * 38, 'px'); style(hero, 'type-y', hp * 34, 'px'); style(hero, 'type-z', mix(25, 45, hp), 'px');
+      style(hero, 'type-ry', mix(6, 12, hp), 'deg'); style(hero, 'type-r', mix(-5, -9, hp), 'deg');
+      style(hero, 'label-y', -hp * 60, 'px'); style(hero, 'swatch-x', hp * 34, 'px'); style(hero, 'swatch-y', hp * 20, 'px');
+      style(heroArt, 'hero-orb-y', (hp - .5) * -34, 'px');
     }
     const mp = progress(manifesto);
     const wordProgress = clamp((mp - .16) / .42);
@@ -206,38 +282,58 @@
       cards.forEach(card => style(card, 'mobile-card-ry', (progress(card) - .5) * -12, 'deg'));
     }
     const tp = progress(interlude);
-    style(interlude, 'line-one-x', (tp - .5) * -innerWidth * .11, 'px');
-    style(interlude, 'line-two-x', (tp - .5) * innerWidth * .11, 'px');
+    const serviceProgress = ease(clamp((tp - .08) / .84));
+    style(interlude, 'service-progress', serviceProgress);
+    const servicePosition = serviceProgress * Math.max(0, serviceCards.length - 1);
+    const activeService = Math.min(serviceCards.length - 1, Math.floor(servicePosition + .5));
+    serviceSteps.forEach((step, index) => step.classList.toggle('is-active', index === activeService));
+    const serviceCount = $('.service-stage-count');
+    if (serviceCount) serviceCount.textContent = `${String(activeService + 1).padStart(2, '0')} / ${String(serviceCards.length).padStart(2, '0')}`;
+    serviceCards.forEach((card, index) => {
+      const distance = index - servicePosition;
+      style(card, 'service-x', distance * 20, 'px');
+      style(card, 'service-y', Math.abs(distance) * 26, 'px');
+      style(card, 'service-z', -Math.abs(distance) * 90, 'px');
+      style(card, 'service-scale', 1 - Math.min(.16, Math.abs(distance) * .055));
+      style(card, 'service-opacity', clamp(1 - Math.abs(distance) * .52, .08, 1));
+      card.classList.toggle('is-active', index === activeService);
+    });
     const sp = progress(system, pinned);
-    const spread = pinned ? ease(clamp((sp - .08) / .75)) : .4;
     const scale = pinned ? 1 : .65;
-    style(layers.logo, 'logo-y', mix(-35, -95, spread) * scale, 'px');
-    style(layers.logo, 'logo-x', mix(0, -48, spread) * scale, 'px');
-    style(layers.logo, 'logo-z', mix(70, 95, spread), 'px');
-    style(layers.logo, 'logo-rx', mix(5, 18, spread), 'deg');
-    style(layers.logo, 'logo-ry', mix(-16, -28, spread), 'deg');
-    style(layers.logo, 'logo-rz', mix(-8, -12, spread), 'deg');
-    style(layers.palette, 'palette-y', mix(15, 50, spread) * scale, 'px');
-    style(layers.palette, 'palette-x', mix(20, 0, spread) * scale, 'px');
-    style(layers.palette, 'palette-ry', mix(-16, -20, spread), 'deg');
-    style(layers.palette, 'palette-rz', mix(2, 0, spread), 'deg');
-    style(layers.layout, 'layout-y', mix(90, 205, spread) * scale, 'px');
-    style(layers.layout, 'layout-x', mix(40, 48, spread) * scale, 'px');
-    style(layers.layout, 'layout-z', mix(-80, 0, spread), 'px');
-    style(layers.layout, 'layout-ry', mix(-16, -12, spread), 'deg');
-    style(layers.layout, 'layout-rz', mix(12, 8, spread), 'deg');
-    systemSteps.forEach((step, index) => step.classList.toggle('active', !pinned || index === Math.min(2, Math.floor(sp * 3))));
+    // Let the active stage rise to the front as the reader advances through the three steps.
+    const layerPosition = pinned ? ease(clamp((sp - .04) / .92)) * 2 : 0;
+    const layerNames = ['logo', 'palette', 'layout'];
+    layerNames.forEach((name, index) => {
+      const distance = index - layerPosition;
+      const layer = layers[name];
+      style(layer, `${name}-y`, distance * 24 * scale, 'px');
+      style(layer, `${name}-x`, distance * 16 * scale, 'px');
+      style(layer, `${name}-z`, -Math.abs(distance) * 72, 'px');
+      style(layer, `${name}-rx`, 0, 'deg');
+      style(layer, `${name}-ry`, 0, 'deg');
+      style(layer, `${name}-rz`, distance * 2.2, 'deg');
+    });
+    const activeSystem = Math.min(2, Math.floor(sp * 3));
+    systemSteps.forEach((step, index) => step.classList.toggle('active', !pinned || index === activeSystem));
+    Object.values(layers).forEach((layer, index) => {
+      layer?.classList.toggle('is-active', index === activeSystem);
+      if (layer) layer.style.zIndex = String(index === activeSystem ? 12 : 5 - index);
+    });
     const cp = progress(content, pinned);
     if (pinned) {
-      style(content, 'grid-rx', mix(34, -5, ease(cp)), 'deg');
-      style(content, 'grid-rz', mix(-10, 3, ease(cp)), 'deg');
-      style(content, 'grid-z', mix(-180, 0, cp), 'px');
-      style(content, 'grid-y', mix(30, -15, cp), 'px');
+      style(content, 'grid-rx', 0, 'deg');
+      style(content, 'grid-rz', 0, 'deg');
+      style(content, 'grid-z', 0, 'px');
+      style(content, 'grid-y', 0, 'px');
       posts.forEach((post, i) => {
-        style(post, 'post-y', Math.sin(i * 1.5) * (1 - cp) * 50, 'px');
-        style(post, 'post-z', (i % 2 ? 1 : -1) * (1 - cp) * 55, 'px');
-        style(post, 'post-ry', (i - 2.5) * (1 - cp) * -8, 'deg');
+        const entry = ease(clamp((cp + .22 - i * .15) / .28));
+        style(post, 'post-y', mix(220, 0, entry), 'px');
+        style(post, 'post-z', mix(-90, 0, entry), 'px');
+        style(post, 'post-ry', 0, 'deg');
+        style(post, 'post-opacity', entry, '');
       });
+      const viewers = Math.round(mix(1200, 2800, ease(clamp((cp - .58) / .34))));
+      $('.viewer-count').textContent = viewers.toLocaleString('en-US');
     }
     style(content, 'leaf-x', mix(80, -80, cp), 'px');
     style(content, 'leaf-y', mix(90, -180, cp) * (pinned ? 1 : .3), 'px');
