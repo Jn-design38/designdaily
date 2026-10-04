@@ -26,8 +26,7 @@
     const item = campaigns[key]; if (!item) return;
     $$('[data-case-brand]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.caseBrand === key)));
     $('#case-sector').textContent = item.name;
-    const light = document.createElement('span'); light.className = 'light-type'; light.textContent = item.title[1];
-    $('#case-title').replaceChildren(document.createTextNode(item.title[0]), document.createElement('br'), light);
+    $('#case-title').replaceChildren(document.createTextNode(item.title[0]), document.createElement('br'), document.createTextNode(item.title[1]));
     $('#case-brief').textContent = item.brief; $('#case-idea').textContent = item.idea; $('#case-rollout').textContent = item.rollout;
     $('#case-read').href = `assets/${key}/case-study.svg`;
     $('.case-sheet').src = `assets/${key}/case-study.svg`; $('.case-sheet').alt = `${item.name} campaign case study`;

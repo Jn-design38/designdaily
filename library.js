@@ -63,4 +63,22 @@
     assets = [...curated.map(id => items.find(a => a.id === id)).filter(Boolean), ...items.filter(a => !curated.includes(a.id))]; render();
   }).catch(() => { status.textContent = 'The library could not load. Please refresh the page, or browse the original artwork below.'; const link = document.createElement('a'); link.href='assets/library-index.html';link.textContent='Browse all 60 original designs';grid.append(link); });
 
+  const campaigns = {
+    morrow: {name:'Morrow / Specialty coffee',lines:['A good','start.'],brief:'A warm, recognisable coffee brand that belongs in an everyday routine.',idea:'A rising sun, a grounded wordmark, and four colours with a familiar warmth.',rollout:'A complete stationery and packaging family, outdoor campaign, social series, and shop website.',social:'social-slow'},
+    roam: {name:'Roam / Outdoor goods',lines:['Take the','long way.'],brief:'An outdoor brand for people who prefer a detour to a destination.',idea:'Topographic lines, field markings, and a recognisable mountain symbol.',rollout:'Packaging, outdoor posters, social stories, and a focused landing page.',social:'social-launch'},
+    lilt: {name:'Lilt / Sound & culture',lines:['Make some','good noise.'],brief:'An expressive listening brand with personality beyond the usual tech aesthetic.',idea:'Sound becomes a visible rhythm, using bold loops and a flexible frequency mark.',rollout:'Headphone packaging, a launch campaign, vertical stories, outdoor, and a digital storefront.',social:'social-launch'},
+    soli: {name:'Soli / Everyday body care',lines:['A softer','sort of day.'],brief:'An approachable body-care brand with a calm, human sense of character.',idea:'Two soft forms make one memorable mark, supported by warm colour pairings.',rollout:'Bottle and carton designs, a ritual-led social series, posters, and a welcoming website.',social:'social-launch'}
+  };
+  $$('[data-case-brand]').forEach(button => button.addEventListener('click', () => {
+    const key = button.dataset.caseBrand, item = campaigns[key];
+    $$('[data-case-brand]').forEach(b => b.setAttribute('aria-pressed', String(b === button)));
+    $('#case-sector').textContent = item.name;
+    const light = document.createElement('span'); light.className='light-type';light.textContent=item.lines[1];
+    $('#case-title').replaceChildren(document.createTextNode(item.lines[0]),document.createElement('br'),light);
+    $('#case-brief').textContent=item.brief;$('#case-idea').textContent=item.idea;$('#case-rollout').textContent=item.rollout;
+    $('#case-read').href=`assets/${key}/case-study.svg`;
+    $('.case-sheet').src=`assets/${key}/case-study.svg`;$('.case-sheet').alt=`${item.name} campaign brief, idea, and rollout`;
+    $('.case-outdoor').src=`assets/${key}/billboard.svg`;$('.case-outdoor').alt=`${item.name} outdoor campaign`;
+    $('.case-social').src=`assets/${key}/${item.social}.svg`;$('.case-social').alt=`${item.name} social campaign`;
+  }));
 })();
