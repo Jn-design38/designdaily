@@ -19,7 +19,7 @@ GitHub Pages serves the `main` branch from the repository root. No build step is
 
 A pull request is simply a review step before changes go live. You can ask Codex to handle the Git commands and publishing for you.
 
-To preview locally, run `npm run dev` in this folder and open `http://127.0.0.1:4182`. Node.js 22 or newer is required; no package installation is needed. GitHub Pages publishes one branch; the `design` branch does not get a separate live preview automatically.
+To preview locally, run `python -m http.server 8080` in this folder and open `http://localhost:8080`. GitHub Pages publishes one branch; the `design` branch does not get a separate live preview automatically.
 
 Before publishing, check desktop and mobile layouts, images, navigation, forms, and the Motion toggle. Automatic checks validate JavaScript syntax, local asset references, and section links. They do not replace visual review.
 
@@ -30,5 +30,3 @@ The project form opens an email draft in the visitor's mail application. It does
 ## Assets
 
 Poppins is distributed under the SIL Open Font License; see `assets/OFL-Poppins.txt`. Photography is from Pexels: Adam Borkowski (4512299), Edward Jenner (4252515), and Sarah Dorweiler (8408553). The foreground leaf cutout was generated for this website.
-
-The Morrow project is an original fictional coffee identity, with 12 editable vector assets covering the logo, stationery, packaging, merchandise, billboard, and social campaign. Its source generator is `create-brand-assets.mjs`. See `ASSETS.md` for details.
