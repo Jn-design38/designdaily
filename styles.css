@@ -146,38 +146,31 @@ mark { background: none; color: inherit; }
 .marquee img:hover { filter: none; opacity: 1; transform: scale(1.12) rotate(-2deg); }
 @keyframes marquee { to { transform: translateX(-50%); } }
 
-/* ---------- STATEMENT ---------- */
-.statement { position: relative; height: 230vh; }
-.statement-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: grid; place-items: center; }
-.statement-text { position: relative; z-index: 1; max-width: 1180px; font-size: clamp(30px, 4.6vw, 74px); line-height: 1.12; font-weight: 500; letter-spacing: -.04em; text-wrap: balance; }
-.statement-text b { font-weight: 600; }
-.js .sw { color: rgba(22, 20, 18, .14); transition: color .35s ease, background-size .6s var(--ease); }
-.js .sw.on { color: var(--ink); }
-.sw.key { background: linear-gradient(var(--yellow), var(--yellow)) no-repeat 0 84% / 0 .32em; }
-.sw.key.on { background-size: 100% .32em; }
-.statement-float { position: absolute; pointer-events: none; will-change: transform; }
-.sf-1 { width: clamp(90px, 11vw, 170px); left: 4%; top: 16%; translate: 0 var(--f1, 0); }
-.sf-2 { width: clamp(70px, 8vw, 120px); right: 6%; bottom: 14%; translate: 0 var(--f2, 0); animation: drift 12s ease-in-out infinite; filter: drop-shadow(0 20px 20px rgba(170, 110, 0, .22)); }
-
-/* ---------- WORK (horizontal) ---------- */
-.work { position: relative; height: 520vh; background: var(--paper); }
+/* ---------- SELECTED WORK (horizontal brand identity showcase) ---------- */
+.work { position: relative; height: 480vh; background: var(--paper); }
 .work-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; padding-top: var(--header); }
 .work-head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; margin-bottom: clamp(20px, 3.4vh, 40px); }
 .work-head h2 { font-size: clamp(34px, 4.4vw, 70px); max-width: 760px; }
 .work-count { font-size: 15px; color: var(--muted); font-variant-numeric: tabular-nums; white-space: nowrap; }
 .work-current { color: var(--ink); font-weight: 600; font-size: 28px; }
 .work-track { display: flex; gap: clamp(16px, 2vw, 28px); padding-inline: var(--pad); width: max-content; will-change: transform; }
-.case { position: relative; flex: 0 0 min(80vw, 1180px); height: min(62vh, 640px); display: grid; grid-template-columns: 1.5fr 1fr; background: var(--case-bg); color: var(--case-ink); border-radius: var(--radius); overflow: hidden; }
-.case-media { position: relative; }
-.case-media > img:first-child { width: 100%; height: 100%; object-fit: cover; object-position: var(--op, 50%) 50%; }
+.case { position: relative; flex: 0 0 min(80vw, 1180px); height: min(62vh, 640px); display: grid; grid-template-columns: 1.5fr 1fr; background: var(--case-bg); color: var(--case-ink); border-radius: var(--radius); overflow: hidden; transition: box-shadow .4s var(--ease); }
+.case:hover { box-shadow: 0 24px 60px rgba(0, 0, 0, .25); }
+.case-media { position: relative; overflow: hidden; }
+.case-media > img:first-child { width: 100%; height: 100%; object-fit: cover; object-position: var(--op, 50%) 50%; transition: transform .6s var(--ease); }
+.case:hover .case-media > img:first-child { transform: scale(1.03); }
 .case-media-light > img:first-child { mix-blend-mode: normal; }
 .case-cut { position: absolute; z-index: 2; right: -10%; bottom: 7%; width: 26%; max-width: 230px; filter: drop-shadow(0 26px 24px rgba(0, 0, 0, .35)); transform: translateX(var(--cx, 0px)) rotate(-6deg); transition: transform .2s linear; }
 .case-cut-logo { width: 24%; max-width: 200px; padding: clamp(10px, 1.4vw, 20px); background: #fff; border-radius: 18px; filter: none; box-shadow: 0 24px 40px -16px rgba(0, 0, 0, .45); transform: translateX(var(--cx, 0px)) rotate(5deg); }
 .case-copy { position: relative; display: flex; flex-direction: column; justify-content: flex-end; gap: 14px; padding: clamp(26px, 3.4vw, 54px); padding-top: 80px; }
 .case-no { position: absolute; top: clamp(22px, 3vw, 44px); right: clamp(22px, 3vw, 44px); font-size: 14px; font-weight: 500; opacity: .7; }
-.case h3 { font-size: clamp(40px, 4.6vw, 78px); line-height: .95; font-weight: 600; letter-spacing: -.05em; }
+.case h3 { font-size: clamp(38px, 4.4vw, 72px); line-height: .96; font-weight: 600; letter-spacing: -.05em; }
 .case-tags { font-size: 12px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; color: var(--case-accent); }
-.case-copy p:last-child { font-size: clamp(15px, 1.1vw, 17px); opacity: .86; max-width: 420px; }
+.case-copy p { font-size: clamp(14px, 1.05vw, 16px); opacity: .88; max-width: 440px; line-height: 1.5; }
+.case-study-cta { display: inline-flex; align-items: center; gap: 10px; align-self: flex-start; margin-top: 8px; padding: 12px 24px; border-radius: 999px; background: var(--case-accent, var(--yellow)); color: #111216; font-size: 14px; font-weight: 600; letter-spacing: -.01em; box-shadow: 0 4px 16px rgba(0, 0, 0, .25); transition: transform .3s var(--ease), box-shadow .3s, filter .3s; }
+.case-study-cta:hover { transform: translateY(-2px); filter: brightness(1.08); box-shadow: 0 8px 24px rgba(0, 0, 0, .38); }
+.case-study-cta .ico { width: 14px; height: 14px; transition: transform .3s var(--ease); }
+.case-study-cta:hover .ico { transform: translate(3px, -3px); }
 .work-bar { margin: clamp(18px, 3vh, 34px) var(--pad) 0; height: 2px; background: var(--line); border-radius: 2px; overflow: hidden; }
 .work-bar b { display: block; height: 100%; background: var(--ink); transform-origin: left; transform: scaleX(var(--wp, 0)); }
 
@@ -430,11 +423,6 @@ mark { background: none; color: inherit; }
   .balloon.b2 { right: 10%; bottom: 8%; --s: 72px; }
   .balloon.b3 { left: 6%; top: 8%; --s: 36px; }
 
-  .statement { height: auto; padding: 100px 0; }
-  .statement-pin { position: relative; height: auto; }
-  .js .sw { color: var(--ink); }
-  .sw.key { background-size: 100% .32em; }
-
   .work { height: auto !important; padding: 90px 0 40px; }
   .work-pin { position: relative; height: auto; padding-top: 0; }
   .work-track { flex-direction: column; width: auto; transform: none !important; }
@@ -520,9 +508,6 @@ mark { background: none; color: inherit; }
 .rm .hero { height: auto; }
 .rm .hero-pin { position: relative; height: auto; min-height: 100vh; }
 .rm .hero-statement { display: none; }
-.rm .statement { height: auto; padding: 120px 0; }
-.rm .statement-pin { position: relative; height: auto; }
-.rm .sw { color: var(--ink); }
 .rm .work { height: auto !important; padding: 100px 0; }
 .rm .work-pin { position: relative; height: auto; }
 .rm .work-track { flex-direction: column; width: auto; padding-inline: var(--pad); }

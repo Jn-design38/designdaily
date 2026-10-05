@@ -207,54 +207,6 @@
     heroProgress?.style.setProperty('--hp', progress.toFixed(3));
   };
 
-  // --- STATEMENT SCRUB (light up words on scroll) ---
-  const statementSection = document.querySelector('[data-statement]');
-  const statementText = document.querySelector('[data-scrub]');
-  let scrubWords = [];
-  if (statementText) {
-    const raw = statementText.innerHTML;
-    // Split into words while honoring <b> tags
-    const temp = document.createElement('div');
-    temp.innerHTML = raw;
-    const tokens = [];
-    temp.childNodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        node.textContent.split(/\s+/).filter(Boolean).forEach(w => tokens.push({ text: w, key: false }));
-      } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'B') {
-        node.textContent.split(/\s+/).filter(Boolean).forEach(w => tokens.push({ text: w, key: true }));
-      }
-    });
-    statementText.innerHTML = '';
-    scrubWords = tokens.map(tok => {
-      const span = document.createElement('span');
-      span.className = `sw${tok.key ? ' key' : ''}`;
-      span.textContent = tok.text + ' ';
-      statementText.appendChild(span);
-      return span;
-    });
-  }
-
-  const updateStatement = () => {
-    if (!statementSection || !scrubWords.length) return;
-    const isDesktop = window.innerWidth > 860 && !reduceMotion.matches;
-    if (!isDesktop) {
-      scrubWords.forEach(w => w.classList.add('on'));
-      return;
-    }
-    const range = Math.max(1, statementSection.offsetHeight - window.innerHeight);
-    const progress = clamp(-statementSection.getBoundingClientRect().top / range);
-
-    // Light up words proportionally
-    const activeCount = Math.floor(progress * (scrubWords.length + 4));
-    scrubWords.forEach((word, idx) => {
-      word.classList.toggle('on', idx < activeCount);
-    });
-
-    // Parallax floating accents
-    statementSection.style.setProperty('--f1', `${(progress - 0.5) * -70}px`);
-    statementSection.style.setProperty('--f2', `${(progress - 0.5) * 90}px`);
-  };
-
   // --- HORIZONTAL CASE STUDY SCROLL ---
   const workSection = document.querySelector('[data-hscroll]');
   const workTrack = document.querySelector('.work-track');
@@ -275,8 +227,8 @@
     const maxScroll = Math.max(0, workTrack.scrollWidth - window.innerWidth + 80);
     workTrack.style.transform = `translate3d(-${(progress * maxScroll).toFixed(1)}px, 0, 0)`;
 
-    // Active case counter (01 to 08)
-    const currentIdx = Math.min(8, Math.floor(progress * 8) + 1);
+    // Active case counter (01 to 07)
+    const currentIdx = Math.min(7, Math.floor(progress * 7) + 1);
     if (workCurrent) workCurrent.textContent = String(currentIdx).padStart(2, '0');
 
     // Progress bar
@@ -284,7 +236,7 @@
 
     // Floating cutout parallax inside cards
     caseCuts.forEach((cut, i) => {
-      const cutOffset = (progress * 8 - i) * 20;
+      const cutOffset = (progress * 7 - i) * 20;
       cut.style.setProperty('--cx', `${clamp(cutOffset, -30, 30).toFixed(1)}px`);
     });
   };
@@ -433,7 +385,6 @@
   const onScroll = () => {
     updateHeader();
     updateHero();
-    updateStatement();
     updateWork();
     updateFlow();
     updateSocial();
