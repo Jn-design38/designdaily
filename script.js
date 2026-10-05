@@ -352,6 +352,52 @@
     });
   });
 
+  // --- SOCIAL 3D STACKED SHOWCASE ---
+  const socialCards = [...document.querySelectorAll('[data-stack-card]')];
+
+  // 3D Mouse Parallax Tilt on cards
+  if (!reduceMotion.matches && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    socialCards.forEach(card => {
+      card.addEventListener('pointermove', e => {
+        const rect = card.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        const rot = card.style.getPropertyValue('--rot') || '0deg';
+        card.style.transform = `perspective(1100px) rotateX(${(y * -10).toFixed(2)}deg) rotateY(${(x * 12).toFixed(2)}deg) rotate(${rot}) scale(1.01)`;
+      });
+      card.addEventListener('pointerleave', () => {
+        const rot = card.style.getPropertyValue('--rot') || '0deg';
+        const scale = card.style.getPropertyValue('--scale') || '1';
+        card.style.transform = `rotate(${rot}) scale(${scale})`;
+      });
+    });
+  }
+
+  const updateSocialStack = () => {
+    if (!socialCards.length || reduceMotion.matches) return;
+
+    socialCards.forEach((card, idx) => {
+      if (idx === socialCards.length - 1) return;
+      const nextCard = socialCards[idx + 1];
+      if (!nextCard) return;
+
+      const nextRect = nextCard.getBoundingClientRect();
+      const cardRect = card.getBoundingClientRect();
+
+      // Overlap progress as nextCard scrolls over this card
+      const overlapDistance = Math.max(0, (cardRect.bottom - nextRect.top) / cardRect.height);
+      const overlap = clamp(overlapDistance, 0, 1);
+
+      const rot = card.style.getPropertyValue('--rot') || '0deg';
+      const scale = (1 - overlap * 0.05).toFixed(3);
+      const brightness = (1 - overlap * 0.08).toFixed(3);
+
+      card.style.setProperty('--scale', scale);
+      card.style.filter = `brightness(${brightness})`;
+      card.style.transform = `rotate(${rot}) scale(${scale})`;
+    });
+  };
+
   // --- SOCIAL WALL PARALLAX ---
   const socialSection = document.querySelector('[data-social]');
   const wallCols = [...document.querySelectorAll('.wall-col')];
@@ -446,6 +492,7 @@
     updateStatement();
     updateWork();
     updateFlow();
+    updateSocialStack();
     updateSocial();
     updateShelf();
     isTicking = false;
