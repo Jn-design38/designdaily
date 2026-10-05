@@ -9,42 +9,58 @@
 
   const clamp = (val, min = 0, max = 1) => Math.min(max, Math.max(min, val));
 
-  // --- HEADER & MOBILE NAV ---
-  const header = document.querySelector('.site-header');
+  // --- PILL NAVIGATION & MOBILE DRAWER ---
+  const nav = document.querySelector('[data-nav], .pill-nav');
   const menu = document.querySelector('.menu-toggle');
-  const nav = document.querySelector('.nav');
+  const drawer = document.querySelector('.mobile-drawer');
+  const pillLinks = [...document.querySelectorAll('.pill-links a')];
 
   const closeMenu = () => {
-    nav?.classList.remove('open');
     document.body.classList.remove('menu-open');
     menu?.setAttribute('aria-expanded', 'false');
-    menu?.setAttribute('aria-label', 'Open menu');
   };
 
   menu?.addEventListener('click', () => {
-    const open = !nav?.classList.contains('open');
-    nav?.classList.toggle('open', open);
-    document.body.classList.toggle('menu-open', open);
+    const open = document.body.classList.toggle('menu-open');
     menu.setAttribute('aria-expanded', String(open));
-    menu.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
   });
 
-  nav?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
+  drawer?.querySelectorAll('a').forEach(link => link.addEventListener('click', closeMenu));
   document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMenu(); });
 
   let lastScrollY = window.scrollY;
   const updateHeader = () => {
     const y = window.scrollY;
-    if (header) {
-      header.classList.toggle('is-scrolled', y > 40);
-      if (y > 300 && y > lastScrollY && !nav?.classList.contains('open')) {
-        header.classList.add('is-hidden');
+    if (nav) {
+      nav.classList.toggle('is-scrolled', y > 30);
+      if (y > 220 && y > lastScrollY && !document.body.classList.contains('menu-open')) {
+        nav.classList.add('is-hidden');
       } else {
-        header.classList.remove('is-hidden');
+        nav.classList.remove('is-hidden');
       }
     }
     lastScrollY = y;
   };
+
+  // Active section indicator in pill navigation
+  const navSections = ['work', 'process', 'services', 'contact']
+    .map(id => document.getElementById(id))
+    .filter(Boolean);
+
+  if ('IntersectionObserver' in window && navSections.length > 0) {
+    const navObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const id = entry.target.id;
+          pillLinks.forEach(a => {
+            const href = a.getAttribute('href') || '';
+            a.classList.toggle('is-active', href.endsWith(`#${id}`));
+          });
+        }
+      });
+    }, { rootMargin: '-25% 0px -65% 0px' });
+    navSections.forEach(s => navObserver.observe(s));
+  }
 
   // --- WORD SPLITTING FOR REVEALS ---
   document.querySelectorAll('[data-words]').forEach(el => {
@@ -136,20 +152,19 @@
   // --- HERO 3D SCENE & PARALLAX ---
   const heroSection = document.querySelector('[data-hero]');
   const heroCopy = document.querySelector('.hero-copy');
-  const heroStatement = document.querySelector('.hero-statement');
   const heroProgress = document.querySelector('.hero-progress b');
   const pieces = [...document.querySelectorAll('.piece')];
 
-  // 4 Focused Showcase Pieces on right side of desktop screen:
+  // 4 Focused Showcase Pieces framing the right side of desktop screen:
   // a: Frosted identity cards (Julkarnine - Graphic Designer)
   // b: Bhumi Rice Cakes Gable Gift Box (architectural 3D packaging)
   // c: Aura Skincare Face Wash Bottle (sleek cosmetic product)
   // d: All Organics Brand Canvas Tote (lifestyle merchandise)
   const pieceConfigs = {
-    a: { bx: 160, by: 110, bz: 140, rx: 16, ry: -12, rz: -7, ex: 160, ey: 440, ez: 450, er: -24 },
-    b: { bx: 300, by: -20, bz: 40,  rx: 4,  ry: -16, rz: 5,  ex: 540, ey: -130, ez: 200, er: 18 },
-    c: { bx: 80,  by: -110, bz: 20, rx: 6,  ry: 14,  rz: -6, ex: -80, ey: -360, ez: 160, er: -16 },
-    d: { bx: 420, by: 90,  bz: -30, rx: -5, ry: -8,  rz: 7,  ex: 680, ey: 300,  ez: -60, er: 24 }
+    a: { bx: 200, by: 120, bz: 140, rx: 14, ry: -10, rz: -6, ex: 240, ey: 420, ez: 420, er: -20 },
+    b: { bx: 340, by: -10, bz: 40,  rx: 4,  ry: -14, rz: 6,  ex: 560, ey: -100, ez: 220, er: 16 },
+    c: { bx: 120, by: -100, bz: 20, rx: 6,  ry: 12,  rz: -6, ex: -40, ey: -320, ez: 140, er: -14 },
+    d: { bx: 440, by: 110, bz: -30, rx: -4, ry: -8,  rz: 8,  ex: 680, ey: 280,  ez: -40, er: 22 }
   };
 
   let mouseX = 0, mouseY = 0, currentTiltX = 0, currentTiltY = 0;
@@ -179,13 +194,13 @@
     currentTiltY += (mouseX * 22 - currentTiltY) * 0.1;
 
     // Phase 1: copy exits
-    const pCopy = clamp(progress / 0.42);
-    heroCopy?.style.setProperty('--hc-y', `${-(pCopy * 130)}px`);
-    heroCopy?.style.setProperty('--hc-o', `${Math.max(0, 1 - pCopy * 1.5)}`);
+    const pCopy = clamp(progress / 0.45);
+    heroCopy?.style.setProperty('--hc-y', `${-(pCopy * 120)}px`);
+    heroCopy?.style.setProperty('--hc-o', `${Math.max(0, 1 - pCopy * 1.4)}`);
 
     // Phase 2: pieces explode outwards in 3D
-    const pExp = clamp((progress - 0.15) / 0.65);
-    const pAlpha = 1 - clamp((progress - 0.65) / 0.25);
+    const pExp = clamp((progress - 0.1) / 0.8);
+    const pAlpha = 1 - clamp((progress - 0.72) / 0.28);
 
     pieces.forEach(piece => {
       const key = piece.dataset.piece;
@@ -197,11 +212,6 @@
       piece.style.transform = `translate3d(calc(-50% + ${x.toFixed(1)}px), calc(-50% + ${y.toFixed(1)}px), ${z.toFixed(1)}px) rotateX(${cfg.rx}deg) rotateY(${cfg.ry}deg) rotateZ(${rz.toFixed(1)}deg)`;
       piece.style.opacity = pAlpha.toFixed(3);
     });
-
-    // Phase 3: hero statement center reveal
-    const pStmt = clamp((progress - 0.58) / 0.32);
-    heroStatement?.style.setProperty('--st-o', pStmt.toFixed(3));
-    heroStatement?.style.setProperty('--st-s', (0.88 + pStmt * 0.12).toFixed(3));
 
     // Hero foot progress bar
     heroProgress?.style.setProperty('--hp', progress.toFixed(3));
