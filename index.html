@@ -9,9 +9,8 @@
   <link rel="icon" type="image/png" href="assets/designdaily-logo-nav.png">
   <link rel="preload" href="assets/poppins-600.ttf" as="font" type="font/ttf" crossorigin>
   <link rel="preload" href="assets/poppins-400.ttf" as="font" type="font/ttf" crossorigin>
-  <link rel="stylesheet" href="base.css?v=unified-1">
-  <link rel="stylesheet" href="styles.css?v=unified-1">
-  <script src="script.js?v=unified-1" defer></script>
+  <link rel="stylesheet" href="styles.css?v=repaired-1">
+  <script src="script.js?v=repaired-1" defer></script>
 </head>
 <body>
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -21,52 +20,31 @@
 
   <a class="skip-link" href="#main">Skip to content</a>
 
-  <!-- Floating Pill Navigation -->
-  <header class="pill-nav" data-nav>
-    <a class="pill-brand" href="#top" aria-label="Design Daily, back to top">
-      <img class="pill-mark" src="assets/designdaily-mark.svg" alt="" width="22" height="26">
-      <img class="pill-wordmark" src="assets/designdaily-wordmark.svg" alt="Design Daily" width="56" height="26">
-    </a>
-    <nav class="pill-links" aria-label="Main navigation">
-      <a href="#work">Work</a>
-      <a href="#process">Process</a>
-      <a href="#services">Services</a>
-      <a href="#contact">Contact</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Design Daily, back to top"><img src="assets/designdaily-logo-nav.png" alt="Design Daily" width="28" height="34">design daily</a>
+    <nav class="nav" aria-label="Main navigation">
+      <a href="#work">Work</a><a href="#studio">Studio</a><a href="#process">Process</a><a href="#social">Social</a><a href="#services">Services</a><a href="#contact">Contact</a>
     </nav>
-    <div class="pill-actions">
-      <a class="btn btn-primary btn-sm" href="#contact">Start a project <svg class="ico"><use href="#i-arrow-up"/></svg></a>
-      <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
-    </div>
+    <a class="header-cta" href="#contact">Start a project <svg class="ico"><use href="#i-arrow-up"/></svg></a>
+    <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
   </header>
-
-  <!-- Mobile Menu Drawer -->
-  <div class="mobile-drawer" aria-label="Mobile navigation">
-    <a class="mobile-link" href="#work">Work</a>
-    <a class="mobile-link" href="#process">Process</a>
-    <a class="mobile-link" href="#services">Services</a>
-    <a class="mobile-link" href="#contact">Contact</a>
-    <a class="btn btn-primary" href="#contact">Start a project <svg class="ico"><use href="#i-arrow-up"/></svg></a>
-  </div>
 
   <main id="main">
 
-    <!-- HERO: pinned 3D scene with official Design Daily lockup -->
+    <!-- HERO: pinned 3D scene built from real portfolio pieces -->
     <section id="top" class="hero" data-hero>
       <div class="hero-pin">
         <div class="hero-copy">
-          <div class="hero-lockup-wrap" data-rise>
-            <img class="hero-lockup" src="assets/designdaily-lockup-color.svg" alt="Design Daily Logo" width="260" height="234">
-          </div>
-          <p class="label" data-rise>Brand Identity &amp; Packaging Studio</p>
-          <h1 class="hero-title t-display">
+          <p class="kicker" data-rise>Julkarnine Arabi · Design Daily · Dhaka</p>
+          <h1 class="hero-title">
             <span class="line" data-rise>We design</span>
             <span class="line" data-rise><span class="rotator" aria-live="off"><span class="rotator-track"><span>brands</span><span>packaging</span><span>social ads</span><span>posters</span></span></span></span>
             <span class="line" data-rise>people remember.</span>
           </h1>
-          <p class="hero-intro t-lead" data-rise>Logos, identity systems, retail packaging, and high-impact campaigns for food, fashion, retail, and tech businesses. One dedicated designer, from concept sketch to production file.</p>
+          <p class="hero-intro" data-rise>Logos, identity systems, packs, posts and billboards for food, fashion, retail and tech businesses. One designer, from first sketch to final file.</p>
           <div class="hero-actions" data-rise>
-            <a class="btn btn-primary" href="#work">See the work <svg class="ico"><use href="#i-arrow"/></svg></a>
-            <a class="btn-ghost" href="https://wa.me/8801531184169" target="_blank" rel="noreferrer">Message on WhatsApp <svg class="ico"><use href="#i-arrow-up"/></svg></a>
+            <a class="button button-dark" href="#work">See the work <svg class="ico"><use href="#i-arrow"/></svg></a>
+            <a class="text-link" href="https://wa.me/8801531184169" target="_blank" rel="noreferrer">Message on WhatsApp <svg class="ico"><use href="#i-arrow-up"/></svg></a>
           </div>
         </div>
 
@@ -80,6 +58,11 @@
           <img class="balloon b3" src="assets/portfolio/yellow-star.png" alt="" aria-hidden="true">
         </div>
 
+        <div class="hero-statement" aria-hidden="true">
+          <p>Real brands.<br>Real shelves.<br><mark>Real feeds.</mark></p>
+          <span>Every piece on this page is work by Julkarnine Arabi</span>
+        </div>
+
         <div class="hero-foot"><span>Scroll</span><i class="hero-progress"><b></b></i><span>Identity · Packaging · Social · Campaigns</span></div>
       </div>
     </section>
@@ -87,7 +70,7 @@
     <!-- LOGO WALL -->
     <section class="marks" aria-labelledby="marks-title">
       <div class="marks-head shell">
-        <p class="label" data-rise>Logo design</p>
+        <p class="kicker" data-rise>Logo design</p>
         <h2 id="marks-title" data-words><span class="count" data-count="24">24</span> marks, each with its own reason to exist.</h2>
       </div>
       <div class="marquee" data-dir="left">
@@ -102,19 +85,29 @@
       </div>
     </section>
 
-    <!-- SELECTED WORK: pinned horizontal gallery of brand identities -->
+    <!-- STATEMENT: words light up on scroll -->
+    <section class="statement" data-statement>
+      <div class="statement-pin shell">
+        <img class="statement-float sf-1" src="assets/work/sparkle.png" alt="" aria-hidden="true">
+        <img class="statement-float sf-2" src="assets/work/star.png" alt="" aria-hidden="true">
+        <p class="statement-text" data-scrub>Most businesses don't need more design. They need design that is <b>clear</b>, <b>consistent</b> and <b>ready to use</b>: on the shelf, on the street and in the feed. That is the daily job.</p>
+      </div>
+    </section>
+
+    <!-- SELECTED WORK: pinned horizontal gallery -->
+        <!-- SELECTED WORK: pinned horizontal gallery -->
     <section id="work" class="work" data-hscroll>
       <div class="work-pin">
         <div class="work-head shell">
           <div>
-            <p class="label">Brand Identity &amp; Systems</p>
+            <p class="kicker">Selected work</p>
             <h2 data-words>Seven brands, built to command attention.</h2>
           </div>
           <p class="work-count"><span class="work-current">01</span> / 07</p>
         </div>
         <div class="work-track">
           <!-- 01: All Organics -->
-          <article class="case" style="--case-bg:#1e2e24;--case-ink:#f3efe6;--case-accent:#e5a93c">
+          <article class="case" style="--case-bg:#1e2e24;--case-ink:#f3efe6;--case-accent:#c0ff87">
             <div class="case-media">
               <img src="assets/portfolio/page-21.jpg" alt="All Organics billboard on a city street: Eat well, live well" loading="lazy">
               <img class="case-cut" src="assets/work/hero-allorganics-tote.png" alt="" aria-hidden="true" loading="lazy">
@@ -129,7 +122,7 @@
           </article>
 
           <!-- 02: FINN -->
-          <article class="case" style="--case-bg:#0d0d0e;--case-ink:#f3efe6;--case-accent:#e52e3d">
+          <article class="case" style="--case-bg:#121213;--case-ink:#f3efe6;--case-accent:#ff2e5b">
             <div class="case-media">
               <img src="assets/cases/finn/PACKAGING1_220824.png" alt="FINN luxury leather packaging box with foil stamping" loading="lazy">
               <img class="case-cut case-cut-logo case-cut-invert" src="assets/work/logos/finn.png" alt="" aria-hidden="true" loading="lazy">
@@ -152,62 +145,62 @@
             <div class="case-copy">
               <span class="case-no">03</span>
               <h3>Tripty</h3>
-              <p class="case-tags">Hospitality Identity · Takeout Packaging · Crew Uniforms · Fleet</p>
-              <p>A fast-casual dining brand built on the triptych of taste. A smiling chef's hat, sizzling flame artwork, takeout packaging, crew uniforms, and delivery vans.</p>
+              <p class="case-tags">Fast Food Identity · Experiential Wall Mural · Merch · Packaging</p>
+              <p>Experiential burger & street food brand. A chef-inspired mark, flame iconography, playful custom patterns, and complete restaurant interior environmental graphics.</p>
               <a class="case-study-cta" href="case-tripty.html">Explore Case Study <svg class="ico"><use href="#i-arrow-up"/></svg></a>
             </div>
           </article>
 
-          <!-- 04: Noréa -->
-          <article class="case" style="--case-bg:#162029;--case-ink:#f3efe6;--case-accent:#9ba5b0">
-            <div class="case-media">
-              <img src="assets/cases/norea/1.jpg" alt="Noréa luxury brand identity deck presentation" loading="lazy">
-              <img class="case-cut case-cut-logo" src="assets/work/logos/norea.png" alt="" aria-hidden="true" loading="lazy">
-            </div>
-            <div class="case-copy">
-              <span class="case-no">04</span>
-              <h3>Noréa</h3>
-              <p class="case-tags">Fashion &amp; Lifestyle · Brand Book · Packaging · Spatial</p>
-              <p>Women's luxury fashion. Continuous-line typography that drapes like silk fabric, comprehensive 16-slide brand guidelines, gift boxes, and event graphics.</p>
-              <a class="case-study-cta" href="case-norea.html">Explore Case Study <svg class="ico"><use href="#i-arrow-up"/></svg></a>
-            </div>
-          </article>
-
-          <!-- 05: Atuendo -->
-          <article class="case" style="--case-bg:#261814;--case-ink:#f7f0e6;--case-accent:#d99b26">
-            <div class="case-media">
-              <img src="assets/cases/atuendo/080924_Atuendo stationery design_JN.png" alt="Atuendo stationery design suite" loading="lazy">
-              <img class="case-cut" src="assets/cases/atuendo/060924_Atuendo-Brand_patterns_JN-01-04-04.jpg" alt="" aria-hidden="true" loading="lazy">
-            </div>
-            <div class="case-copy">
-              <span class="case-no">05</span>
-              <h3>Atuendo</h3>
-              <p class="case-tags">Artisanal Apparel · Pattern Architecture · 3-Tier Palette</p>
-              <p>Contemporary luxury fashion atelier. Precision geometric monogram construction, custom repeating textile patterns, and a warm Mediterranean earth palette.</p>
-              <a class="case-study-cta" href="case-atuendo.html">Explore Case Study <svg class="ico"><use href="#i-arrow-up"/></svg></a>
-            </div>
-          </article>
-
-          <!-- 06: Bhumi -->
-          <article class="case" style="--case-bg:#0f4f44;--case-ink:#f3efe6;--case-accent:#f0b84a">
+          <!-- 04: Bhumi -->
+          <article class="case" style="--case-bg:#0f4d38;--case-ink:#f3efe6;--case-accent:#f0b84a">
             <div class="case-media case-media-light">
-              <img src="assets/portfolio/page-57.jpg" alt="Bhumi rice packaging family: Kataribhog rice, rice powder, frozen payesh and rice cakes" loading="lazy">
+              <img src="assets/portfolio/page-57.jpg" alt="Bhumi rice products packaging lineup" loading="lazy">
               <img class="case-cut" src="assets/work/hero-bhumi-pouch.png" alt="" aria-hidden="true" loading="lazy">
             </div>
             <div class="case-copy">
-              <span class="case-no">06</span>
+              <span class="case-no">04</span>
               <h3>Bhumi</h3>
-              <p class="case-tags">Consumer Food · Retail Packaging · Monogram · Billboard</p>
-              <p>Premium heritage grains and rice products. Stalk-of-paddy 'B' monogram, color-coded retail flour pouches, frozen payesh trays, and gable gift boxes.</p>
+              <p class="case-tags">Heritage Food Packaging · Foil Pouches · Gable Gift Box</p>
+              <p>A heritage agricultural rice brand. Architectural gable gift boxes, matte standup barrier pouches, and traditional leaf filigree for export-grade grains.</p>
               <a class="case-study-cta" href="case-bhumi.html">Explore Case Study <svg class="ico"><use href="#i-arrow-up"/></svg></a>
             </div>
           </article>
 
-          <!-- 07: Goody Bro -->
-          <article class="case" style="--case-bg:#141518;--case-ink:#f5f5f7;--case-accent:#c2ff28">
+          <!-- 05: Noréa -->
+          <article class="case" style="--case-bg:#dfe7ee;--case-ink:#1d2730;--case-accent:#5d6b78">
             <div class="case-media">
-              <img src="assets/cases/goodybro/Goodybro_Create goodness cover-2.png" alt="Goody Bro graphic streetwear lookbook cover" loading="lazy">
-              <img class="case-cut" src="assets/cases/goodybro/Chaotic world_front.png" alt="" aria-hidden="true" loading="lazy">
+              <img src="assets/cases/norea/16.jpg" alt="Norea restaurant identity, tableware and brand stationery" loading="lazy">
+              <img class="case-cut case-cut-logo" src="assets/work/logos/norea.png" alt="" aria-hidden="true" loading="lazy">
+            </div>
+            <div class="case-copy">
+              <span class="case-no">05</span>
+              <h3>Noréa</h3>
+              <p class="case-tags">Contemporary Dining · Foil Stationery · Staff Uniforms</p>
+              <p>Contemporary restaurant & lounge identity. Monogram embroidery on staff apparel, blind-embossed linen menu covers, and architectural signage.</p>
+              <a class="case-study-cta" href="case-norea.html">Explore Case Study <svg class="ico"><use href="#i-arrow-up"/></svg></a>
+            </div>
+          </article>
+
+          <!-- 06: Atuendo -->
+          <article class="case" style="--case-bg:#1a191f;--case-ink:#f3efe6;--case-accent:#f2a900">
+            <div class="case-media">
+              <img src="assets/cases/atuendo/080924_Atuendo stationery design_JN.png" alt="Atuendo luxury stationery and pattern design" loading="lazy">
+              <img class="case-cut case-cut-logo" src="assets/work/logos/slaz.png" alt="" aria-hidden="true" loading="lazy">
+            </div>
+            <div class="case-copy">
+              <span class="case-no">06</span>
+              <h3>Atuendo</h3>
+              <p class="case-tags">Fashion Identity · Pattern Systems · Editorial Stationery</p>
+              <p>Luxury minimalist apparel label. Flowing custom geometric pattern language, metallic foil business collateral, and sophisticated editorial styling.</p>
+              <a class="case-study-cta" href="case-atuendo.html">Explore Case Study <svg class="ico"><use href="#i-arrow-up"/></svg></a>
+            </div>
+          </article>
+
+          <!-- 07: Goody Bro -->
+          <article class="case" style="--case-bg:#161616;--case-ink:#f3efe6;--case-accent:#ff4c42">
+            <div class="case-media">
+              <img src="assets/cases/goodybro/Chaotic-world-design.png" alt="GoodyBro streetwear graphic drops and typographic art" loading="lazy">
+              <img class="case-cut case-cut-logo" src="assets/cases/goodybro/JNXGOODY.png" alt="" aria-hidden="true" loading="lazy">
             </div>
             <div class="case-copy">
               <span class="case-no">07</span>
@@ -222,11 +215,11 @@
       </div>
     </section>
 
-    <!-- THE STUDIO -->
+    <!-- THE STUDIO (from Web reference 3) -->
     <section id="studio" class="studio section-shell section-dark">
       <div class="section-head section-head-light reveal" data-rise>
         <div>
-          <p class="label">The Studio</p>
+          <p class="eyebrow">The studio / 02</p>
           <h2>Start with<br><span>a clear thought.</span></h2>
         </div>
         <p>Small team, direct conversation, careful files. We build the core idea first, then give it enough structure to keep working.</p>
@@ -254,7 +247,7 @@
               <p>We shape the real assets: posts, packaging, posters, and the files that keep the work moving.</p>
             </div>
           </div>
-          <a class="btn btn-primary" href="#services">See the services <svg class="ico"><use href="#i-arrow"/></svg></a>
+          <a class="button button-light" href="#services">See the services <svg class="ico"><use href="#i-arrow"/></svg></a>
         </div>
         <div class="material-stack reveal reveal-delay" data-rise aria-label="A stack of design materials from sketch to application">
           <div class="material material-sketch">
@@ -276,18 +269,18 @@
       </div>
     </section>
 
-    <!-- THE DESIGN PROCESS -->
+    <!-- THE DESIGN PROCESS (from Web reference 3) -->
     <section id="process" class="process-flow section-shell section-dark">
       <div class="section-head section-head-light reveal" data-rise>
         <div>
-          <p class="label">The Design Process</p>
+          <p class="eyebrow">The design process / 03</p>
           <h2>From first<br><span>thought to proof.</span></h2>
         </div>
         <p>Six deliberate moves. One visible thread. Scroll through the stack to see how a rough question becomes work a client can use.</p>
       </div>
       <div class="flow-sticky">
         <div class="flow-copy" data-rise>
-          <p class="label">A clear route through the studio</p>
+          <p class="flow-kicker">A clear route through the studio</p>
           <ol class="flow-steps" aria-label="Six steps in the design process">
             <li class="is-active" data-flow-step="0"><button type="button"><span>01</span><strong>Brainstorming</strong><small>Gather the signals.</small></button></li>
             <li data-flow-step="1"><button type="button"><span>02</span><strong>Ideation</strong><small>Choose the thought.</small></button></li>
@@ -349,7 +342,7 @@
     <!-- SOCIAL WALL: tilted 3D wall with columns at different speeds -->
     <section id="social" class="social" data-social>
       <div class="social-copy shell">
-        <p class="label" data-rise>Social media &amp; ads</p>
+        <p class="kicker" data-rise>Social media &amp; ads</p>
         <h2 data-words>Feeds that stop the thumb.</h2>
         <p data-rise>Launch posts, offers and banners for food, tech and retail brands, designed in sets so a month of content still looks like one brand.</p>
         <ul class="social-stats" data-rise>
@@ -395,7 +388,7 @@
     <section class="shelf" data-shelf aria-labelledby="shelf-title">
       <div class="shelf-word" aria-hidden="true">on the shelf · on the shelf ·</div>
       <div class="shelf-head shell">
-        <p class="label" data-rise>Packaging</p>
+        <p class="kicker" data-rise>Packaging</p>
         <h2 id="shelf-title" data-words>Make the shelf feel like yours.</h2>
         <p data-rise>Pouches, cartons, boxes and bottles that people recognise from across the aisle, and still read clearly up close.</p>
       </div>
@@ -413,7 +406,7 @@
     <section id="easy" class="easy" aria-labelledby="easy-title">
       <div class="easy-head shell">
         <div>
-          <p class="label" data-rise>Working together</p>
+          <p class="kicker" data-rise>Working together</p>
           <h2 id="easy-title" data-words>Getting good design should be the easy part.</h2>
         </div>
         <p data-rise>You talk directly to the designer doing the work. No account managers, no lost messages, no guessing what the files are for.</p>
@@ -467,7 +460,7 @@
     <!-- SERVICES with cursor-following previews -->
     <section id="services" class="services" data-services aria-labelledby="services-title">
       <div class="services-head shell">
-        <p class="label" data-rise>Services</p>
+        <p class="kicker" data-rise>Services</p>
         <h2 id="services-title" data-words>What we make.</h2>
       </div>
       <ul class="service-list shell">
@@ -487,7 +480,7 @@
       <img class="balloon cb2" src="assets/portfolio/yellow-star.png" alt="" aria-hidden="true">
       <div class="contact-grid shell">
         <div class="contact-copy">
-          <p class="label" data-rise>Start a project</p>
+          <p class="kicker" data-rise>Start a project</p>
           <h2 id="contact-title" data-words>Got a brief? Let's make it visible.</h2>
           <p data-rise>Tell us what you are building and what needs to look better. You will hear back from Julkarnine directly.</p>
           <div class="contact-links" data-rise>
@@ -508,30 +501,19 @@
             <label><input type="checkbox" name="need" value="Campaign / outdoor"><span>Campaign / outdoor</span></label>
           </fieldset>
           <label>Tell us a little more<textarea name="message" rows="4" placeholder="What you sell, who buys it, and when you need it." required></textarea></label>
-          <button class="btn btn-primary" type="submit">Send the brief <svg class="ico"><use href="#i-arrow"/></svg></button>
+          <button class="button button-dark" type="submit">Send the brief <svg class="ico"><use href="#i-arrow"/></svg></button>
           <p class="form-note">This opens your email app with everything filled in.</p>
         </form>
       </div>
     </section>
   </main>
 
-  <!-- Shared Brand Footer -->
-  <footer class="site-footer">
-    <div class="container footer-top">
-      <a href="#top" class="footer-lockup-link" aria-label="Design Daily, back to top">
-        <img src="assets/designdaily-lockup-light.svg" alt="Design Daily" width="220" height="198">
-      </a>
-      <div class="footer-contact-block">
-        <p>Julkarnine Arabi · Brand Identity &amp; Packaging Designer based in Dhaka, crafting deliberate design systems for ambitious businesses worldwide.</p>
-        <div class="footer-contact-links">
-          <a href="https://wa.me/8801531184169" target="_blank" rel="noreferrer">WhatsApp: +880 1531 184169 <svg class="ico"><use href="#i-arrow-up"/></svg></a>
-          <a href="mailto:julkarnineXdesigndaily@gmail.com">julkarnineXdesigndaily@gmail.com <svg class="ico"><use href="#i-arrow-up"/></svg></a>
-        </div>
-      </div>
-    </div>
-    <div class="container footer-bottom">
-      <span>© 2026 Design Daily · All rights reserved.</span>
+  <footer class="footer shell">
+    <a href="#top" class="footer-mark">design daily<img src="assets/designdaily-mark.svg" alt="Design Daily" width="56" height="68"></a>
+    <div class="footer-row">
+      <span>Julkarnine Arabi · Dhaka, Bangladesh</span>
       <span>Identity · Packaging · Social · Campaigns</span>
+      <span>© 2026 Design Daily</span>
       <a href="#top">Back to top <svg class="ico"><use href="#i-arrow-up"/></svg></a>
     </div>
   </footer>
