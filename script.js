@@ -352,51 +352,113 @@
     });
   });
 
-  // --- SOCIAL 3D STACKED SHOWCASE ---
-  const socialCards = [...document.querySelectorAll('[data-stack-card]')];
+  // --- SOCIAL MEDIA CONTENT DESIGN (SIDE-BY-SIDE CONTROLLER) ---
+  const impactItems = [...document.querySelectorAll('.social-impact-item')];
+  const deckCards = [...document.querySelectorAll('.social-deck-card')];
+  const deckCounter = document.querySelector('[data-active-num]');
+  const deckPrev = document.querySelector('.deck-prev');
+  const deckNext = document.querySelector('.deck-next');
+  const deckStage = document.querySelector('[data-social-deck]');
 
-  // 3D Mouse Parallax Tilt on cards
-  if (!reduceMotion.matches && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
-    socialCards.forEach(card => {
-      card.addEventListener('pointermove', e => {
-        const rect = card.getBoundingClientRect();
-        const x = (e.clientX - rect.left) / rect.width - 0.5;
-        const y = (e.clientY - rect.top) / rect.height - 0.5;
-        const rot = card.style.getPropertyValue('--rot') || '0deg';
-        card.style.transform = `perspective(1100px) rotateX(${(y * -10).toFixed(2)}deg) rotateY(${(x * 12).toFixed(2)}deg) rotate(${rot}) scale(1.01)`;
-      });
-      card.addEventListener('pointerleave', () => {
-        const rot = card.style.getPropertyValue('--rot') || '0deg';
-        const scale = card.style.getPropertyValue('--scale') || '1';
-        card.style.transform = `rotate(${rot}) scale(${scale})`;
-      });
+  let activeSocialIndex = 0;
+
+  const setActiveSocialCard = (index) => {
+    if (!deckCards.length) return;
+    const total = deckCards.length;
+    activeSocialIndex = ((index % total) + total) % total;
+
+    // Update accordion items
+    impactItems.forEach((item, idx) => {
+      const isActive = idx === activeSocialIndex;
+      item.classList.toggle('is-active', isActive);
+      item.setAttribute('aria-selected', isActive ? 'true' : 'false');
+    });
+
+    // Update 3D stacked deck cards
+    deckCards.forEach((card, idx) => {
+      const layer = ((idx - activeSocialIndex) % total + total) % total;
+      card.dataset.layer = layer;
+      card.classList.toggle('is-active', layer === 0);
+      card.setAttribute('aria-hidden', layer === 0 ? 'false' : 'true');
+    });
+
+    // Update counter display
+    if (deckCounter) {
+      deckCounter.textContent = String(activeSocialIndex + 1).padStart(2, '0');
+    }
+  };
+
+  // Wire up accordion items click & keyboard
+  impactItems.forEach((item, idx) => {
+    item.addEventListener('click', () => {
+      setActiveSocialCard(idx);
+    });
+    item.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setActiveSocialCard(idx);
+      } else if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        setActiveSocialCard(activeSocialIndex + 1);
+        impactItems[(activeSocialIndex) % impactItems.length]?.focus();
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        setActiveSocialCard(activeSocialIndex - 1);
+        impactItems[(activeSocialIndex) % impactItems.length]?.focus();
+      }
+    });
+  });
+
+  // Wire up deck cards click (clicking any stacked card brings it to front)
+  deckCards.forEach((card, idx) => {
+    card.addEventListener('click', (e) => {
+      if (e.target.closest('.deck-bar-link')) return; // Allow clicking full art link
+      setActiveSocialCard(idx);
+    });
+  });
+
+  // Wire up Prev / Next buttons
+  deckPrev?.addEventListener('click', () => {
+    setActiveSocialCard(activeSocialIndex - 1);
+  });
+  deckNext?.addEventListener('click', () => {
+    setActiveSocialCard(activeSocialIndex + 1);
+  });
+
+  // 3D stage cursor tilt
+  if (deckStage && !reduceMotion.matches && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let stageTiltRaf = 0;
+    let targetRotX = 0;
+    let targetRotY = 0;
+    let currRotX = 0;
+    let currRotY = 0;
+
+    const animateTilt = () => {
+      currRotX += (targetRotX - currRotX) * 0.12;
+      currRotY += (targetRotY - currRotY) * 0.12;
+      deckStage.style.transform = `perspective(1200px) rotateX(${currRotX.toFixed(2)}deg) rotateY(${currRotY.toFixed(2)}deg)`;
+      if (Math.abs(targetRotX - currRotX) > 0.05 || Math.abs(targetRotY - currRotY) > 0.05) {
+        stageTiltRaf = requestAnimationFrame(animateTilt);
+      }
+    };
+
+    deckStage.addEventListener('pointermove', (e) => {
+      const rect = deckStage.getBoundingClientRect();
+      const normX = (e.clientX - rect.left) / rect.width - 0.5;
+      const normY = (e.clientY - rect.top) / rect.height - 0.5;
+      targetRotX = normY * -10;
+      targetRotY = normX * 12;
+      cancelAnimationFrame(stageTiltRaf);
+      stageTiltRaf = requestAnimationFrame(animateTilt);
+    });
+
+    deckStage.addEventListener('pointerleave', () => {
+      targetRotX = 0;
+      targetRotY = 0;
+      cancelAnimationFrame(stageTiltRaf);
+      stageTiltRaf = requestAnimationFrame(animateTilt);
     });
   }
-
-  const updateSocialStack = () => {
-    if (!socialCards.length || reduceMotion.matches) return;
-
-    socialCards.forEach((card, idx) => {
-      if (idx === socialCards.length - 1) return;
-      const nextCard = socialCards[idx + 1];
-      if (!nextCard) return;
-
-      const nextRect = nextCard.getBoundingClientRect();
-      const cardRect = card.getBoundingClientRect();
-
-      // Overlap progress as nextCard scrolls over this card
-      const overlapDistance = Math.max(0, (cardRect.bottom - nextRect.top) / cardRect.height);
-      const overlap = clamp(overlapDistance, 0, 1);
-
-      const rot = card.style.getPropertyValue('--rot') || '0deg';
-      const scale = (1 - overlap * 0.05).toFixed(3);
-      const brightness = (1 - overlap * 0.08).toFixed(3);
-
-      card.style.setProperty('--scale', scale);
-      card.style.filter = `brightness(${brightness})`;
-      card.style.transform = `rotate(${rot}) scale(${scale})`;
-    });
-  };
 
   // --- SOCIAL WALL PARALLAX ---
   const socialSection = document.querySelector('[data-social]');
@@ -492,7 +554,6 @@
     updateStatement();
     updateWork();
     updateFlow();
-    updateSocialStack();
     updateSocial();
     updateShelf();
     isTicking = false;
