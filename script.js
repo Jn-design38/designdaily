@@ -260,14 +260,12 @@
     pCtx.clearRect(0, 0, canvasW, canvasH);
 
     const isDesktop = canvasW > 860;
-    // Stage center: positioned on right side on desktop, centered on mobile
+    // Stage center: positioned on right side on desktop, centered in lower stage on mobile
     const stageCenterX = isDesktop ? canvasW * 0.70 : canvasW * 0.50;
-    const stageCenterY = isDesktop 
-      ? canvasH * 0.50 
-      : canvasH * (0.68 - smoothProgress * 0.18);
+    const stageCenterY = isDesktop ? canvasH * 0.50 : canvasH * 0.73;
     const logoScale = isDesktop 
       ? Math.min(canvasW, canvasH) * 0.00155
-      : Math.min(canvasW, canvasH) * 0.00122;
+      : Math.min(canvasW, canvasH) * 0.00108;
 
     // 3D Camera Rotation Matrix
     const rotX = camTiltX;
@@ -275,12 +273,15 @@
     const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
     const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
 
+    // Map scroll progress so the 3D mark finishes assembling by progress ~0.88
+    const animProgress = clamp(smoothProgress / 0.88);
+
     // Update phase label in HUD
     if (phaseLabel) {
-      if (smoothProgress < 0.16) phaseLabel.textContent = 'Phase 1 · Scattered dots';
-      else if (smoothProgress < 0.44) phaseLabel.textContent = 'Phase 2 · Vortex attraction';
-      else if (smoothProgress < 0.74) phaseLabel.textContent = 'Phase 3 · Contour emergence';
-      else if (smoothProgress < 0.92) phaseLabel.textContent = 'Phase 4 · Density cohesion';
+      if (animProgress < 0.16) phaseLabel.textContent = 'Phase 1 · Scattered dots';
+      else if (animProgress < 0.44) phaseLabel.textContent = 'Phase 2 · Vortex attraction';
+      else if (animProgress < 0.72) phaseLabel.textContent = 'Phase 3 · Contour emergence';
+      else if (animProgress < 0.94) phaseLabel.textContent = 'Phase 4 · Density cohesion';
       else phaseLabel.textContent = 'Phase 5 · 3D Design Daily Mark';
     }
 
@@ -289,7 +290,7 @@
       const p = particles[i];
 
       // Normalized local accumulation factor with staggered delay
-      const pLocal = clamp((smoothProgress - p.delay * 0.26) / (1 - p.delay * 0.26));
+      const pLocal = clamp((animProgress - p.delay * 0.22) / (1 - p.delay * 0.22));
       // Cubic easing
       const ease = pLocal < 0.5 
         ? 4 * pLocal * pLocal * pLocal 
@@ -325,15 +326,15 @@
       const screenX = stageCenterX + x1 * proj * logoScale;
       const screenY = stageCenterY + y1 * proj * logoScale;
 
-      // Soft vignette protection for typography during Phase 1 & 2
+      // Soft vignette protection: particles stay strictly on right side of desktop, leaving text pristine
       let alpha = clamp(p.alpha * (0.36 + proj * 0.64), 0.12, 0.98);
       if (isDesktop && screenX < canvasW * 0.46) {
         alpha *= Math.max(0, (screenX - canvasW * 0.36) / (canvasW * 0.10));
       } else if (!isDesktop) {
-        // Protect mobile headline & CTA buttons while text is visible
-        const textLimit = canvasH * Math.max(0, 0.72 - smoothProgress * 1.6);
-        if (textLimit > 0 && screenY < textLimit) {
-          alpha *= Math.max(0, (screenY - (textLimit - 60)) / 60);
+        // Protect mobile headline & CTA buttons
+        const textLimit = canvasH * 0.52;
+        if (screenY < textLimit) {
+          alpha *= Math.max(0, (screenY - (textLimit - 50)) / 50);
         }
       }
       if (alpha <= 0.02) continue;
@@ -366,17 +367,12 @@
     requestAnimationFrame(renderParticleFrame);
   }
 
-  // Hook scroll updates into particle progress & hero copy exit
+  // Hook scroll updates: ONLY the particle animation reacts to scroll, text stays fixed
   const updateHero = () => {
     if (!heroSection) return;
     const range = Math.max(1, heroSection.offsetHeight - window.innerHeight);
     const progress = clamp(-heroSection.getBoundingClientRect().top / range);
     targetProgress = progress;
-
-    // Headline copy on left gracefully floats up as scroll advances
-    const pCopy = clamp(progress / 0.45);
-    heroCopy?.style.setProperty('--hc-y', `${-(pCopy * 120)}px`);
-    heroCopy?.style.setProperty('--hc-o', `${Math.max(0, 1 - pCopy * 1.6)}`);
 
     // Progress bar in hero foot
     heroProgress?.style.setProperty('--hp', progress.toFixed(3));

@@ -94,7 +94,7 @@ mark { background: none; color: inherit; }
 .hero-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background:
   radial-gradient(60% 50% at 78% 40%, rgba(255, 197, 61, .2), transparent 70%),
   radial-gradient(40% 40% at 10% 90%, rgba(255, 255, 255, .7), transparent 70%), var(--paper); }
-.hero-copy { position: absolute; z-index: 4; left: var(--pad); top: 50%; width: min(660px, 50vw); transform: translateY(calc(-46% + var(--hc-y, 0px))); opacity: var(--hc-o, 1); }
+.hero-copy { position: absolute; z-index: 4; left: var(--pad); top: 50%; width: min(660px, 50vw); transform: translateY(-46%); opacity: 1; }
 .hero-title { font-size: clamp(50px, 7vw, 116px); line-height: .98; font-weight: 600; letter-spacing: -.058em; margin-bottom: 26px; }
 .hero-title .line { display: block; }
 .rotator { position: relative; display: inline-block; height: 1.05em; overflow: hidden; vertical-align: bottom; transition: width .7s var(--ease); }
@@ -905,7 +905,7 @@ mark { background: none; color: inherit; }
 
   .hero { height: 210vh; }
   .hero-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; padding-top: calc(var(--header) + 20px); }
-  .hero-copy { position: relative; left: auto; top: auto; width: 100%; padding-inline: var(--pad); transform: translateY(var(--hc-y, 0px)); opacity: var(--hc-o, 1); z-index: 4; }
+  .hero-copy { position: relative; left: auto; top: auto; width: 100%; padding-inline: var(--pad); transform: none; opacity: 1; z-index: 4; }
   .hero-title { font-size: clamp(38px, 9.5vw, 54px); margin-bottom: 16px; }
   .hero-intro { font-size: 15px; margin-bottom: 22px; max-width: 100%; }
   .hero-actions { gap: 14px; }
