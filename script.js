@@ -398,62 +398,87 @@
   };
 
   initParticleSystem();
-  // --- STATEMENT SCRUB (light up words on scroll) ---
-  const statementSection = document.querySelector('[data-statement]');
-  const statementText = document.querySelector('[data-scrub]');
-  let scrubWords = [];
-  if (statementText) {
-    const raw = statementText.innerHTML;
-    // Split into words while honoring <b> tags and attaching punctuation
-    const temp = document.createElement('div');
-    temp.innerHTML = raw;
-    const tokens = [];
-    temp.childNodes.forEach(node => {
-      if (node.nodeType === Node.TEXT_NODE) {
-        const text = node.textContent;
-        const matches = text.match(/\S+/g) || [];
-        matches.forEach((w, idx) => {
-          if (idx === 0 && /^[,.:;!?]/.test(w) && tokens.length > 0) {
-            tokens[tokens.length - 1].text += w[0];
-            w = w.slice(1);
-            if (!w) return;
-          }
-          tokens.push({ text: w, key: false });
-        });
-      } else if (node.nodeType === Node.ELEMENT_NODE && node.tagName === 'B') {
-        const words = node.textContent.match(/\S+/g) || [];
-        words.forEach(w => tokens.push({ text: w, key: true }));
-      }
+  // --- 3D PROCESS COMPARISON: TYPICAL AGENCY VS DESIGN DAILY STUDIO ---
+  const vsSection = document.querySelector('[data-vs-section]');
+  const vsTabs = [...document.querySelectorAll('.vs-tab')];
+  const vsAgencyViews = [...document.querySelectorAll('.vs-agency [data-step-view]')];
+  const vsStudioViews = [...document.querySelectorAll('.vs-studio [data-step-view]')];
+  const vsFill = document.querySelector('.vs-progress-fill');
+  const currPhaseLabel = document.querySelector('.curr-phase');
+  let currentVsStep = 0;
+
+  // Tab click jump
+  vsTabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      const step = parseInt(tab.dataset.step, 10);
+      if (isNaN(step) || !vsSection) return;
+      const range = Math.max(1, vsSection.offsetHeight - window.innerHeight);
+      const targetY = vsSection.offsetTop + (step / 3.2) * range;
+      window.scrollTo({ top: targetY, behavior: 'smooth' });
     });
-    statementText.innerHTML = '';
-    scrubWords = tokens.map(tok => {
-      const span = document.createElement('span');
-      span.className = `sw${tok.key ? ' key' : ''}`;
-      span.textContent = tok.text + ' ';
-      statementText.appendChild(span);
-      return span;
+  });
+
+  // Spatial mouse tilt over arena
+  const vsArena = document.querySelector('.vs-arena');
+  if (vsArena && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
+    let arenaTiltX = 0, arenaTargetTiltX = 0;
+    vsArena.addEventListener('pointermove', e => {
+      const rect = vsArena.getBoundingClientRect();
+      const normY = (e.clientY - rect.top) / rect.height - 0.5;
+      arenaTargetTiltX = normY * -8;
+      vsSection?.style.setProperty('--arena-tilt-x', `${arenaTargetTiltX.toFixed(1)}deg`);
+    }, { passive: true });
+
+    vsArena.addEventListener('pointerleave', () => {
+      vsSection?.style.setProperty('--arena-tilt-x', '0deg');
     });
   }
 
-  const updateStatement = () => {
-    if (!statementSection || !scrubWords.length) return;
-    const isDesktop = window.innerWidth > 860 && !reduceMotion.matches;
-    if (!isDesktop) {
-      scrubWords.forEach(w => w.classList.add('on'));
-      return;
+  const updateComparison = () => {
+    if (!vsSection) return;
+    const isDesktop = window.innerWidth > 960 && !reduceMotion.matches;
+    const range = Math.max(1, vsSection.offsetHeight - window.innerHeight);
+    const progress = clamp(-vsSection.getBoundingClientRect().top / range);
+
+    // Calculate step: 0 to 3 across the scroll range
+    const stepIdx = Math.min(3, Math.floor(progress * 4));
+
+    if (stepIdx !== currentVsStep) {
+      currentVsStep = stepIdx;
+      // Update views
+      vsAgencyViews.forEach((view, idx) => {
+        view.classList.toggle('is-active', idx === stepIdx);
+      });
+      vsStudioViews.forEach((view, idx) => {
+        view.classList.toggle('is-active', idx === stepIdx);
+      });
+      // Update tabs
+      vsTabs.forEach((tab, idx) => {
+        const isActive = idx === stepIdx;
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-selected', String(isActive));
+      });
+      // Update phase counter
+      if (currPhaseLabel) currPhaseLabel.textContent = `0${stepIdx + 1}`;
     }
-    const range = Math.max(1, statementSection.offsetHeight - window.innerHeight);
-    const progress = clamp(-statementSection.getBoundingClientRect().top / range);
 
-    // Light up words proportionally
-    const activeCount = Math.floor(progress * (scrubWords.length + 4));
-    scrubWords.forEach((word, idx) => {
-      word.classList.toggle('on', idx < activeCount);
-    });
+    // Update progress bars & orb dial
+    vsSection.style.setProperty('--vs-progress', progress.toFixed(3));
+    if (vsFill) {
+      const fillPercent = Math.max(25, (progress * 100));
+      vsFill.style.width = `${fillPercent.toFixed(1)}%`;
+    }
 
-    // Parallax floating accents
-    statementSection.style.setProperty('--f1', `${(progress - 0.5) * -70}px`);
-    statementSection.style.setProperty('--f2', `${(progress - 0.5) * 90}px`);
+    // Dynamic 3D depth shifting
+    if (isDesktop) {
+      const tzAgency = ((1 - progress) * 20 - 10).toFixed(1);
+      const tzStudio = (progress * 25 + 10).toFixed(1);
+      vsSection.style.setProperty('--arena-tz-a', `${tzAgency}px`);
+      vsSection.style.setProperty('--arena-tz-s', `${tzStudio}px`);
+    } else {
+      vsSection.style.removeProperty('--arena-tz-a');
+      vsSection.style.removeProperty('--arena-tz-s');
+    }
   };
 
   // --- HORIZONTAL CASE STUDY SCROLL ---
@@ -742,7 +767,7 @@
   const onScroll = () => {
     updateHeader();
     updateHero();
-    updateStatement();
+    updateComparison();
     updateWork();
     updateFlow();
     updateSocial();
