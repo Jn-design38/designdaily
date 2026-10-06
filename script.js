@@ -133,80 +133,256 @@
     }, 2500);
   }
 
-  // --- HERO 3D SCENE & PARALLAX ---
+  // --- 3D PARTICLE LOGO ENGINE (SCATTERED TO DESIGN DAILY MARK) ---
   const heroSection = document.querySelector('[data-hero]');
   const heroCopy = document.querySelector('.hero-copy');
-  const heroStatement = document.querySelector('.hero-statement');
   const heroProgress = document.querySelector('.hero-progress b');
-  const pieces = [...document.querySelectorAll('.piece')];
+  const phaseLabel = document.querySelector('[data-particle-phase]');
+  const particleCanvas = document.getElementById('hero-particle-canvas');
 
-  // 4 Focused Showcase Pieces on right side of desktop screen:
-  // a: Frosted identity cards (Julkarnine - Graphic Designer)
-  // b: Bhumi Rice Cakes Gable Gift Box (architectural 3D packaging)
-  // c: Aura Skincare Face Wash Bottle (sleek cosmetic product)
-  // d: All Organics Brand Canvas Tote (lifestyle merchandise)
-  const pieceConfigs = {
-    a: { bx: 160, by: 110, bz: 140, rx: 16, ry: -12, rz: -7, ex: 160, ey: 440, ez: 450, er: -24 },
-    b: { bx: 300, by: -20, bz: 40,  rx: 4,  ry: -16, rz: 5,  ex: 540, ey: -130, ez: 200, er: 18 },
-    c: { bx: 80,  by: -110, bz: 20, rx: 6,  ry: 14,  rz: -6, ex: -80, ey: -360, ez: 160, er: -16 },
-    d: { bx: 420, by: 90,  bz: -30, rx: -5, ry: -8,  rz: 7,  ex: 680, ey: 300,  ez: -60, er: 24 }
-  };
+  let pCtx = null;
+  let particles = [];
+  let isParticleReady = false;
+  let canvasW = 0, canvasH = 0;
+  let smoothProgress = 0;
+  let targetProgress = 0;
+  let mouseX = 0, mouseY = 0;
+  let rawMouseX = -9999, rawMouseY = -9999;
+  let camTiltX = 0, camTiltY = 0;
 
-  let mouseX = 0, mouseY = 0, currentTiltX = 0, currentTiltY = 0;
+  // Exact Design Daily SVG mark path definition
+  const LOGO_SVG_PATH = "M397.15,122.79c-0.11-1.82-3.17-42.36-33.55-70.91c-31.49-29.6-81.81-36.42-127.81-17.67c-0.14,54.05-0.14,108.23-0.27,162.28c-2.02,0-4.83,0-8.19,0c-4.64,0-8.17,0-8.35,0c-33.95,0.07-56.47,12.89-56.47,12.89c-28.6,16.28-38.72,45.25-40.56,50.83c-3.01,9.15-9.19,32.7,0.44,59.65c2.51,7.03,11.63,31.07,36.18,45.45c18.56,10.88,36.17,11.02,41.06,10.93c5.17-0.1,32.97-0.42,50.93-21c7.45-8.53,10.84-17.07,13.14-23.16c4.47-11.78,5.42-22.49,5.55-29.94v-55.27c3.61-0.16,8.81-0.54,14.98-1.52c40.79-6.48,87.03-33.33,105.33-77.04C398.44,147.08,397.5,128.49,397.15,122.79z M235.51,302.14c0,0.1,0,0.21-0.01,0.33c-0.42,15.15-16.9,36.79-38.86,35.76c-18.09-0.85-29.97-16.62-34-29.3c-5.21-16.39,1.79-30.51,3.58-33.86c6.43-12.01,16.6-17.46,21.29-19.97c10.14-5.44,19.76-6.5,30.17-7.65c7.41-0.82,13.6-0.84,17.82-0.7C235.51,265.21,235.51,283.67,235.51,302.14z M306.21,191c-13.26,4.88-29.36,5.49-29.36,5.49c-3.17,0.12-5.81,0.07-7.61,0c-0.03-45.32-0.05-90.64-0.08-135.95c7.27-2.37,19.29-5.02,32.65-1.6c29.75,7.62,51.96,41.73,48.16,75.28C346.36,166.15,319.9,185.96,306.21,191z";
+
+  function initParticleSystem() {
+    if (!particleCanvas) return;
+    pCtx = particleCanvas.getContext('2d');
+    resizeParticleCanvas();
+
+    // 1. High-Fidelity Sampling from Vector Path on 400x400 Offscreen Canvas
+    const offCanvas = document.createElement('canvas');
+    offCanvas.width = 400;
+    offCanvas.height = 400;
+    const offCtx = offCanvas.getContext('2d');
+    // Vector path center is (255, 185) -> translate to (200, 200)
+    offCtx.translate(200 - 255, 200 - 185);
+    const path2d = new Path2D(LOGO_SVG_PATH);
+    offCtx.fillStyle = '#000';
+    offCtx.fill(path2d);
+
+    const imgData = offCtx.getImageData(0, 0, 400, 400).data;
+    const sampledPoints = [];
+    const step = 3; // Clean integer sampling step
+
+    for (let y = 15; y < 385; y += step) {
+      for (let x = 15; x < 385; x += step) {
+        const idx = (y * 400 + x) * 4;
+        if (imgData[idx + 3] > 120) {
+          sampledPoints.push({
+            x: (x - 200) * 1.55,
+            y: (y - 200) * 1.55
+          });
+        }
+      }
+    }
+
+    // 2. Build particle instances with 3D coordinates & bounded right-side dispersion
+    particles = sampledPoints.map((pt, i) => {
+      // Scattered origin coordinates (Phase 1):
+      // Distributed across 3D space with natural dispersion
+      const angle = Math.random() * Math.PI * 2;
+      const radiusDist = 70 + Math.random() * 460;
+      const sx = Math.cos(angle) * radiusDist + (Math.random() - 0.5) * 160;
+      const sy = Math.sin(angle) * radiusDist + (Math.random() - 0.5) * 180;
+      const sz = (Math.random() - 0.5) * 650;
+
+      // Volumetric 3D extrusion on target mark (Phase 5)
+      const tz = (Math.random() - 0.5) * 46;
+
+      return {
+        tx: pt.x,
+        ty: pt.y,
+        tz: tz,
+        sx: sx,
+        sy: sy,
+        sz: sz,
+        // Individual vortex phases
+        swirlPhase: Math.random() * Math.PI * 2,
+        swirlSpeed: 0.7 + Math.random() * 0.7,
+        // Subtle Brownian floating drift
+        driftPhaseX: Math.random() * Math.PI * 2,
+        driftPhaseY: Math.random() * Math.PI * 2,
+        driftSpeed: 0.5 + Math.random() * 0.7,
+        // Staggered threshold arrival delay
+        delay: Math.random() * 0.32,
+        // Visual traits matching screenshots
+        radius: 1.1 + Math.random() * 1.4,
+        alpha: 0.55 + Math.random() * 0.42,
+        isAccent: Math.random() < 0.14 // 14% warm amber accents
+      };
+    });
+
+    isParticleReady = true;
+    requestAnimationFrame(renderParticleFrame);
+  }
+
+  function resizeParticleCanvas() {
+    if (!particleCanvas) return;
+    const dpr = Math.min(window.devicePixelRatio || 1, 2);
+    canvasW = particleCanvas.clientWidth;
+    canvasH = particleCanvas.clientHeight;
+    particleCanvas.width = Math.round(canvasW * dpr);
+    particleCanvas.height = Math.round(canvasH * dpr);
+    if (pCtx) pCtx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  }
+
+  window.addEventListener('resize', resizeParticleCanvas);
+
   if (!reduceMotion.matches && window.matchMedia('(hover: hover) and (pointer: fine)').matches) {
     window.addEventListener('pointermove', e => {
+      rawMouseX = e.clientX;
+      rawMouseY = e.clientY;
       mouseX = (e.clientX / window.innerWidth) - 0.5;
       mouseY = (e.clientY / window.innerHeight) - 0.5;
     }, { passive: true });
   }
 
-  const updateHero = () => {
-    if (!heroSection) return;
-    const isDesktop = window.innerWidth > 860 && !reduceMotion.matches;
-    if (!isDesktop) {
-      pieces.forEach(p => {
-        p.style.transform = '';
-        p.style.opacity = '';
-      });
-      return;
+  function renderParticleFrame(timestamp) {
+    if (!isParticleReady || !pCtx) return;
+    const time = timestamp * 0.001;
+
+    // Smooth scroll interpolation
+    smoothProgress += (targetProgress - smoothProgress) * 0.09;
+
+    // Smooth mouse tilt
+    camTiltX += (mouseY * -0.28 - camTiltX) * 0.08;
+    camTiltY += (mouseX * 0.36 - camTiltY) * 0.08;
+
+    pCtx.clearRect(0, 0, canvasW, canvasH);
+
+    const isDesktop = canvasW > 860;
+    // Stage center: positioned on right side on desktop, centered on mobile
+    const stageCenterX = isDesktop ? canvasW * 0.70 : canvasW * 0.50;
+    const stageCenterY = isDesktop 
+      ? canvasH * 0.50 
+      : canvasH * (0.68 - smoothProgress * 0.18);
+    const logoScale = isDesktop 
+      ? Math.min(canvasW, canvasH) * 0.00155
+      : Math.min(canvasW, canvasH) * 0.00122;
+
+    // 3D Camera Rotation Matrix
+    const rotX = camTiltX;
+    const rotY = camTiltY + (smoothProgress * 0.28);
+    const cosY = Math.cos(rotY), sinY = Math.sin(rotY);
+    const cosX = Math.cos(rotX), sinX = Math.sin(rotX);
+
+    // Update phase label in HUD
+    if (phaseLabel) {
+      if (smoothProgress < 0.16) phaseLabel.textContent = 'Phase 1 · Scattered dots';
+      else if (smoothProgress < 0.44) phaseLabel.textContent = 'Phase 2 · Vortex attraction';
+      else if (smoothProgress < 0.74) phaseLabel.textContent = 'Phase 3 · Contour emergence';
+      else if (smoothProgress < 0.92) phaseLabel.textContent = 'Phase 4 · Density cohesion';
+      else phaseLabel.textContent = 'Phase 5 · 3D Design Daily Mark';
     }
 
+    const len = particles.length;
+    for (let i = 0; i < len; i++) {
+      const p = particles[i];
+
+      // Normalized local accumulation factor with staggered delay
+      const pLocal = clamp((smoothProgress - p.delay * 0.26) / (1 - p.delay * 0.26));
+      // Cubic easing
+      const ease = pLocal < 0.5 
+        ? 4 * pLocal * pLocal * pLocal 
+        : 1 - Math.pow(-2 * pLocal + 2, 3) / 2;
+
+      // Spiral vortex turbulence (Phases 2 & 3)
+      const swirlFactor = Math.sin(ease * Math.PI) * (1 - ease * 0.88);
+      const swirlAngle = swirlFactor * 3.2 + p.swirlPhase + time * p.swirlSpeed;
+      const swirlX = Math.cos(swirlAngle) * swirlFactor * 105;
+      const swirlY = Math.sin(swirlAngle) * swirlFactor * 105;
+
+      // Ambient Brownian floating drift (Phase 1)
+      const drift = (1 - ease) * 11;
+      const driftX = Math.sin(time * p.driftSpeed + p.driftPhaseX) * drift;
+      const driftY = Math.cos(time * p.driftSpeed + p.driftPhaseY) * drift;
+
+      // Interpolated 3D position
+      const x = p.sx + (p.tx - p.sx) * ease + swirlX + driftX;
+      const y = p.sy + (p.ty - p.sy) * ease + swirlY + driftY;
+      const z = p.sz + (p.tz - p.sz) * ease;
+
+      // 3D Matrix Rotation
+      const x1 = x * cosY + z * sinY;
+      const z1 = -x * sinY + z * cosY;
+
+      const y1 = y * cosX - z1 * sinX;
+      const z2 = y * sinX + z1 * cosX;
+
+      // 3D Perspective Projection
+      const fov = 720;
+      const proj = fov / (fov + z2);
+
+      const screenX = stageCenterX + x1 * proj * logoScale;
+      const screenY = stageCenterY + y1 * proj * logoScale;
+
+      // Soft vignette protection for typography during Phase 1 & 2
+      let alpha = clamp(p.alpha * (0.36 + proj * 0.64), 0.12, 0.98);
+      if (isDesktop && screenX < canvasW * 0.46) {
+        alpha *= Math.max(0, (screenX - canvasW * 0.36) / (canvasW * 0.10));
+      } else if (!isDesktop) {
+        // Protect mobile headline & CTA buttons while text is visible
+        const textLimit = canvasH * Math.max(0, 0.72 - smoothProgress * 1.6);
+        if (textLimit > 0 && screenY < textLimit) {
+          alpha *= Math.max(0, (screenY - (textLimit - 60)) / 60);
+        }
+      }
+      if (alpha <= 0.02) continue;
+
+      // Subtle tactile cursor ripple when user hovers nearby
+      let pushX = 0, pushY = 0;
+      if (rawMouseX > 0 && rawMouseY > 0) {
+        const dx = screenX - rawMouseX;
+        const dy = screenY - rawMouseY;
+        const dSq = dx * dx + dy * dy;
+        if (dSq < 6400 && dSq > 1) { // within 80px
+          const d = Math.sqrt(dSq);
+          const force = (1 - d / 80) * 14 * ease;
+          pushX = (dx / d) * force;
+          pushY = (dy / d) * force;
+        }
+      }
+
+      const radius = Math.max(0.65, p.radius * proj);
+
+      pCtx.fillStyle = p.isAccent 
+        ? `rgba(242, 197, 61, ${alpha})` 
+        : `rgba(22, 20, 18, ${alpha})`;
+
+      pCtx.beginPath();
+      pCtx.arc(screenX + pushX, screenY + pushY, radius, 0, Math.PI * 2);
+      pCtx.fill();
+    }
+
+    requestAnimationFrame(renderParticleFrame);
+  }
+
+  // Hook scroll updates into particle progress & hero copy exit
+  const updateHero = () => {
+    if (!heroSection) return;
     const range = Math.max(1, heroSection.offsetHeight - window.innerHeight);
     const progress = clamp(-heroSection.getBoundingClientRect().top / range);
+    targetProgress = progress;
 
-    // Mouse tilt smoothing
-    currentTiltX += (mouseY * -18 - currentTiltX) * 0.1;
-    currentTiltY += (mouseX * 22 - currentTiltY) * 0.1;
+    // Headline copy on left gracefully floats up as scroll advances
+    const pCopy = clamp(progress / 0.45);
+    heroCopy?.style.setProperty('--hc-y', `${-(pCopy * 120)}px`);
+    heroCopy?.style.setProperty('--hc-o', `${Math.max(0, 1 - pCopy * 1.6)}`);
 
-    // Phase 1: copy exits
-    const pCopy = clamp(progress / 0.42);
-    heroCopy?.style.setProperty('--hc-y', `${-(pCopy * 130)}px`);
-    heroCopy?.style.setProperty('--hc-o', `${Math.max(0, 1 - pCopy * 1.5)}`);
-
-    // Phase 2: pieces explode outwards in 3D
-    const pExp = clamp((progress - 0.15) / 0.65);
-    const pAlpha = 1 - clamp((progress - 0.65) / 0.25);
-
-    pieces.forEach(piece => {
-      const key = piece.dataset.piece;
-      const cfg = pieceConfigs[key] || { bx: 0, by: 0, bz: 0, rx: 0, ry: 0, rz: 0, ex: 0, ey: 0, ez: 0, er: 0 };
-      const x = cfg.bx + (cfg.ex - cfg.bx) * pExp + currentTiltY * (1 + cfg.bz * 0.003);
-      const y = cfg.by + (cfg.ey - cfg.by) * pExp + currentTiltX * (1 + cfg.bz * 0.003);
-      const z = cfg.bz + (cfg.ez - cfg.bz) * pExp;
-      const rz = cfg.rz + cfg.er * pExp;
-      piece.style.transform = `translate3d(calc(-50% + ${x.toFixed(1)}px), calc(-50% + ${y.toFixed(1)}px), ${z.toFixed(1)}px) rotateX(${cfg.rx}deg) rotateY(${cfg.ry}deg) rotateZ(${rz.toFixed(1)}deg)`;
-      piece.style.opacity = pAlpha.toFixed(3);
-    });
-
-    // Phase 3: hero statement center reveal
-    const pStmt = clamp((progress - 0.58) / 0.32);
-    heroStatement?.style.setProperty('--st-o', pStmt.toFixed(3));
-    heroStatement?.style.setProperty('--st-s', (0.88 + pStmt * 0.12).toFixed(3));
-
-    // Hero foot progress bar
+    // Progress bar in hero foot
     heroProgress?.style.setProperty('--hp', progress.toFixed(3));
   };
 
+  initParticleSystem();
   // --- STATEMENT SCRUB (light up words on scroll) ---
   const statementSection = document.querySelector('[data-statement]');
   const statementText = document.querySelector('[data-scrub]');
