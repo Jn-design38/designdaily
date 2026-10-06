@@ -185,15 +185,12 @@
       }
     }
 
-    // 2. Build particle instances with 3D coordinates & bounded right-side dispersion
+    // 2. Build particle instances distributed across the ENTIRE SCREEN at scroll 0
     particles = sampledPoints.map((pt, i) => {
-      // Scattered origin coordinates (Phase 1):
-      // Distributed across 3D space with natural dispersion
-      const angle = Math.random() * Math.PI * 2;
-      const radiusDist = 70 + Math.random() * 460;
-      const sx = Math.cos(angle) * radiusDist + (Math.random() - 0.5) * 160;
-      const sy = Math.sin(angle) * radiusDist + (Math.random() - 0.5) * 180;
-      const sz = (Math.random() - 0.5) * 650;
+      // Uniform random distribution across entire screen at scroll 0 (Phase 1)
+      const normStartX = 0.02 + Math.random() * 0.96;
+      const normStartY = 0.03 + Math.random() * 0.94;
+      const startZ = (Math.random() - 0.5) * 650;
 
       // Volumetric 3D extrusion on target mark (Phase 5)
       const tz = (Math.random() - 0.5) * 46;
@@ -202,9 +199,9 @@
         tx: pt.x,
         ty: pt.y,
         tz: tz,
-        sx: sx,
-        sy: sy,
-        sz: sz,
+        normStartX: normStartX,
+        normStartY: normStartY,
+        startZ: startZ,
         // Individual vortex phases
         swirlPhase: Math.random() * Math.PI * 2,
         swirlSpeed: 0.7 + Math.random() * 0.7,
@@ -213,7 +210,7 @@
         driftPhaseY: Math.random() * Math.PI * 2,
         driftSpeed: 0.5 + Math.random() * 0.7,
         // Staggered threshold arrival delay
-        delay: Math.random() * 0.32,
+        delay: Math.random() * 0.28,
         // Visual traits matching screenshots
         radius: 1.1 + Math.random() * 1.4,
         alpha: 0.55 + Math.random() * 0.42,
@@ -261,11 +258,24 @@
 
     const isDesktop = canvasW > 860;
     // Stage center: positioned on right side on desktop, centered in lower stage on mobile
-    const stageCenterX = isDesktop ? canvasW * 0.70 : canvasW * 0.50;
+    const stageCenterX = isDesktop ? canvasW * 0.72 : canvasW * 0.50;
     const stageCenterY = isDesktop ? canvasH * 0.50 : canvasH * 0.73;
     const logoScale = isDesktop 
       ? Math.min(canvasW, canvasH) * 0.00155
       : Math.min(canvasW, canvasH) * 0.00108;
+
+    // 1. Text animation: Starts in the middle, animates and moves smoothly to the left on scroll
+    if (heroCopy && isDesktop) {
+      const copyW = heroCopy.offsetWidth || 600;
+      const pad = 60;
+      const maxShiftX = Math.max(0, (canvasW * 0.50) - (pad + copyW * 0.50));
+      const pText = clamp(smoothProgress / 0.44);
+      const easeText = pText < 0.5 ? 4 * pText * pText * pText : 1 - Math.pow(-2 * pText + 2, 3) / 2;
+      const shiftX = maxShiftX * easeText;
+      heroCopy.style.setProperty('--hc-shift-x', `${shiftX.toFixed(1)}px`);
+    } else if (heroCopy) {
+      heroCopy.style.removeProperty('--hc-shift-x');
+    }
 
     // 3D Camera Rotation Matrix
     const rotX = camTiltX;
@@ -307,10 +317,15 @@
       const driftX = Math.sin(time * p.driftSpeed + p.driftPhaseX) * drift;
       const driftY = Math.cos(time * p.driftSpeed + p.driftPhaseY) * drift;
 
+      // Initial coordinates distributed across the entire screen at scroll 0
+      const sx = (p.normStartX * canvasW - stageCenterX) / logoScale;
+      const sy = (p.normStartY * canvasH - stageCenterY) / logoScale;
+      const sz = p.startZ;
+
       // Interpolated 3D position
-      const x = p.sx + (p.tx - p.sx) * ease + swirlX + driftX;
-      const y = p.sy + (p.ty - p.sy) * ease + swirlY + driftY;
-      const z = p.sz + (p.tz - p.sz) * ease;
+      const x = sx + (p.tx - sx) * ease + swirlX + driftX;
+      const y = sy + (p.ty - sy) * ease + swirlY + driftY;
+      const z = sz + (p.tz - sz) * ease;
 
       // 3D Matrix Rotation
       const x1 = x * cosY + z * sinY;
@@ -326,10 +341,14 @@
       const screenX = stageCenterX + x1 * proj * logoScale;
       const screenY = stageCenterY + y1 * proj * logoScale;
 
-      // Soft vignette protection: particles stay strictly on right side of desktop, leaving text pristine
+      // At start (scroll 0), particles are scattered across whole screen with full visibility.
+      // As text moves to the left and particles swirl to the right,
+      // smoothly clear out any lingering particles in the left text zone.
       let alpha = clamp(p.alpha * (0.36 + proj * 0.64), 0.12, 0.98);
-      if (isDesktop && screenX < canvasW * 0.46) {
-        alpha *= Math.max(0, (screenX - canvasW * 0.36) / (canvasW * 0.10));
+      const leftVignetteActive = clamp((smoothProgress - 0.15) / 0.28);
+      if (isDesktop && leftVignetteActive > 0 && screenX < canvasW * 0.45) {
+        const mask = Math.max(0, (screenX - canvasW * 0.32) / (canvasW * 0.13));
+        alpha *= (1 - leftVignetteActive) + leftVignetteActive * mask;
       } else if (!isDesktop) {
         // Protect mobile headline & CTA buttons
         const textLimit = canvasH * 0.52;

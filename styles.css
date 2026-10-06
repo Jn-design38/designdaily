@@ -94,7 +94,7 @@ mark { background: none; color: inherit; }
 .hero-pin { position: sticky; top: 0; height: 100vh; height: 100svh; overflow: hidden; background:
   radial-gradient(60% 50% at 78% 40%, rgba(255, 197, 61, .2), transparent 70%),
   radial-gradient(40% 40% at 10% 90%, rgba(255, 255, 255, .7), transparent 70%), var(--paper); }
-.hero-copy { position: absolute; z-index: 4; left: var(--pad); top: 50%; width: min(660px, 50vw); transform: translateY(-46%); opacity: 1; }
+.hero-copy { position: absolute; z-index: 4; left: 50%; top: 50%; width: min(640px, calc(100vw - var(--pad) * 2)); transform: translate(calc(-50% - var(--hc-shift-x, 0px)), -48%); opacity: 1; will-change: transform; }
 .hero-title { font-size: clamp(50px, 7vw, 116px); line-height: .98; font-weight: 600; letter-spacing: -.058em; margin-bottom: 26px; }
 .hero-title .line { display: block; }
 .rotator { position: relative; display: inline-block; height: 1.05em; overflow: hidden; vertical-align: bottom; transition: width .7s var(--ease); }
