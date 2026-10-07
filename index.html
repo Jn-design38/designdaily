@@ -18,6 +18,8 @@
   <svg width="0" height="0" style="position:absolute" aria-hidden="true">
     <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h13M12.5 6.5 18 12l-5.5 5.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
     <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-cross" viewBox="0 0 24 24"><path d="M18 6 6 18M6 6l12 12" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></symbol>
   </svg>
 
   <a class="skip-link" href="#main">Skip to content</a>
@@ -25,7 +27,7 @@
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Design Daily, back to top"><img src="assets/designdaily-logo-nav.png" alt="Design Daily" width="28" height="34">design daily</a>
     <nav class="nav" aria-label="Main navigation">
-      <a href="#work">Work</a><a href="#studio">Studio</a><a href="#process">Process</a><a href="#social">Social</a><a href="#services">Services</a><a href="#contact">Contact</a>
+      <a href="#work">Work</a><a href="#social">Campaigns</a><a href="#marks">Marks</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
     </nav>
     <a class="header-cta" href="#contact">Start a project <svg class="ico"><use href="#i-arrow-up"/></svg></a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
@@ -37,11 +39,26 @@
     <section id="top" class="hero" data-hero>
       <div class="hero-pin">
         <div class="hero-copy">
-          <p class="kicker" data-rise>Julkarnine Arabi · Design Daily · Dhaka</p>
           <h1 class="hero-title">
-            <span class="line" data-rise>We design</span>
-            <span class="line" data-rise><span class="rotator" aria-live="off"><span class="rotator-track"><span>brands</span><span>packaging</span><span>social ads</span><span>posters</span></span></span></span>
-            <span class="line" data-rise>people remember.</span>
+            <span class="line line-1" data-rise>
+              <span class="title-we">We</span> <span class="title-design">design</span>
+            </span>
+            <span class="line line-2" data-rise>
+              <span class="rotator" aria-live="off">
+                <span class="rotator-track">
+                  <span class="is-active">brands</span>
+                  <span>packaging</span>
+                  <span>social ads</span>
+                  <span>posters</span>
+                </span>
+              </span>
+            </span>
+            <span class="line line-3" data-rise>
+              <span class="title-people">people</span>
+            </span>
+            <span class="line line-4" data-rise>
+              <span class="title-remember">remember.</span>
+            </span>
           </h1>
           <p class="hero-intro" data-rise>Logos, identity systems, packs, posts and billboards for food, fashion, retail and tech businesses. One designer, from first sketch to final file.</p>
           <div class="hero-actions" data-rise>
@@ -52,27 +69,21 @@
 
         <div class="hero-particle-stage" aria-label="Design Daily 3D particle logo animation">
           <canvas id="hero-particle-canvas" class="hero-particle-canvas"></canvas>
-          <div class="hero-particle-hud" aria-hidden="true">
-            <span class="hud-phase-label" data-particle-phase>Scattered particles</span>
-            <span class="hud-hint-text">Scroll to assemble</span>
-          </div>
         </div>
-
-        <div class="hero-foot"><span>Scroll</span><i class="hero-progress"><b></b></i><span>Identity · Packaging · Social · Campaigns</span></div>
       </div>
     </section>
 
-    <!-- HOW IT WORKS & PAIN POINTS: The way design should've been done in the first place -->
+    <!-- HOW IT WORKS & PAIN POINTS: Direct Studio Flow -->
     <section id="how-it-works" class="pain-section" aria-labelledby="pain-title">
       <div class="shell">
         <div class="pain-head" data-rise>
           <p class="kicker">How it works</p>
           <h2 id="pain-title" class="pain-title">
-            The way design <span class="serif-italic">should’ve</span><br>
-            been done in the first place
+            A dependable design partner<br>
+            without the agency overhead
           </h2>
           <p class="pain-sub">
-            No bloated agency retainers, no ghosting freelancers, no endless meetings. Just dependable, high-impact design for growing businesses.
+            Direct access to a dedicated designer, fixed monthly pricing, and dependable 48–72h delivery. No account managers, no surprise bills, and no disappearing freelancers.
           </p>
         </div>
 
@@ -84,8 +95,8 @@
               
               <!-- Floating Dark Pricing UI Widget -->
               <div class="card-pricing-widget">
-                <div class="widget-badge-smile" aria-hidden="true">
-                  <span>:)</span>
+                <div class="widget-badge-plan" aria-label="Monthly Retainer Plan">
+                  <span>Retainer</span>
                 </div>
                 <div class="widget-head">
                   <span class="widget-kicker">Content 12 · Monthly</span>
@@ -109,10 +120,10 @@
             </div>
 
             <div class="card-copy">
-              <span class="pain-tag">🚫 No surprise bills</span>
+              <span class="pain-tag">Transparent Monthly Fee</span>
               <h3 class="card-title">Subscribe</h3>
               <p class="card-desc">
-                Subscribe to a plan & request as many designs as you'd like. Fixed monthly pricing with zero agency markup and no scope creep.
+                A predictable monthly retainer covering 12 original static designs in two structured batches. Zero agency markup, no hourly surprise bills, and pause or cancel anytime.
               </p>
             </div>
           </article>
@@ -131,10 +142,8 @@
                 </div>
                 <div class="pill-row row-2">
                   <span class="service-pill">Print design</span>
-                  <div class="pill-center-badge" aria-label="Design Daily Mark">
-                    <svg viewBox="0 0 40 40" class="center-smile-icon" aria-hidden="true">
-                      <path d="M12 22 C16 29, 24 29, 28 22" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"/>
-                    </svg>
+                  <div class="pill-center-badge" aria-label="Design Daily Studio">
+                    <img src="assets/designdaily-logo-nav.png" alt="Design Daily" class="center-studio-logo" width="26" height="32">
                   </div>
                   <span class="service-pill">Packaging</span>
                 </div>
@@ -147,10 +156,10 @@
             </div>
 
             <div class="card-copy">
-              <span class="pain-tag">🚫 No endless meetings</span>
+              <span class="pain-tag">Direct Founder Access</span>
               <h3 class="card-title">Request</h3>
               <p class="card-desc">
-                Request whatever you'd like, from brand identities to packaging. Skip 10-person account manager calls and brief directly on WhatsApp or Trello.
+                Submit design requests directly via WhatsApp or Trello with clear specs. No 10-person account manager meetings, no lost creative briefs, and zero administrative friction.
               </p>
             </div>
           </article>
@@ -163,13 +172,22 @@
               <!-- Floating 3D Fanned Showcase Cards Deck -->
               <div class="card-showcase-deck">
                 <div class="deck-frame frame-left">
-                  <img src="assets/cases/allorganics/All Organics MOBILE APP OPENING BANNER.png" alt="All Organics brand app showcase" loading="lazy">
+                  <div class="deck-frame-screen">
+                    <span class="deck-frame-notch" aria-hidden="true"></span>
+                    <img src="assets/social/tripty-mercy-post.jpg" alt="Tripty Foods creative ad: If the plate could talk... it would ask for mercy" loading="lazy">
+                  </div>
                 </div>
                 <div class="deck-frame frame-center">
-                  <img src="assets/cases/allorganics/BRANDING MOCKUO.png" alt="All Organics branding mockup" loading="lazy">
+                  <div class="deck-frame-screen">
+                    <span class="deck-frame-notch" aria-hidden="true"></span>
+                    <img src="assets/social/tripty-food-clock.jpg" alt="Tripty Foods brand campaign: Every hour is food o'clock" loading="lazy">
+                  </div>
                 </div>
                 <div class="deck-frame frame-right">
-                  <img src="assets/portfolio/page-21.jpg" alt="All Organics billboard poster" loading="lazy">
+                  <div class="deck-frame-screen">
+                    <span class="deck-frame-notch" aria-hidden="true"></span>
+                    <img src="assets/social/tripty-feed-them.jpg" alt="Tripty Foods brand campaign: We don't change people. We just feed them" loading="lazy">
+                  </div>
                 </div>
                 <div class="deck-turnaround-pill">
                   <span class="pulse-dot"></span>
@@ -179,10 +197,10 @@
             </div>
 
             <div class="card-copy">
-              <span class="pain-tag">🚫 No ghosting freelancers</span>
+              <span class="pain-tag">Dependable 48–72h Delivery</span>
               <h3 class="card-title">Receive</h3>
               <p class="card-desc">
-                Receive your design within days, ready to post and print. Pixel-perfect vector files, clean source files, and exports that command attention.
+                Receive production-ready assets within 48 to 72 hours. All organized vector sources, print-ready PDFs, and social exports delivered directly to your Google Drive.
               </p>
             </div>
           </article>
@@ -190,1190 +208,497 @@
       </div>
     </section>
 
-    <!-- LOGO WALL -->
-    <section class="marks" aria-labelledby="marks-title">
-      <div class="marks-head shell">
-        <p class="kicker" data-rise>Logo design</p>
-        <h2 id="marks-title" data-words><span class="count" data-count="24">24</span> marks, each with its own reason to exist.</h2>
-      </div>
-      <div class="marquee" aria-label="Selected brand marks marquee">
-        <div class="marquee-track">
-          <div class="marquee-group">
-            <img src="assets/work/logos/all-organics.png" alt="All Organics logo" loading="lazy">
-            <img src="assets/work/logos/fresh-paws.png" alt="Fresh Paws logo" loading="lazy">
-            <img src="assets/work/logos/finn.png" alt="FINN logo" loading="lazy">
-            <img src="assets/work/logos/triduate.png" alt="Triduate logo" loading="lazy">
-            <img src="assets/work/logos/slaz.png" alt="Slaz logo" loading="lazy">
-            <img src="assets/work/logos/naogaon-rice.png" alt="Naogaon Rice logo" loading="lazy">
-            <img src="assets/work/logos/noor.png" alt="Noor Lifestyles logo" loading="lazy">
-            <img src="assets/work/logos/norea.png" alt="Noréa logo" loading="lazy">
-            <img src="assets/work/logos/tunes-360.png" alt="Tunes 360 logo" loading="lazy">
-            <img src="assets/work/logos/roasted.png" alt="Roasted coffee logo" loading="lazy">
-            <img src="assets/work/logos/seor.png" alt="Seor logo" loading="lazy">
-            <img src="assets/work/logos/shaad.png" alt="Shaad logo" loading="lazy">
-            <img src="assets/work/logos/steller.png" alt="Steller logo" loading="lazy">
-            <img src="assets/work/logos/oxymoron.png" alt="Oxymoron logo" loading="lazy">
-            <img src="assets/work/logos/beach-vacation.png" alt="Beach Vacation logo" loading="lazy">
-            <img src="assets/work/logos/big-panda.png" alt="Big Panda Studios logo" loading="lazy">
-            <img src="assets/work/logos/monarch.png" alt="Monarch logo" loading="lazy">
-            <img src="assets/work/logos/aves.png" alt="Aves logo" loading="lazy">
-            <img src="assets/work/logos/batg.png" alt="BATG logo" loading="lazy">
-            <img src="assets/work/logos/alloy.png" alt="Alloy logo" loading="lazy">
-            <img src="assets/work/logos/aura.png" alt="Aura logo" loading="lazy">
-            <img src="assets/work/logos/bhumi.png" alt="Bhumi logo" loading="lazy">
-            <img src="assets/work/logos/todays-deals.png" alt="Todays Deals logo" loading="lazy">
-            <img src="assets/work/logos/apple-gears.png" alt="Apple Gears logo" loading="lazy">
-          </div>
-          <div class="marquee-group" aria-hidden="true">
-            <img src="assets/work/logos/all-organics.png" alt="" loading="lazy">
-            <img src="assets/work/logos/fresh-paws.png" alt="" loading="lazy">
-            <img src="assets/work/logos/finn.png" alt="" loading="lazy">
-            <img src="assets/work/logos/triduate.png" alt="" loading="lazy">
-            <img src="assets/work/logos/slaz.png" alt="" loading="lazy">
-            <img src="assets/work/logos/naogaon-rice.png" alt="" loading="lazy">
-            <img src="assets/work/logos/noor.png" alt="" loading="lazy">
-            <img src="assets/work/logos/norea.png" alt="" loading="lazy">
-            <img src="assets/work/logos/tunes-360.png" alt="" loading="lazy">
-            <img src="assets/work/logos/roasted.png" alt="" loading="lazy">
-            <img src="assets/work/logos/seor.png" alt="" loading="lazy">
-            <img src="assets/work/logos/shaad.png" alt="" loading="lazy">
-            <img src="assets/work/logos/steller.png" alt="" loading="lazy">
-            <img src="assets/work/logos/oxymoron.png" alt="" loading="lazy">
-            <img src="assets/work/logos/beach-vacation.png" alt="" loading="lazy">
-            <img src="assets/work/logos/big-panda.png" alt="" loading="lazy">
-            <img src="assets/work/logos/monarch.png" alt="" loading="lazy">
-            <img src="assets/work/logos/aves.png" alt="" loading="lazy">
-            <img src="assets/work/logos/batg.png" alt="" loading="lazy">
-            <img src="assets/work/logos/alloy.png" alt="" loading="lazy">
-            <img src="assets/work/logos/aura.png" alt="" loading="lazy">
-            <img src="assets/work/logos/bhumi.png" alt="" loading="lazy">
-            <img src="assets/work/logos/todays-deals.png" alt="" loading="lazy">
-            <img src="assets/work/logos/apple-gears.png" alt="" loading="lazy">
+    <!-- =====================================================================
+         03. SELECTED BRAND IDENTITIES: 3D Perspective Card Stack & Case Studies
+         ===================================================================== -->
+    <section id="work" class="process-flow section-dark" aria-labelledby="work-title">
+      <div class="shell">
+        <div class="flow-header" data-rise>
+          <div class="flow-head-copy">
+            <p class="kicker kicker-light"><span class="kicker-dot"></span>Selected brand identities</p>
+            <h2 id="work-title" class="flow-title" data-words>Real identities, built from the mark up.</h2>
+            <p class="flow-sub">
+              Art-directed brand systems, physical packaging, and tactile touchpoints designed by Julkarnine Arabi.
+              Scroll through the 3D stack or click any card to inspect the complete case study.
+            </p>
           </div>
         </div>
       </div>
-    </section>
 
-    <!-- 3D SCROLL EFFECT: Typical Agency VS Design Daily Studio Process -->
-    <section id="process-vs" class="vs-section" data-vs-section aria-labelledby="vs-title">
-      <div class="vs-sticky">
-        <div class="vs-shell shell">
-          
-          <!-- Section Header -->
-          <div class="vs-head">
-            <div class="vs-head-top">
-              <p class="kicker" data-rise>The Process Difference</p>
-              <h2 id="vs-title" class="vs-title">
-                Typical Agency <span class="vs-badge-vs">VS</span> <span class="highlight-studio">Design Daily</span>
-              </h2>
-              <p class="vs-sub">
-                Scroll to compare how traditional agency overhead stacks up against our direct, founder-led studio flow.
-              </p>
-            </div>
-            
-            <!-- Interactive Milestone Tabs -->
-            <div class="vs-milestones" role="tablist" aria-label="Process comparison phases">
-              <button class="vs-tab is-active" data-step="0" role="tab" aria-selected="true" aria-controls="view-0">
-                <span class="tab-num">01</span><span class="tab-label">The Brief</span>
-              </button>
-              <button class="vs-tab" data-step="1" role="tab" aria-selected="false" aria-controls="view-1">
-                <span class="tab-num">02</span><span class="tab-label">The Team</span>
-              </button>
-              <button class="vs-tab" data-step="2" role="tab" aria-selected="false" aria-controls="view-2">
-                <span class="tab-num">03</span><span class="tab-label">The Turnaround</span>
-              </button>
-              <button class="vs-tab" data-step="3" role="tab" aria-selected="false" aria-controls="view-3">
-                <span class="tab-num">04</span><span class="tab-label">Pricing & Files</span>
-              </button>
-            </div>
-          </div>
-
-          <!-- 3D Spatial Arena -->
-          <div class="vs-arena">
-            
-            <!-- LEFT 3D CARD: Typical Agency -->
-            <div class="vs-card vs-agency" data-side="agency">
-              <div class="card-glass-glow glow-red"></div>
-              <div class="card-inner">
-                <div class="card-top-bar">
-                  <div class="card-badge badge-agency">
-                    <span class="pulse-indicator red"></span>
-                    <span>Typical Design Agency</span>
-                  </div>
-                  <span class="card-pill-tag tag-friction">⚠️ High Friction</span>
-                </div>
-
-                <div class="card-content-stage">
-                  <!-- Step 0: The Brief -->
-                  <div class="vs-step-view is-active" data-step-view="0">
-                    <div class="step-icon-wrap icon-red">
-                      <svg viewBox="0 0 24 24" class="ico-step"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="14 2 14 8 20 8" fill="none" stroke="currentColor" stroke-width="2"/><line x1="16" y1="13" x2="8" y2="13" stroke="currentColor" stroke-width="2"/><line x1="16" y1="17" x2="8" y2="17" stroke="currentColor" stroke-width="2"/></svg>
-                    </div>
-                    <span class="step-kicker">Phase 01 · Onboarding</span>
-                    <h3 class="step-name">The Bureaucratic Brief</h3>
-                    <p class="step-desc">
-                      4 sales calls, a 15-page discovery questionnaire, 2 weeks to draft a Scope of Work, and a kickoff meeting just to schedule another meeting.
-                    </p>
-                    <ul class="step-bullets">
-                      <li><span class="cross">✕</span> 10–14 days lost before work even starts</li>
-                      <li><span class="cross">✕</span> Handed to a sales rep who doesn't design</li>
-                      <li><span class="cross">✕</span> 40-page deck with zero usable deliverables</li>
-                    </ul>
-                  </div>
-
-                  <!-- Step 1: The Team -->
-                  <div class="vs-step-view" data-step-view="1">
-                    <div class="step-icon-wrap icon-red">
-                      <svg viewBox="0 0 24 24" class="ico-step"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="9" cy="7" r="4" fill="none" stroke="currentColor" stroke-width="2"/><path d="M23 21v-2a4 4 0 0 0-3-3.87" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 3.13a4 4 0 0 1 0 7.75" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </div>
-                    <span class="step-kicker">Phase 02 · Communication</span>
-                    <h3 class="step-name">The Broken Telephone</h3>
-                    <p class="step-desc">
-                      You talk to an Account Manager, who translates to a Traffic Coordinator, who briefs an overworked junior intern.
-                    </p>
-                    <ul class="step-bullets">
-                      <li><span class="cross">✕</span> Nuanced creative feedback lost in transit</li>
-                      <li><span class="cross">✕</span> You never speak to the actual designer</li>
-                      <li><span class="cross">✕</span> Endless email threads with CCs on CCs</li>
-                    </ul>
-                  </div>
-
-                  <!-- Step 2: The Turnaround -->
-                  <div class="vs-step-view" data-step-view="2">
-                    <div class="step-icon-wrap icon-red">
-                      <svg viewBox="0 0 24 24" class="ico-step"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="12 6 12 12 16 14" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </div>
-                    <span class="step-kicker">Phase 03 · Execution</span>
-                    <h3 class="step-name">The Slow Revision Lag</h3>
-                    <p class="step-desc">
-                      Weeks pass for minor adjustments. Every simple request is treated as an "out-of-scope change order" that incurs delays.
-                    </p>
-                    <ul class="step-bullets">
-                      <li><span class="cross">✕</span> 2 to 3 weeks turnaround per revision cycle</li>
-                      <li><span class="cross">✕</span> Endless moodboards; delayed file exports</li>
-                      <li><span class="cross">✕</span> Stalled marketing campaigns and missed launches</li>
-                    </ul>
-                  </div>
-
-                  <!-- Step 3: Pricing & Files -->
-                  <div class="vs-step-view" data-step-view="3">
-                    <div class="step-icon-wrap icon-red">
-                      <svg viewBox="0 0 24 24" class="ico-step"><rect x="3" y="11" width="18" height="11" rx="2" ry="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </div>
-                    <span class="step-kicker">Phase 04 · Delivery & Cost</span>
-                    <h3 class="step-name">Hostage Files & Hidden Bills</h3>
-                    <p class="step-desc">
-                      Bloated ৳50,000+ retainers, surprise billable hours, locked native source files, and 6-12 month lock-in contracts.
-                    </p>
-                    <ul class="step-bullets">
-                      <li><span class="cross">✕</span> Extra fees demanded for editable vectors</li>
-                      <li><span class="cross">✕</span> Inflexible long-term corporate retainers</li>
-                      <li><span class="cross">✕</span> Messy layer hierarchies you cannot edit</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="card-foot-metric metric-agency">
-                  <span class="foot-label">Experience Verdict</span>
-                  <strong class="foot-val">High Overhead · Slow Momentum</strong>
-                </div>
-              </div>
-            </div>
-
-            <!-- CENTER 3D DIAL: VS Orb -->
-            <div class="vs-center-orb" aria-hidden="true">
-              <div class="orb-ring ring-1"></div>
-              <div class="orb-ring ring-2"></div>
-              <div class="orb-badge">
-                <span>VS</span>
-              </div>
-              <div class="orb-progress-ring">
-                <svg viewBox="0 0 60 60" class="orb-svg-progress">
-                  <circle cx="30" cy="30" r="26" class="orb-bg-circle"/>
-                  <circle cx="30" cy="30" r="26" class="orb-fill-circle"/>
-                </svg>
-              </div>
-            </div>
-
-            <!-- RIGHT 3D CARD: Design Daily Studio -->
-            <div class="vs-card vs-studio" data-side="studio">
-              <div class="card-glass-glow glow-gold"></div>
-              <div class="card-inner">
-                <div class="card-top-bar">
-                  <div class="card-badge badge-studio">
-                    <span class="pulse-indicator green"></span>
-                    <span>Design Daily Studio</span>
-                  </div>
-                  <span class="card-pill-tag tag-speed">⚡ Avg. 48-72h Turnaround</span>
-                </div>
-
-                <div class="card-content-stage">
-                  <!-- Step 0: The Brief -->
-                  <div class="vs-step-view is-active" data-step-view="0">
-                    <div class="step-icon-wrap icon-gold">
-                      <svg viewBox="0 0 24 24" class="ico-step"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                    </div>
-                    <span class="step-kicker">Phase 01 · Onboarding</span>
-                    <h3 class="step-name">Direct Async Kickoff</h3>
-                    <p class="step-desc">
-                      Send your brief on WhatsApp or drop a card on Trello with your facts. No discovery delays, kickoff starts within 24 hours.
-                    </p>
-                    <ul class="step-bullets">
-                      <li><span class="check">✓</span> Zero time wasted on corporate slide decks</li>
-                      <li><span class="check">✓</span> Immediate clarity on scope and turnaround</li>
-                      <li><span class="check">✓</span> Design execution starts the exact same day</li>
-                    </ul>
-                  </div>
-
-                  <!-- Step 1: The Team -->
-                  <div class="vs-step-view" data-step-view="1">
-                    <div class="step-icon-wrap icon-gold">
-                      <svg viewBox="0 0 24 24" class="ico-step"><circle cx="12" cy="12" r="10" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="10" r="3" fill="none" stroke="currentColor" stroke-width="2"/><path d="M7 20.662V19a2 2 0 0 1 2-2h6a2 2 0 0 1 2 2v1.662" fill="none" stroke="currentColor" stroke-width="2"/></svg>
-                    </div>
-                    <span class="step-kicker">Phase 02 · Communication</span>
-                    <h3 class="step-name">One Accountable Designer</h3>
-                    <p class="step-desc">
-                      You collaborate directly with Julkarnine Arabi. One focused mind from first concept sketch to final vector production.
-                    </p>
-                    <ul class="step-bullets">
-                      <li><span class="check">✓</span> Zero middlemen, zero miscommunicated specs</li>
-                      <li><span class="check">✓</span> Quick voice notes & answers on WhatsApp</li>
-                      <li><span class="check">✓</span> Consistent visual language across every asset</li>
-                    </ul>
-                  </div>
-
-                  <!-- Step 2: The Turnaround -->
-                  <div class="vs-step-view" data-step-view="2">
-                    <div class="step-icon-wrap icon-gold">
-                      <svg viewBox="0 0 24 24" class="ico-step"><path d="M12 2v4M12 18v4M4.93 4.93l2.83 2.83M16.24 16.24l2.83 2.83M2 12h4M18 12h4M4.93 19.07l2.83-2.83M16.24 7.76l2.83-2.83" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-                    </div>
-                    <span class="step-kicker">Phase 03 · Execution</span>
-                    <h3 class="step-name">Rapid 48–72h Delivery</h3>
-                    <p class="step-desc">
-                      Batches of original static graphics delivered in 48 to 72 hours. Built ready-to-use on the shelf, in the street, and in the feed.
-                    </p>
-                    <ul class="step-bullets">
-                      <li><span class="check">✓</span> 12 high-impact static designs every month</li>
-                      <li><span class="check">✓</span> Swift, thoughtful consolidated revision rounds</li>
-                      <li><span class="check">✓</span> Feeds and campaigns launch with zero delay</li>
-                    </ul>
-                  </div>
-
-                  <!-- Step 3: Pricing & Files -->
-                  <div class="vs-step-view" data-step-view="3">
-                    <div class="step-icon-wrap icon-gold">
-                      <svg viewBox="0 0 24 24" class="ico-step"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z" fill="none" stroke="currentColor" stroke-width="2"/><polyline points="3.27 6.96 12 12.01 20.73 6.96" fill="none" stroke="currentColor" stroke-width="2"/><line x1="12" y1="22.08" x2="12" y2="12" stroke="currentColor" stroke-width="2"/></svg>
-                    </div>
-                    <span class="step-kicker">Phase 04 · Delivery & Cost</span>
-                    <h3 class="step-name">Flat ৳18k/mo & 100% Ownership</h3>
-                    <p class="step-desc">
-                      Predictable productized flat monthly fee. Pause or cancel anytime. All vector exports and organized source files included.
-                    </p>
-                    <ul class="step-bullets">
-                      <li><span class="check">✓</span> All SVG, AI & Figma sources included free</li>
-                      <li><span class="check">✓</span> Zero surprise hourly invoices or markup</li>
-                      <li><span class="check">✓</span> Transparent terms; pause or cancel with 1 click</li>
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="card-foot-metric metric-studio">
-                  <span class="foot-label">Experience Verdict</span>
-                  <strong class="foot-val">Direct Agility · Maximum Velocity</strong>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- Footer Timeline / Progress Indicator -->
-          <div class="vs-foot">
-            <span class="vs-hint-text">Scroll to progress through the 4 process milestones</span>
-            <div class="vs-progress-track">
-              <div class="vs-progress-fill"></div>
-            </div>
-            <div class="vs-step-indicator">
-              Phase <span class="curr-phase">01</span> / 04
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- SELECTED WORK: pinned horizontal gallery -->
-    <section id="work" class="work" data-hscroll>
-      <div class="work-pin">
-        <div class="work-head shell">
-          <div class="work-head-main">
-            <p class="kicker"><span class="kicker-dot"></span>Selected brand identities</p>
-            <h2 data-words>Seven brands, built to command attention.</h2>
-            <p class="work-head-sub">Real client brand identity systems designed by Julkarnine Arabi. Explore the project shots or click any brand to dive into its complete case study, guidelines, and packaging collateral.</p>
-          </div>
-          <div class="work-head-meta">
-            <div class="work-guide-pill" aria-hidden="true">
-              <span class="guide-dot"></span>
-              <span>Click card or button to view full case study</span>
-            </div>
-            <p class="work-count"><span class="work-current">01</span> / 07</p>
-          </div>
-        </div>
-
-        <div class="work-track">
-          <!-- 01: All Organics -->
-          <article class="case" data-case="allorganics" style="--case-bg:#152219;--case-ink:#f3efe6;--case-accent:#b8f77e;--case-glow:rgba(184,247,126,0.22)">
-            <a class="case-media" href="case-allorganics.html" aria-label="View All Organics full brand identity case study">
-              <div class="case-media-canvas">
-                <img class="case-img-primary" src="assets/cases/allorganics/BRANDING MOCKUO.png" alt="All Organics master brand identity system, stationery, and packaging" loading="lazy">
-                <div class="case-media-vignette"></div>
-              </div>
-              <div class="case-accent-shot" aria-hidden="true">
-                <img src="assets/cases/allorganics/all organics business card mockup.png" alt="" loading="lazy">
-                <span class="shot-caption">Stationery &amp; Cards</span>
-              </div>
-              <div class="case-cut case-cut-logo" aria-hidden="true">
-                <img src="assets/work/logos/all-organics.png" alt="All Organics Mark">
-                <span class="cut-label">Brand Mark</span>
-              </div>
-              <div class="case-shot-pills" aria-hidden="true">
-                <span class="shot-pill">Identity System</span>
-                <span class="shot-pill">Kraft Packaging</span>
-                <span class="shot-pill">Fleet Livery</span>
-              </div>
-              <div class="case-hover-hint" aria-hidden="true">
-                <span class="hint-pill">
-                  <span>View Full Brand Identity</span>
-                  <svg class="ico-hint" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </a>
-            <div class="case-copy">
-              <div class="case-meta-top">
-                <span class="case-category-pill">Brand Identity Project</span>
-                <span class="case-no">01 <span class="case-total">/ 07</span></span>
-              </div>
-              <h3 class="case-title">All Organics</h3>
-              <p class="case-tags">Organic Wellness · Identity System · Packaging · Fleet Livery</p>
-              <p class="case-desc">An organic wellness food brand. An unbroken circle enclosing the seedling of trusted cultivation, carrying through from kraft packaging to electric delivery trucks.</p>
-              <div class="case-cta-wrapper">
-                <a class="btn-brand-identity" href="case-allorganics.html" aria-label="View All Organics full brand identity case study">
-                  <span class="btn-text">View Full Brand Identity</span>
-                  <span class="btn-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" class="ico-arrow-btn">
-                      <path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </a>
-                <span class="case-redirect-hint">Redirects to full case study page →</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- 02: FINN -->
-          <article class="case" data-case="finn" style="--case-bg:#101114;--case-ink:#f3efe6;--case-accent:#ff3b68;--case-glow:rgba(255,59,104,0.22)">
-            <a class="case-media" href="case-finn.html" aria-label="View FINN full brand identity case study">
-              <div class="case-media-canvas">
-                <img class="case-img-primary" src="assets/cases/finn/PACKAGING1_220824.png" alt="FINN luxury leather packaging box with foil stamping" loading="lazy">
-                <div class="case-media-vignette"></div>
-              </div>
-              <div class="case-accent-shot" aria-hidden="true">
-                <img src="assets/cases/finn/Envelope4_220824.png" alt="" loading="lazy">
-                <span class="shot-caption">Deboss Envelope</span>
-              </div>
-              <div class="case-cut case-cut-logo case-cut-invert" aria-hidden="true">
-                <img src="assets/work/logos/finn.png" alt="FINN Monogram">
-                <span class="cut-label">Monogram</span>
-              </div>
-              <div class="case-shot-pills" aria-hidden="true">
-                <span class="shot-pill">Monogram Grid</span>
-                <span class="shot-pill">Rigid Boxes</span>
-                <span class="shot-pill">Blind Deboss</span>
-              </div>
-              <div class="case-hover-hint" aria-hidden="true">
-                <span class="hint-pill">
-                  <span>View Full Brand Identity</span>
-                  <svg class="ico-hint" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </a>
-            <div class="case-copy">
-              <div class="case-meta-top">
-                <span class="case-category-pill">Brand Identity Project</span>
-                <span class="case-no">02 <span class="case-total">/ 07</span></span>
-              </div>
-              <h3 class="case-title">FINN</h3>
-              <p class="case-tags">Luxury Identity · Structural Packaging · Deboss Envelopes</p>
-              <p class="case-desc">Handcrafted leather goods. A stacked geometric monogram, rigid matte noir boxes, blind debossed warranty envelopes, and a singular crimson signature thread.</p>
-              <div class="case-cta-wrapper">
-                <a class="btn-brand-identity" href="case-finn.html" aria-label="View FINN full brand identity case study">
-                  <span class="btn-text">View Full Brand Identity</span>
-                  <span class="btn-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" class="ico-arrow-btn">
-                      <path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </a>
-                <span class="case-redirect-hint">Redirects to full case study page →</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- 03: Tripty -->
-          <article class="case" data-case="tripty" style="--case-bg:#8c0c32;--case-ink:#fff;--case-accent:#ffd34d;--case-glow:rgba(255,211,77,0.25)">
-            <a class="case-media" href="case-tripty.html" aria-label="View Tripty full brand identity case study">
-              <div class="case-media-canvas">
-                <img class="case-img-primary" src="assets/cases/tripty/letterhead and bcard.png" alt="Tripty restaurant brand stationery, menus, and business collateral" loading="lazy">
-                <div class="case-media-vignette"></div>
-              </div>
-              <div class="case-accent-shot" aria-hidden="true">
-                <img src="assets/cases/tripty/packaging (1).png" alt="" loading="lazy">
-                <span class="shot-caption">Custom Packaging</span>
-              </div>
-              <div class="case-cut case-cut-logo" aria-hidden="true">
-                <img src="assets/work/tripty-logo.png" alt="Tripty Logo">
-                <span class="cut-label">Brand Mark</span>
-              </div>
-              <div class="case-shot-pills" aria-hidden="true">
-                <span class="shot-pill">Hospitality Mark</span>
-                <span class="shot-pill">Stationery &amp; Menus</span>
-                <span class="shot-pill">Custom Packs</span>
-              </div>
-              <div class="case-hover-hint" aria-hidden="true">
-                <span class="hint-pill">
-                  <span>View Full Brand Identity</span>
-                  <svg class="ico-hint" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </a>
-            <div class="case-copy">
-              <div class="case-meta-top">
-                <span class="case-category-pill">Brand Identity Project</span>
-                <span class="case-no">03 <span class="case-total">/ 07</span></span>
-              </div>
-              <h3 class="case-title">Tripty</h3>
-              <p class="case-tags">Hospitality Identity · Takeout Packaging · Murals · Collateral</p>
-              <p class="case-desc">Experiential burger &amp; street food brand. A chef-inspired mark, flame iconography, playful custom patterns, and complete restaurant interior environmental graphics.</p>
-              <div class="case-cta-wrapper">
-                <a class="btn-brand-identity" href="case-tripty.html" aria-label="View Tripty full brand identity case study">
-                  <span class="btn-text">View Full Brand Identity</span>
-                  <span class="btn-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" class="ico-arrow-btn">
-                      <path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </a>
-                <span class="case-redirect-hint">Redirects to full case study page →</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- 04: Bhumi -->
-          <article class="case" data-case="bhumi" style="--case-bg:#0c382a;--case-ink:#f3efe6;--case-accent:#f5ba42;--case-glow:rgba(245,186,66,0.22)">
-            <a class="case-media" href="case-bhumi.html" aria-label="View Bhumi full brand identity case study">
-              <div class="case-media-canvas">
-                <img class="case-img-primary" src="assets/portfolio/page-57.jpg" alt="Bhumi rice products packaging lineup and brand suite" loading="lazy">
-                <div class="case-media-vignette"></div>
-              </div>
-              <div class="case-accent-shot" aria-hidden="true">
-                <img src="assets/work/hero-bhumi-gablebox.png" alt="" loading="lazy">
-                <span class="shot-caption">Gable Gift Box</span>
-              </div>
-              <div class="case-cut case-cut-logo" aria-hidden="true">
-                <img src="assets/work/logos/bhumi.png" alt="Bhumi Monogram">
-                <span class="cut-label">Monogram</span>
-              </div>
-              <div class="case-shot-pills" aria-hidden="true">
-                <span class="shot-pill">Heritage Monogram</span>
-                <span class="shot-pill">Barrier Pouches</span>
-                <span class="shot-pill">Gable Box</span>
-              </div>
-              <div class="case-hover-hint" aria-hidden="true">
-                <span class="hint-pill">
-                  <span>View Full Brand Identity</span>
-                  <svg class="ico-hint" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </a>
-            <div class="case-copy">
-              <div class="case-meta-top">
-                <span class="case-category-pill">Brand Identity Project</span>
-                <span class="case-no">04 <span class="case-total">/ 07</span></span>
-              </div>
-              <h3 class="case-title">Bhumi</h3>
-              <p class="case-tags">Heritage Food Packaging · Foil Pouches · Gable Gift Box</p>
-              <p class="case-desc">A heritage agricultural rice brand. Architectural gable gift boxes, matte standup barrier pouches, and traditional leaf filigree for export-grade grains.</p>
-              <div class="case-cta-wrapper">
-                <a class="btn-brand-identity" href="case-bhumi.html" aria-label="View Bhumi full brand identity case study">
-                  <span class="btn-text">View Full Brand Identity</span>
-                  <span class="btn-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" class="ico-arrow-btn">
-                      <path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </a>
-                <span class="case-redirect-hint">Redirects to full case study page →</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- 05: Noréa -->
-          <article class="case" data-case="norea" style="--case-bg:#1d2930;--case-ink:#f3efe6;--case-accent:#76d7c4;--case-glow:rgba(118,215,196,0.25)">
-            <a class="case-media" href="case-norea.html" aria-label="View Noréa full brand identity case study">
-              <div class="case-media-canvas">
-                <img class="case-img-primary" src="assets/cases/norea/13.jpg" alt="Noréa luxury brand identity packaging, rigid gift boxes, and shopping bags" loading="lazy">
-                <div class="case-media-vignette"></div>
-              </div>
-              <div class="case-accent-shot" aria-hidden="true">
-                <img src="assets/cases/norea/14.jpg" alt="" loading="lazy">
-                <span class="shot-caption">Foil Stationery</span>
-              </div>
-              <div class="case-cut case-cut-logo" aria-hidden="true">
-                <img src="assets/work/logos/norea.png" alt="Noréa Logo">
-                <span class="cut-label">Dining Mark</span>
-              </div>
-              <div class="case-shot-pills" aria-hidden="true">
-                <span class="shot-pill">Luxury Monogram</span>
-                <span class="shot-pill">Rigid Boxes</span>
-                <span class="shot-pill">Boutique Bags</span>
-              </div>
-              <div class="case-hover-hint" aria-hidden="true">
-                <span class="hint-pill">
-                  <span>View Full Brand Identity</span>
-                  <svg class="ico-hint" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </a>
-            <div class="case-copy">
-              <div class="case-meta-top">
-                <span class="case-category-pill">Brand Identity Project</span>
-                <span class="case-no">05 <span class="case-total">/ 07</span></span>
-              </div>
-              <h3 class="case-title">Noréa</h3>
-              <p class="case-tags">Luxury Lifestyle · Rigid Gift Boxes · Shopping Bags · Monogram</p>
-              <p class="case-desc">Contemporary dining and luxury lifestyle label. Flowing continuous monogram, debossed rigid gift boxes, boutique linen shopping bags, and architectural signage.</p>
-              <div class="case-cta-wrapper">
-                <a class="btn-brand-identity" href="case-norea.html" aria-label="View Noréa full brand identity case study">
-                  <span class="btn-text">View Full Brand Identity</span>
-                  <span class="btn-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" class="ico-arrow-btn">
-                      <path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </a>
-                <span class="case-redirect-hint">Redirects to full case study page →</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- 06: Atuendo -->
-          <article class="case" data-case="atuendo" style="--case-bg:#18171d;--case-ink:#f3efe6;--case-accent:#f5aa1e;--case-glow:rgba(245,170,30,0.25)">
-            <a class="case-media" href="case-atuendo.html" aria-label="View Atuendo full brand identity case study">
-              <div class="case-media-canvas">
-                <img class="case-img-primary" src="assets/cases/atuendo/080924_Atuendo stationery design_JN.png" alt="Atuendo luxury stationery and pattern design" loading="lazy">
-                <div class="case-media-vignette"></div>
-              </div>
-              <div class="case-accent-shot" aria-hidden="true">
-                <img src="assets/cases/atuendo/060924_Atuendo-Brand_patterns_JN-01-04-04.jpg" alt="" loading="lazy">
-                <span class="shot-caption">Pattern System</span>
-              </div>
-              <div class="case-cut case-cut-logo" aria-hidden="true">
-                <img src="assets/cases/atuendo/070924_Atuendo_(Color-palette)_JN-01.jpg" alt="Atuendo Mark">
-                <span class="cut-label">Palette &amp; Mark</span>
-              </div>
-              <div class="case-shot-pills" aria-hidden="true">
-                <span class="shot-pill">Couture Identity</span>
-                <span class="shot-pill">Generative Patterns</span>
-                <span class="shot-pill">Editorial Cards</span>
-              </div>
-              <div class="case-hover-hint" aria-hidden="true">
-                <span class="hint-pill">
-                  <span>View Full Brand Identity</span>
-                  <svg class="ico-hint" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </a>
-            <div class="case-copy">
-              <div class="case-meta-top">
-                <span class="case-category-pill">Brand Identity Project</span>
-                <span class="case-no">06 <span class="case-total">/ 07</span></span>
-              </div>
-              <h3 class="case-title">Atuendo</h3>
-              <p class="case-tags">Fashion Identity · Pattern Systems · Editorial Stationery</p>
-              <p class="case-desc">Luxury minimalist apparel label. Flowing custom geometric pattern language, metallic foil business collateral, and sophisticated editorial styling.</p>
-              <div class="case-cta-wrapper">
-                <a class="btn-brand-identity" href="case-atuendo.html" aria-label="View Atuendo full brand identity case study">
-                  <span class="btn-text">View Full Brand Identity</span>
-                  <span class="btn-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" class="ico-arrow-btn">
-                      <path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </a>
-                <span class="case-redirect-hint">Redirects to full case study page →</span>
-              </div>
-            </div>
-          </article>
-
-          <!-- 07: Goody Bro -->
-          <article class="case" data-case="goodybro" style="--case-bg:#141416;--case-ink:#f3efe6;--case-accent:#ff4d47;--case-glow:rgba(255,77,71,0.25)">
-            <a class="case-media" href="case-goodybro.html" aria-label="View Goody Bro full brand identity case study">
-              <div class="case-media-canvas">
-                <img class="case-img-primary" src="assets/cases/goodybro/Chaotic-world-design.png" alt="GoodyBro streetwear graphic drops and typographic art" loading="lazy">
-                <div class="case-media-vignette"></div>
-              </div>
-              <div class="case-accent-shot" aria-hidden="true">
-                <img src="assets/cases/goodybro/Goodybro card 1.png" alt="" loading="lazy">
-                <span class="shot-caption">Collectible Cards</span>
-              </div>
-              <div class="case-cut case-cut-logo" aria-hidden="true">
-                <img src="assets/cases/goodybro/JNXGOODY.png" alt="Goody Bro Mark">
-                <span class="cut-label">Streetwear Mark</span>
-              </div>
-              <div class="case-shot-pills" aria-hidden="true">
-                <span class="shot-pill">Streetwear Drops</span>
-                <span class="shot-pill">Typographic Art</span>
-                <span class="shot-pill">Collectible Tags</span>
-              </div>
-              <div class="case-hover-hint" aria-hidden="true">
-                <span class="hint-pill">
-                  <span>View Full Brand Identity</span>
-                  <svg class="ico-hint" viewBox="0 0 24 24"><path d="M7 17 17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                </span>
-              </div>
-            </a>
-            <div class="case-copy">
-              <div class="case-meta-top">
-                <span class="case-category-pill">Brand Identity Project</span>
-                <span class="case-no">07 <span class="case-total">/ 07</span></span>
-              </div>
-              <h3 class="case-title">Goody Bro</h3>
-              <p class="case-tags">Graphic Apparel · Typographic Art · Hangtags · Streetwear</p>
-              <p class="case-desc">High-voltage graphic streetwear drops. Conceptual typography ('Chaotic World', 'Create Goodness'), custom screenprint separations, and collectible hangtag cards.</p>
-              <div class="case-cta-wrapper">
-                <a class="btn-brand-identity" href="case-goodybro.html" aria-label="View Goody Bro full brand identity case study">
-                  <span class="btn-text">View Full Brand Identity</span>
-                  <span class="btn-arrow" aria-hidden="true">
-                    <svg viewBox="0 0 24 24" class="ico-arrow-btn">
-                      <path d="M5 12h14M13 5l7 7-7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                  </span>
-                </a>
-                <span class="case-redirect-hint">Redirects to full case study page →</span>
-              </div>
-            </div>
-          </article>
-        </div>
-        <div class="work-bar"><b></b></div>
-      </div>
-    </section>
-
-    <!-- THE STUDIO (from Web reference 3) -->
-    <section id="studio" class="studio section-shell section-dark">
-      <div class="section-head section-head-light reveal" data-rise>
-        <div>
-          <p class="eyebrow">The studio / 02</p>
-          <h2>Start with<br><span>a clear thought.</span></h2>
-        </div>
-        <p>Small team, direct conversation, careful files. We build the core idea first, then give it enough structure to keep working.</p>
-      </div>
-      <div class="studio-layout">
-        <div class="studio-copy reveal" data-rise>
-          <div class="studio-step">
-            <span>01</span>
-            <div>
-              <h3>Find the direction.</h3>
-              <p>We look at the category, the audience, and the moment your business is in.</p>
-            </div>
-          </div>
-          <div class="studio-step">
-            <span>02</span>
-            <div>
-              <h3>Build the system.</h3>
-              <p>We turn the direction into a mark, palette, type, and a few rules people can actually use.</p>
-            </div>
-          </div>
-          <div class="studio-step">
-            <span>03</span>
-            <div>
-              <h3>Make it useful.</h3>
-              <p>We shape the real assets: posts, packaging, posters, and the files that keep the work moving.</p>
-            </div>
-          </div>
-          <a class="button button-light" href="#services">See the services <svg class="ico"><use href="#i-arrow"/></svg></a>
-        </div>
-        <div class="material-stack reveal reveal-delay" data-rise aria-label="A stack of design materials from sketch to application">
-          <div class="material material-sketch">
-            <img src="assets/journey-sketch-v2.png" alt="Sketchbook studies for a brand identity" loading="lazy">
-            <span>01 / The sketch</span>
-            <strong>It starts<br>on paper.</strong>
-          </div>
-          <div class="material material-system">
-            <img src="assets/journey-identity-v2.png" alt="Identity specimens developed from the sketches" loading="lazy">
-            <span>02 / The system</span>
-            <strong>Then it<br>finds a voice.</strong>
-          </div>
-          <div class="material material-seen">
-            <img src="assets/journey-seen-v2.png" alt="Finished identity seen in a real space" loading="lazy">
-            <span>03 / The world</span>
-            <strong>Now people<br>see it.</strong>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- THE DESIGN PROCESS (from Web reference 3) -->
-    <section id="process" class="process-flow section-shell section-dark">
-      <div class="section-head section-head-light reveal" data-rise>
-        <div>
-          <p class="eyebrow">The design process / 03</p>
-          <h2>From first<br><span>thought to proof.</span></h2>
-        </div>
-        <p>Six deliberate moves. One visible thread. Scroll through the stack to see how a rough question becomes work a client can use.</p>
-      </div>
-      <div class="flow-sticky">
-        <div class="flow-copy" data-rise>
-          <p class="flow-kicker">A clear route through the studio</p>
-          <ol class="flow-steps" aria-label="Six steps in the design process">
-            <li class="is-active" data-flow-step="0"><button type="button"><span>01</span><strong>Brainstorming</strong><small>Gather the signals.</small></button></li>
-            <li data-flow-step="1"><button type="button"><span>02</span><strong>Ideation</strong><small>Choose the thought.</small></button></li>
-            <li data-flow-step="2"><button type="button"><span>03</span><strong>Sketching</strong><small>Give it a shape.</small></button></li>
-            <li data-flow-step="3"><button type="button"><span>04</span><strong>Digitisation</strong><small>Build it in the tools.</small></button></li>
-            <li data-flow-step="4"><button type="button"><span>05</span><strong>Delivery</strong><small>Make the handover easy.</small></button></li>
-            <li data-flow-step="5"><button type="button"><span>06</span><strong>Results</strong><small>Watch it do its job.</small></button></li>
-          </ol>
-        </div>
-        <div class="flow-stage" aria-label="Six design process scenes layered in a 3D stack">
+      <div class="flow-sticky shell">
+        <!-- Center 3D Stage with Halo rings and full-form 3D Cards -->
+        <div class="flow-stage" aria-label="Five brand identities layered in a full-form 3D stack">
           <div class="flow-halo" aria-hidden="true"></div>
           <div class="flow-objects">
-            <article class="flow-object is-active" data-flow-object="0" style="--crop:0%">
-              <div class="flow-object-image"></div>
-              <span>01 / BRAINSTORMING</span>
-              <strong>Start with<br>the question.</strong>
-              <small>Notes, references, a useful first mess.</small>
-            </article>
-            <article class="flow-object" data-flow-object="1" style="--crop:20%">
-              <div class="flow-object-image"></div>
-              <span>02 / IDEATION</span>
-              <strong>Find the<br>strong thought.</strong>
-              <small>Several routes, one worth following.</small>
-            </article>
-            <article class="flow-object" data-flow-object="2" style="--crop:40%">
-              <div class="flow-object-image"></div>
-              <span>03 / SKETCHING</span>
-              <strong>Make it<br>visible early.</strong>
-              <small>Rough lines reveal what matters.</small>
-            </article>
-            <article class="flow-object" data-flow-object="3" style="--crop:60%">
-              <div class="flow-object-image"></div>
-              <span>04 / DIGITISATION</span>
-              <strong>Give it<br>precision.</strong>
-              <small>Illustrator, Photoshop, and a real system.</small>
-            </article>
-            <article class="flow-object" data-flow-object="4" style="--crop:80%">
-              <div class="flow-object-image"></div>
-              <span>05 / DELIVERY</span>
-              <strong>Hand over<br>something useful.</strong>
-              <small>Organised files, confident client, clear next step.</small>
-            </article>
-            <article class="flow-object" data-flow-object="5" style="--crop:100%">
-              <div class="flow-object-image"></div>
-              <span>06 / RESULTS</span>
-              <strong>Let the work<br>earn attention.</strong>
-              <small>A consistent idea, doing its job in the world.</small>
-            </article>
-          </div>
-          <div class="flow-counter">
-            <span class="flow-counter-current">01</span>
-            <i></i>
-            <span>06</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SOCIAL MEDIA CONTENT DESIGN: SIDE-BY-SIDE DESIGN & IMPACT -->
-    <section id="social" class="social-side-by-side" aria-labelledby="social-title">
-      <div class="shell">
-        <div class="social-compact-grid">
-          
-          <!-- LEFT SIDE: Design Explanation & Measurable Impact -->
-          <div class="social-rationale">
-            <p class="kicker" data-rise>Social Media Content Design</p>
-            <h2 id="social-title" class="social-title" data-words>Designed for the feed.<br>Built to stop the thumb.</h2>
-            
-            <p class="social-lead" data-rise>
-              Feeds move at high velocity. Most brand content fails because it relies on standard templates that users scroll past on autopilot. We build social campaigns around bespoke art direction, cultural fluency, and deliberate contrast to command genuine attention.
-            </p>
-
-            <!-- Interactive Design & Impact Accordion -->
-            <div class="social-impact-list" role="tablist" aria-label="Campaign Design and Impact Studies">
-              
-              <!-- 01: Tripty Foods -->
-              <div class="social-impact-item is-active" data-case-index="0" role="tab" tabindex="0" aria-selected="true">
-                <div class="impact-item-header">
-                  <span class="impact-num">01</span>
-                  <div class="impact-title-group">
-                    <span class="impact-client">Tripty Foods</span>
-                    <strong class="impact-name">Appetite Storytelling Hook</strong>
-                  </div>
-                </div>
-                <div class="impact-item-body">
-                  <div class="impact-item-inner">
-                    <div class="impact-row">
-                      <span class="impact-label">The Design</span>
-                      <p>Subverts standard food glamour shots with a messy, sauce-covered empty plate, bent cutlery, and deadpan copy (<em>&ldquo;If the plate could talk... it would ask for mercy&rdquo;</em>).</p>
-                    </div>
-                    <div class="impact-row">
-                      <span class="impact-label">The Impact</span>
-                      <p>Creates immediate emotional relatability that arrests food lovers mid-scroll, generating 3.4&times; higher organic comment engagement.</p>
-                    </div>
-                  </div>
-                </div>
+            <!-- CARD 01: TRIPTY -->
+            <a href="case-tripty.html" class="flow-object is-active" data-flow-object="0" aria-label="Explore Tripty Foods full case study">
+              <div class="flow-object-media">
+                <img src="assets/cases/tripty/tripty-brand-identity-cover.jpg" alt="Tripty Foods packaging suite, takeout gable box, paper bag, and burger wrap" loading="eager" width="2048" height="1536">
               </div>
-
-              <!-- 02: AVES Banani -->
-              <div class="social-impact-item" data-case-index="1" role="tab" tabindex="0" aria-selected="false">
-                <div class="impact-item-header">
-                  <span class="impact-num">02</span>
-                  <div class="impact-title-group">
-                    <span class="impact-client">AVES Holdings</span>
-                    <strong class="impact-name">Bilingual High-Ticket Lead Gen</strong>
-                  </div>
+              <div class="flow-object-overlay"></div>
+              <div class="flow-object-bottom">
+                <div class="flow-object-info">
+                  <strong class="flow-object-headline">Tripty Foods</strong>
+                  <p class="flow-object-sub">Hand-painted typography, die-cut gable boxes &amp; delivery fleet livery.</p>
                 </div>
-                <div class="impact-item-body">
-                  <div class="impact-item-inner">
-                    <div class="impact-row">
-                      <span class="impact-label">The Design</span>
-                      <p>Pairs architectural drone perspectives with heavyweight, balanced Bangla display typography and prominent 24-month EMI financing highlights.</p>
-                    </div>
-                    <div class="impact-row">
-                      <span class="impact-label">The Impact</span>
-                      <p>Bridges contemporary luxury aesthetics with native-language trust, driving qualified inbound WhatsApp inquiries from prime Banani property buyers.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 03: AVES Gulshan -->
-              <div class="social-impact-item" data-case-index="2" role="tab" tabindex="0" aria-selected="false">
-                <div class="impact-item-header">
-                  <span class="impact-num">03</span>
-                  <div class="impact-title-group">
-                    <span class="impact-client">AVES Holdings</span>
-                    <strong class="impact-name">Lakefront Launch &amp; Price Transparency</strong>
-                  </div>
-                </div>
-                <div class="impact-item-body">
-                  <div class="impact-item-inner">
-                    <div class="impact-row">
-                      <span class="impact-label">The Design</span>
-                      <p>Anchors the lake view building with celebratory ribbon-cutting artwork, seismic engineering callouts, and upfront 8,500 TK/SQFT pricing.</p>
-                    </div>
-                    <div class="impact-row">
-                      <span class="impact-label">The Impact</span>
-                      <p>Radical price transparency pre-qualifies genuine buyers and establishes developer integrity before the first sales conversation.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              <!-- 04: SEOR AXIS -->
-              <div class="social-impact-item" data-case-index="3" role="tab" tabindex="0" aria-selected="false">
-                <div class="impact-item-header">
-                  <span class="impact-num">04</span>
-                  <div class="impact-title-group">
-                    <span class="impact-client">SEOR AXIS</span>
-                    <strong class="impact-name">Editorial Fashion &amp; Product Anatomy</strong>
-                  </div>
-                </div>
-                <div class="impact-item-body">
-                  <div class="impact-item-inner">
-                    <div class="impact-row">
-                      <span class="impact-label">The Design</span>
-                      <p>Juxtaposes minimalist apparel studio lifestyle photography with clean leathergoods product cutouts detailing security locks and pocket anatomy.</p>
-                    </div>
-                    <div class="impact-row">
-                      <span class="impact-label">The Impact</span>
-                      <p>Validates premium pricing through visible leather craftsmanship, converting casual fashion scrollers into high-AOV store visitors.</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-            </div>
-
-            <div class="social-action-foot" data-rise>
-              <a class="button button-dark" href="#contact">Order a social content batch <svg class="ico"><use href="#i-arrow"/></svg></a>
-            </div>
-          </div>
-
-          <!-- RIGHT SIDE: Stacked Social Media Posts (3D Deck) -->
-          <div class="social-visual-stack">
-            <div class="social-deck-stage" data-social-deck>
-              
-              <!-- Post 01: Tripty Foods -->
-              <article class="social-deck-card is-active" data-card-index="0" data-layer="0" style="--tilt: -2deg;">
-                <div class="deck-card-image">
-                  <img src="assets/social/tripty-mercy-post.jpg" alt="Tripty Foods creative social ad: If the plate could talk... it would ask for mercy" loading="lazy">
-                </div>
-                <div class="deck-card-bar">
-                  <div class="deck-bar-meta">
-                    <span class="deck-bar-client">Tripty Foods</span>
-                    <span class="deck-bar-title">Appetite Storytelling</span>
-                  </div>
-                  <a class="deck-bar-link" href="assets/social/tripty-mercy-post.png" target="_blank" rel="noopener">
-                    <span>Full Art</span> <svg class="ico"><use href="#i-arrow-up"/></svg>
-                  </a>
-                </div>
-              </article>
-
-              <!-- Post 02: AVES Banani -->
-              <article class="social-deck-card" data-card-index="1" data-layer="1" style="--tilt: 2.5deg;">
-                <div class="deck-card-image">
-                  <img src="assets/social/aves-banani-post.jpg" alt="AVES luxury real estate launch ad in Banani, Dhaka" loading="lazy">
-                </div>
-                <div class="deck-card-bar">
-                  <div class="deck-bar-meta">
-                    <span class="deck-bar-client">AVES Holdings</span>
-                    <span class="deck-bar-title">Banani Luxury Tower</span>
-                  </div>
-                  <a class="deck-bar-link" href="assets/social/aves-banani-post.png" target="_blank" rel="noopener">
-                    <span>Full Art</span> <svg class="ico"><use href="#i-arrow-up"/></svg>
-                  </a>
-                </div>
-              </article>
-
-              <!-- Post 03: AVES Gulshan -->
-              <article class="social-deck-card" data-card-index="2" data-layer="2" style="--tilt: -1.8deg;">
-                <div class="deck-card-image">
-                  <img src="assets/social/aves-gulshan-post.jpg" alt="AVES Gulshan lake view luxury apartments opening campaign" loading="lazy">
-                </div>
-                <div class="deck-card-bar">
-                  <div class="deck-bar-meta">
-                    <span class="deck-bar-client">AVES Holdings</span>
-                    <span class="deck-bar-title">Gulshan Lakefront Launch</span>
-                  </div>
-                  <a class="deck-bar-link" href="assets/social/aves-gulshan-post.png" target="_blank" rel="noopener">
-                    <span>Full Art</span> <svg class="ico"><use href="#i-arrow-up"/></svg>
-                  </a>
-                </div>
-              </article>
-
-              <!-- Post 04: SEOR AXIS -->
-              <article class="social-deck-card" data-card-index="3" data-layer="3" style="--tilt: 2deg;">
-                <div class="deck-card-image">
-                  <img src="assets/social/seor-axis-briefcase.jpg" alt="SEOR AXIS luxury leather briefcase product launch creative" loading="lazy">
-                </div>
-                <div class="deck-card-bar">
-                  <div class="deck-bar-meta">
-                    <span class="deck-bar-client">SEOR AXIS</span>
-                    <span class="deck-bar-title">Executive Leather Drop</span>
-                  </div>
-                  <a class="deck-bar-link" href="assets/social/seor-axis-briefcase.png" target="_blank" rel="noopener">
-                    <span>Full Art</span> <svg class="ico"><use href="#i-arrow-up"/></svg>
-                  </a>
-                </div>
-              </article>
-
-            </div>
-
-            <!-- Deck Controls below cards -->
-            <div class="deck-controls">
-              <span class="deck-index-display"><b data-active-num>01</b> &mdash; 04</span>
-              <div class="deck-nav-buttons">
-                <button class="deck-btn deck-prev" type="button" aria-label="Previous campaign artwork">
-                  <svg class="ico" style="transform: rotate(180deg);"><use href="#i-arrow"/></svg>
-                </button>
-                <button class="deck-btn deck-next" type="button" aria-label="Next campaign artwork">
+                <div class="flow-object-action">
+                  <span>Explore Tripty Foods</span>
                   <svg class="ico"><use href="#i-arrow"/></svg>
-                </button>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 02: NOREA -->
+            <a href="case-norea.html" class="flow-object" data-flow-object="1" aria-label="Explore Noréa full case study">
+              <div class="flow-object-media">
+                <img src="assets/cases/norea/norea-brand-identity-cover.jpg" alt="Noréa luxury brand identity, embossed stationery, envelopes, and material swatches" loading="lazy" width="2048" height="1536">
+              </div>
+              <div class="flow-object-overlay"></div>
+              <div class="flow-object-bottom">
+                <div class="flow-object-info">
+                  <strong class="flow-object-headline">Noréa</strong>
+                  <p class="flow-object-sub">16-plate brand manual, tactile blind emboss &amp; embroidered staff apparel.</p>
+                </div>
+                <div class="flow-object-action">
+                  <span>Explore Noréa</span>
+                  <svg class="ico"><use href="#i-arrow"/></svg>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 03: ATUENDO -->
+            <a href="case-atuendo.html" class="flow-object" data-flow-object="2" aria-label="Explore Atuendo full case study">
+              <div class="flow-object-media">
+                <img src="assets/cases/atuendo/atuendo-brand-identity-cover.jpg" alt="Atuendo bespoke luxury shopping bag, garment gift box, and monogram cards" loading="lazy" width="2048" height="1152">
+              </div>
+              <div class="flow-object-overlay"></div>
+              <div class="flow-object-bottom">
+                <div class="flow-object-info">
+                  <strong class="flow-object-headline">Atuendo</strong>
+                  <p class="flow-object-sub">Interlocking monogram geometry, custom jacquard lining &amp; foil stationery.</p>
+                </div>
+                <div class="flow-object-action">
+                  <span>Explore Atuendo</span>
+                  <svg class="ico"><use href="#i-arrow"/></svg>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 04: ALL ORGANICS -->
+            <a href="case-allorganics.html" class="flow-object" data-flow-object="3" aria-label="Explore All Organics full case study">
+              <div class="flow-object-media">
+                <img src="assets/cases/allorganics/allorganics-brand-identity-cover.jpg" alt="All Organics biodynamic brand identity, stationery suite, tags, and packaging" loading="lazy" width="2048" height="1152">
+              </div>
+              <div class="flow-object-overlay"></div>
+              <div class="flow-object-bottom">
+                <div class="flow-object-info">
+                  <strong class="flow-object-headline">All Organics</strong>
+                  <p class="flow-object-sub">17-plate brand standards book, kraft paperboard packaging &amp; outdoor billboards.</p>
+                </div>
+                <div class="flow-object-action">
+                  <span>Explore All Organics</span>
+                  <svg class="ico"><use href="#i-arrow"/></svg>
+                </div>
+              </div>
+            </a>
+
+            <!-- CARD 05: SANDBOX LOUNGE -->
+            <a href="case-sandbox.html" class="flow-object" data-flow-object="4" aria-label="Explore Sandbox Lounge full case study">
+              <div class="flow-object-media">
+                <img src="assets/cases/sandbox/sandbox-brand-identity-cover.jpg" alt="Sandbox Lounge sculpted architectural sand mark, gold debossed card, and identity" loading="lazy" width="2048" height="1152">
+              </div>
+              <div class="flow-object-overlay"></div>
+              <div class="flow-object-bottom">
+                <div class="flow-object-info">
+                  <strong class="flow-object-headline">Sandbox Lounge</strong>
+                  <p class="flow-object-sub">Brand manifesto, ambient bar lighting, bespoke glassware &amp; gold deboss.</p>
+                </div>
+                <div class="flow-object-action">
+                  <span>Explore Sandbox Lounge</span>
+                  <svg class="ico"><use href="#i-arrow"/></svg>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+
+        <!-- Bottom Pill Dock: Brand name tags and dynamic action button -->
+        <div class="flow-pill-dock" role="navigation" aria-label="Brand identity selector">
+          <nav class="flow-pill-tags" role="tablist">
+            <button type="button" class="flow-tag is-active" data-flow-step="0" role="tab" aria-selected="true" aria-label="Show Tripty Foods">
+              <span class="tag-dot" aria-hidden="true"></span>
+              <span class="tag-name">Tripty Foods</span>
+            </button>
+            <button type="button" class="flow-tag" data-flow-step="1" role="tab" aria-selected="false" aria-label="Show Noréa">
+              <span class="tag-dot" aria-hidden="true"></span>
+              <span class="tag-name">Noréa</span>
+            </button>
+            <button type="button" class="flow-tag" data-flow-step="2" role="tab" aria-selected="false" aria-label="Show Atuendo">
+              <span class="tag-dot" aria-hidden="true"></span>
+              <span class="tag-name">Atuendo</span>
+            </button>
+            <button type="button" class="flow-tag" data-flow-step="3" role="tab" aria-selected="false" aria-label="Show All Organics">
+              <span class="tag-dot" aria-hidden="true"></span>
+              <span class="tag-name">All Organics</span>
+            </button>
+            <button type="button" class="flow-tag" data-flow-step="4" role="tab" aria-selected="false" aria-label="Show Sandbox Lounge">
+              <span class="tag-dot" aria-hidden="true"></span>
+              <span class="tag-name">Sandbox Lounge</span>
+            </button>
+          </nav>
+          <span class="flow-dock-divider" aria-hidden="true"></span>
+          <a id="flow-dock-cta" href="case-tripty.html" class="flow-dock-btn" aria-label="Explore Tripty Foods full case study">
+            <span class="dock-btn-text">Explore Tripty Foods</span>
+            <svg class="ico"><use href="#i-arrow"/></svg>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         04. CAMPAIGNS & SOCIAL ADVERTISING: Complete Posters & Uncropped Arts
+         ===================================================================== -->
+    <section id="social" class="social-campaigns" aria-labelledby="social-title">
+      <div class="shell">
+        <div class="social-head" data-rise>
+          <div class="social-head-copy">
+            <p class="kicker"><span class="kicker-dot"></span>Campaigns & Social Art Direction</p>
+            <h2 id="social-title" class="social-title" data-words>Complete posters &amp; campaign stories, uncropped.</h2>
+            <p class="social-sub">
+              Commercial advertising and social creative built with cultural fluency, intact Bangla &amp; English typography, and deliberate visual contrast.
+              Click any poster to inspect the full design file.
+            </p>
+          </div>
+          <div class="social-filters" role="group" aria-label="Filter social campaigns">
+            <button class="social-filter-btn is-active" type="button" data-social-filter="all">All (12)</button>
+            <button class="social-filter-btn" type="button" data-social-filter="aves">AVES Real Estate</button>
+            <button class="social-filter-btn" type="button" data-social-filter="seor">Seor Leather</button>
+            <button class="social-filter-btn" type="button" data-social-filter="tripty">Tripty Foods</button>
+            <button class="social-filter-btn" type="button" data-social-filter="mask">Sleep Mask</button>
+            <button class="social-filter-btn" type="button" data-social-filter="apple">Apple Gears BD</button>
+          </div>
+        </div>
+
+        <!-- Filterable Grid of Genuine Campaign Artwork -->
+        <div class="social-posters-grid" id="socialPostersGrid">
+
+          <!-- 01: AVES Banani Tower -->
+          <figure class="campaign-tile glass-card" data-campaign="aves" data-zoom-src="assets/social/aves-banani-post.png" data-zoom-title="AVES Holdings · Banani Luxury Tower Launch Ad" data-zoom-desc="Bilingual campaign creative balancing heavy architectural display type with 24-month EMI financing highlights.">
+            <div class="tile-img-box">
+              <img src="assets/social/aves-banani-post.jpg" alt="AVES luxury real estate launch ad in Banani, Dhaka" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>AVES Banani Luxury Tower</strong>
+              <span>AVES Holdings · Bilingual Launch Ad</span>
+            </figcaption>
+          </figure>
+
+          <!-- 02: AVES Lakefront Price Hook -->
+          <figure class="campaign-tile glass-card" data-campaign="aves" data-zoom-src="assets/social/aves-lakefront-price.png" data-zoom-title="AVES Holdings · Lakefront Launch & Price Transparency" data-zoom-desc="Anchors the lake view building with celebratory ribbon-cutting artwork and upfront 8,500 TK/SQFT pricing.">
+            <div class="tile-img-box">
+              <img src="assets/social/aves-lakefront-price.jpg" alt="AVES Gulshan lakefront pricing hook ad" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>AVES Gulshan Lakefront</strong>
+              <span>AVES Holdings · Price Transparency Hook</span>
+            </figcaption>
+          </figure>
+
+          <!-- 03: AVES Aerial Masterplan -->
+          <figure class="campaign-tile glass-card" data-campaign="aves" data-zoom-src="assets/social/aves-aerial-post.png" data-zoom-title="AVES Holdings · Aerial Masterplan Perspective" data-zoom-desc="High-altitude drone architectural perspective with seismic engineering highlights.">
+            <div class="tile-img-box">
+              <img src="assets/social/aves-aerial-post.jpg" alt="AVES aerial masterplan architectural creative" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>AVES Masterplan Skyline</strong>
+              <span>AVES Holdings · Drone Perspective</span>
+            </figcaption>
+          </figure>
+
+          <!-- 04: Seor Executive Briefcase -->
+          <figure class="campaign-tile glass-card" data-campaign="seor" data-zoom-src="assets/social/seor-axis-briefcase.png" data-zoom-title="SEOR AXIS · Executive Leather Briefcase Launch" data-zoom-desc="Minimalist lifestyle photography with detailed leathergoods product anatomy callouts.">
+            <div class="tile-img-box">
+              <img src="assets/social/seor-axis-briefcase.jpg" alt="SEOR AXIS luxury leather briefcase product launch" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>SEOR Executive Drop</strong>
+              <span>SEOR AXIS · Leather Goods Launch</span>
+            </figcaption>
+          </figure>
+
+          <!-- 05: Seor Crazy Horse Leather -->
+          <figure class="campaign-tile glass-card" data-campaign="seor" data-zoom-src="assets/social/seor-post-crazy-horse.png" data-zoom-title="SEOR AXIS · Crazy Horse Leather Material Focus" data-zoom-desc="Tactile material macro photography demonstrating patina and durability.">
+            <div class="tile-img-box">
+              <img src="assets/social/seor-post-crazy-horse.jpg" alt="SEOR crazy horse leather durability ad" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>Crazy Horse Craft</strong>
+              <span>SEOR AXIS · Material Story</span>
+            </figcaption>
+          </figure>
+
+          <!-- 06: Seor Confidence Campaign -->
+          <figure class="campaign-tile glass-card" data-campaign="seor" data-zoom-src="assets/social/seor-post-confidence.png" data-zoom-title="SEOR AXIS · Carry With Confidence Editorial" data-zoom-desc="Editorial studio portrait highlighting ergonomic strap and dual-compartment layout.">
+            <div class="tile-img-box">
+              <img src="assets/social/seor-post-confidence.jpg" alt="SEOR carry with confidence ad" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>Carry With Confidence</strong>
+              <span>SEOR AXIS · Lifestyle Editorial</span>
+            </figcaption>
+          </figure>
+
+          <!-- 07: Tripty "Ask for Mercy" Food Post -->
+          <figure class="campaign-tile glass-card" data-campaign="tripty" data-zoom-src="assets/social/tripty-mercy-post.png" data-zoom-title="Tripty Foods · Appetite Storytelling Hook" data-zoom-desc="Subverts standard food shots with a messy sauce-covered empty plate and deadpan copy: 'If the plate could talk... it would ask for mercy.'">
+            <div class="tile-img-box">
+              <img src="assets/social/tripty-mercy-post.jpg" alt="Tripty Foods creative ad: If the plate could talk" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>If The Plate Could Talk</strong>
+              <span>Tripty Foods · Appetite Hook</span>
+            </figcaption>
+          </figure>
+
+          <!-- 08: Tripty Food O'Clock -->
+          <figure class="campaign-tile glass-card" data-campaign="tripty" data-zoom-src="assets/social/tripty-food-clock.png" data-zoom-title="Tripty Foods · Every Hour Is Food O'Clock" data-zoom-desc="Brand campaign highlighting fast late-night takeout ordering across Dhaka.">
+            <div class="tile-img-box">
+              <img src="assets/social/tripty-food-clock.jpg" alt="Tripty Foods brand campaign: Every hour is food o'clock" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>Every Hour Is Food O'Clock</strong>
+              <span>Tripty Foods · Late-Night Campaign</span>
+            </figcaption>
+          </figure>
+
+          <!-- 09: Tripty Spicy Tenders -->
+          <figure class="campaign-tile glass-card" data-campaign="tripty" data-zoom-src="assets/social/tripty-spicy-tenders.png" data-zoom-title="Tripty Foods · Crunchy Spicy Tenders Launch" data-zoom-desc="Product launch ad featuring bold typography and crisp chicken macro photography.">
+            <div class="tile-img-box">
+              <img src="assets/social/tripty-spicy-tenders.jpg" alt="Tripty spicy chicken tenders food photography ad" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>Spicy Chicken Tenders</strong>
+              <span>Tripty Foods · Product Launch</span>
+            </figcaption>
+          </figure>
+
+          <!-- 10: Sleep Mask Deepest Sleep -->
+          <figure class="campaign-tile glass-card" data-campaign="mask" data-zoom-src="assets/social/mask-post-deepest-sleep.png" data-zoom-title="Sleep Mask · Ergonomic Eye Mask Campaign" data-zoom-desc="3D eye contour and total darkness blocking benefits presented with clean typography.">
+            <div class="tile-img-box">
+              <img src="assets/social/mask-post-deepest-sleep.jpg" alt="Sleep mask Amazon listing campaign ad" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>The Deepest Sleep</strong>
+              <span>Sleep Mask · Ergonomic Feature</span>
+            </figcaption>
+          </figure>
+
+          <!-- 11: Sleep Mask Easy Wash -->
+          <figure class="campaign-tile glass-card" data-campaign="mask" data-zoom-src="assets/social/mask-post-easy-wash.png" data-zoom-title="Sleep Mask · Washable Memory Foam Benefits" data-zoom-desc="Explains hygienic detachable lining and modular maintenance.">
+            <div class="tile-img-box">
+              <img src="assets/social/mask-post-easy-wash.jpg" alt="Sleep mask easy wash instructions ad" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>Easy Wash Hygiene</strong>
+              <span>Sleep Mask · Care Guide Ad</span>
+            </figcaption>
+          </figure>
+
+          <!-- 12: Apple Gears BD -->
+          <figure class="campaign-tile glass-card" data-campaign="apple" data-zoom-src="assets/social/apple-gears-showcase.jpg" data-zoom-title="Apple Gears BD · Premium Tech Retail Campaign" data-zoom-desc="Complete bilingual campaign for genuine Apple accessories and gadgets in Bangladesh.">
+            <div class="tile-img-box">
+              <img src="assets/social/apple-gears-showcase.jpg" alt="Apple Gears BD gadget retail campaign ad" width="600" height="600" loading="lazy">
+              <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+            </div>
+            <figcaption class="tile-caption">
+              <strong>Apple Gears BD Retail</strong>
+              <span>Apple Gears BD · Tech Accessories</span>
+            </figcaption>
+          </figure>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         05. MARKS COLLECTION: Curated Marks at Even Optical Scale
+         ===================================================================== -->
+    <section id="marks" class="marks-collection" aria-labelledby="marks-title">
+      <div class="shell">
+        <div class="marks-collection-head" data-rise>
+          <p class="kicker"><span class="kicker-dot"></span>Logo design</p>
+          <h2 id="marks-title" data-words><span class="count" data-count="24">24</span> marks, each with its own reason to exist.</h2>
+          <p class="marks-sub">
+            Geometric constructions, expressive monograms, and custom lettering built for longevity across scale.
+          </p>
+        </div>
+
+        <div class="marks-glass-grid" data-rise>
+          <div class="mark-item"><img src="assets/work/logos/all-organics.png" alt="All Organics logo" loading="lazy"><span>All Organics</span></div>
+          <div class="mark-item"><img src="assets/work/logos/norea.png" alt="Noréa logo" loading="lazy"><span>Noréa</span></div>
+          <div class="mark-item"><img src="assets/work/logos/tripty.png" alt="Tripty logo" onerror="this.src='assets/work/tripty-logo.png'" loading="lazy"><span>Tripty</span></div>
+          <div class="mark-item"><img src="assets/work/logos/finn.png" alt="FINN logo" loading="lazy"><span>Finn</span></div>
+          <div class="mark-item"><img src="assets/work/logos/seor.png" alt="Seor logo" loading="lazy"><span>Seor</span></div>
+          <div class="mark-item"><img src="assets/work/logos/bhumi.png" alt="Bhumi logo" loading="lazy"><span>Bhumi</span></div>
+          <div class="mark-item"><img src="assets/work/logos/fresh-paws.png" alt="Fresh Paws logo" loading="lazy"><span>Fresh Paws</span></div>
+          <div class="mark-item"><img src="assets/work/logos/triduate.png" alt="Triduate logo" loading="lazy"><span>Triduate</span></div>
+          <div class="mark-item"><img src="assets/work/logos/slaz.png" alt="Slaz logo" loading="lazy"><span>Slaz</span></div>
+          <div class="mark-item"><img src="assets/work/logos/naogaon-rice.png" alt="Naogaon Rice logo" loading="lazy"><span>Naogaon Rice</span></div>
+          <div class="mark-item"><img src="assets/work/logos/noor.png" alt="Noor Lifestyles logo" loading="lazy"><span>Noor</span></div>
+          <div class="mark-item"><img src="assets/work/logos/tunes-360.png" alt="Tunes 360 logo" loading="lazy"><span>Tunes 360</span></div>
+          <div class="mark-item"><img src="assets/work/logos/roasted.png" alt="Roasted coffee logo" loading="lazy"><span>Roasted</span></div>
+          <div class="mark-item"><img src="assets/work/logos/shaad.png" alt="Shaad logo" loading="lazy"><span>Shaad</span></div>
+          <div class="mark-item"><img src="assets/work/logos/steller.png" alt="Steller logo" loading="lazy"><span>Steller</span></div>
+          <div class="mark-item"><img src="assets/work/logos/oxymoron.png" alt="Oxymoron logo" loading="lazy"><span>Oxymoron</span></div>
+          <div class="mark-item"><img src="assets/work/logos/beach-vacation.png" alt="Beach Vacation logo" loading="lazy"><span>Beach Vacation</span></div>
+          <div class="mark-item"><img src="assets/work/logos/big-panda.png" alt="Big Panda Studios logo" loading="lazy"><span>Big Panda</span></div>
+          <div class="mark-item"><img src="assets/work/logos/monarch.png" alt="Monarch logo" loading="lazy"><span>Monarch</span></div>
+          <div class="mark-item"><img src="assets/work/logos/aves.png" alt="Aves logo" loading="lazy"><span>AVES</span></div>
+          <div class="mark-item"><img src="assets/work/logos/batg.png" alt="BATG logo" loading="lazy"><span>BATG</span></div>
+          <div class="mark-item"><img src="assets/work/logos/alloy.png" alt="Alloy logo" loading="lazy"><span>Alloy</span></div>
+          <div class="mark-item"><img src="assets/work/logos/aura.png" alt="Aura logo" loading="lazy"><span>Aura</span></div>
+          <div class="mark-item"><img src="assets/work/logos/apple-gears.png" alt="Apple Gears logo" loading="lazy"><span>Apple Gears</span></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         06. STUDIO & CAPABILITIES: Transparent Practice & Direct Access
+         ===================================================================== -->
+    <section id="studio" class="studio-capabilities" aria-labelledby="studio-title">
+      <div class="shell">
+        <div class="studio-grid">
+          <div class="studio-intro" data-rise>
+            <p class="kicker"><span class="kicker-dot"></span>Studio &amp; Capabilities</p>
+            <h2 id="studio-title" class="studio-title" data-words>One accountable designer. Complete creative clarity.</h2>
+            <p class="studio-lede">
+              Design Daily is the independent practice of Julkarnine Arabi. When you work with us, you collaborate directly with the person sketching the ideas, drafting the vectors, and preparing print-ready production files.
+            </p>
+            <div class="studio-stats-strip">
+              <div class="stat-cell">
+                <strong>48–72h</strong>
+                <span>Batch turnaround</span>
+              </div>
+              <div class="stat-cell">
+                <strong>100%</strong>
+                <span>Vector ownership</span>
+              </div>
+              <div class="stat-cell">
+                <strong>Direct</strong>
+                <span>WhatsApp access</span>
               </div>
             </div>
           </div>
 
-        </div>
-      </div>
-
-      <!-- Cohesive Monthly Production Banner -->
-      <div class="social-flow-transition shell">
-        <div class="social-foot-banner" data-rise>
-          <div class="social-foot-copy">
-            <h4>Every month feels like one brand.</h4>
-            <p>We deliver finished, export-ready visual suites in 4:5 vertical feeds, 9:16 vertical stories/reels covers, and responsive banners—complete with layered source files.</p>
-          </div>
-          <div class="social-foot-cta">
-            <a class="button button-dark" href="#contact">Order a social content batch <svg class="ico"><use href="#i-arrow"/></svg></a>
-          </div>
-        </div>
-      </div>
-
-      <!-- TILTED 3D WALL: Ongoing production across brands -->
-      <div class="social-parallax-strip" data-social>
-        <div class="social-wall-copy shell">
-          <p class="kicker" data-rise>Continuous Feed Production</p>
-          <h3 data-words>60+ posts in active rotation.</h3>
-          <p data-rise>From seasonal product promotions to weekly editorial stories, our social sets maintain visual coherence across every post.</p>
-        </div>
-        <div class="wall-wrap" aria-hidden="true">
-          <div class="wall">
-            <div class="wall-col" data-speed="-1">
-              <img src="assets/work/tripty-kitchen.jpg" alt="" loading="lazy">
-              <img src="assets/work/td-gears.jpg" alt="" loading="lazy">
-              <img src="assets/work/ao-shopper.jpg" alt="" loading="lazy">
-              <img src="assets/portfolio/page-44.jpg" alt="" loading="lazy">
-              <img src="assets/work/tripty-mango.jpg" alt="" loading="lazy">
+          <div class="capabilities-cards" data-rise>
+            <div class="capability-card glass-card">
+              <span class="cap-num">01</span>
+              <h3>Brand Identity Systems</h3>
+              <p>Logos, wordmarks, monograms, color palettes, typography specifications, and comprehensive identity guidelines your team can follow without ambiguity.</p>
             </div>
-            <div class="wall-col" data-speed="1">
-              <img src="assets/portfolio/page-41.jpg" alt="" loading="lazy">
-              <img src="assets/work/tripty-poster-tasty.jpg" alt="" loading="lazy">
-              <img src="assets/work/td-charging.jpg" alt="" loading="lazy">
-              <img src="assets/work/ao-delivered.jpg" alt="" loading="lazy">
-              <img src="assets/portfolio/page-43.jpg" alt="" loading="lazy">
+            <div class="capability-card glass-card">
+              <span class="cap-num">02</span>
+              <h3>Structural &amp; Retail Packaging</h3>
+              <p>Pouches, cartons, gable carry boxes, glass bottle labels, and unboxing suites engineered with real paperboard dielines ready for the printer.</p>
             </div>
-            <div class="wall-col" data-speed="-0.6">
-              <img src="assets/work/td-eyemask.jpg" alt="" loading="lazy">
-              <img src="assets/portfolio/page-42.jpg" alt="" loading="lazy">
-              <img src="assets/work/tripty-spicy.jpg" alt="" loading="lazy">
-              <img src="assets/work/td-speakers.jpg" alt="" loading="lazy">
-              <img src="assets/portfolio/page-49.jpg" alt="" loading="lazy">
+            <div class="capability-card glass-card">
+              <span class="cap-num">03</span>
+              <h3>Social Media &amp; Campaign Art</h3>
+              <p>Bespoke monthly static sets, 4:5 vertical feeds, 9:16 story covers, and promotional campaign hooks with cultural resonance and high-contrast typography.</p>
             </div>
-            <div class="wall-col" data-speed="0.8">
-              <img src="assets/work/td-neck.jpg" alt="" loading="lazy">
-              <img src="assets/work/tripty-poster-flame.jpg" alt="" loading="lazy">
-              <img src="assets/portfolio/page-46.jpg" alt="" loading="lazy">
-              <img src="assets/portfolio/page-55.jpg" alt="" loading="lazy">
-              <img src="assets/portfolio/page-45.jpg" alt="" loading="lazy">
+            <div class="capability-card glass-card">
+              <span class="cap-num">04</span>
+              <h3>Outdoor, Fleet &amp; Spatial Murals</h3>
+              <p>High-visibility city billboards, event backdrops, vehicle fleet livery wraps, and architectural restaurant murals designed to hold attention in physical space.</p>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- PACKAGING SHELF -->
-    <section class="shelf" data-shelf aria-labelledby="shelf-title">
-      <div class="shelf-word" aria-hidden="true">on the shelf · on the shelf ·</div>
-      <div class="shelf-head shell">
-        <p class="kicker" data-rise>Packaging</p>
-        <h2 id="shelf-title" data-words>Make the shelf feel like yours.</h2>
-        <p data-rise>Pouches, cartons, boxes and bottles that people recognise from across the aisle, and still read clearly up close.</p>
-      </div>
-      <div class="shelf-row">
-        <figure class="shelf-item" style="--r:-8deg;--d:0"><img src="assets/work/hero-bhumi-item1.png" alt="Bhumi Kataribhog rice pack" loading="lazy"><figcaption>Bhumi · Kataribhog rice</figcaption></figure>
-        <figure class="shelf-item" style="--r:6deg;--d:1"><img src="assets/work/hero-bhumi-gablebox.png" alt="Bhumi rice cake carry box" loading="lazy"><figcaption>Bhumi · Rice cakes</figcaption></figure>
-        <figure class="shelf-item shelf-item-lg" style="--r:-4deg;--d:2"><img src="assets/work/hero-bhumi-pouch.png" alt="Bhumi rice powder pouch" loading="lazy"><figcaption>Bhumi · Rice powder</figcaption></figure>
-        <figure class="shelf-item" style="--r:10deg;--d:3"><img src="assets/work/hero-aura-bottle.png" alt="Aura face wash bottle" loading="lazy"><figcaption>Aura · Face wash</figcaption></figure>
-        <figure class="shelf-item" style="--r:-6deg;--d:4"><img src="assets/work/hero-bhumi-box.png" alt="Bhumi frozen payesh tray" loading="lazy"><figcaption>Bhumi · Frozen payesh</figcaption></figure>
-      </div>
-      <div class="shelf-plank" aria-hidden="true"></div>
-    </section>
-
-    <!-- WHY IT'S EASY -->
-    <section id="easy" class="easy" aria-labelledby="easy-title">
-      <div class="easy-head shell">
-        <div>
-          <p class="kicker" data-rise>Working together</p>
-          <h2 id="easy-title" data-words>Getting good design should be the easy part.</h2>
-        </div>
-        <p data-rise>You talk directly to the designer doing the work. No account managers, no lost messages, no guessing what the files are for.</p>
-      </div>
-      <div class="easy-grid shell">
-        <article class="easy-card" data-rise>
-          <div class="easy-demo demo-chat">
-            <div class="bubble bubble-in">Hi! We're launching a rice brand next month.</div>
-            <div class="bubble bubble-in">Need a logo, 3 packs and launch posts.</div>
-            <div class="bubble bubble-out"><span class="typing"><i></i><i></i><i></i></span><span class="typed">Lovely. Send me what you sell and who buys it.</span></div>
-          </div>
-          <span class="easy-no">01</span>
-          <h3>Send one message</h3>
-          <p>WhatsApp or email. Tell us what you sell, who buys it and what you need.</p>
-        </article>
-        <article class="easy-card" data-rise>
-          <div class="easy-demo demo-plan">
-            <div class="plan-row"><i></i><span>Logo and colour system</span></div>
-            <div class="plan-row"><i></i><span>3 packaging designs</span></div>
-            <div class="plan-row"><i></i><span>12 launch posts</span></div>
-            <div class="plan-row"><i></i><span>Price and dates agreed</span></div>
-          </div>
-          <span class="easy-no">02</span>
-          <h3>Get a clear plan</h3>
-          <p>Scope, timeline and price are written down and agreed before any work starts.</p>
-        </article>
-        <article class="easy-card" data-rise>
-          <div class="easy-demo demo-morph">
-            <img class="morph-a" src="assets/work/chef-hat.png" alt="" aria-hidden="true">
-            <img class="morph-b" src="assets/work/logos/bhumi.png" alt="" aria-hidden="true">
-            <span class="morph-tag">draft 2 · approved</span>
-          </div>
-          <span class="easy-no">03</span>
-          <h3>Watch it take shape</h3>
-          <p>You see drafts early, comment freely, and we refine together until it feels right.</p>
-        </article>
-        <article class="easy-card" data-rise>
-          <div class="easy-demo demo-files">
-            <div class="file"><b>AI</b><span>Bhumi_Logo_Master.ai</span></div>
-            <div class="file"><b>PDF</b><span>Bhumi_Pack_Print.pdf</span></div>
-            <div class="file"><b>PNG</b><span>Bhumi_Logo_Web.png</span></div>
-            <div class="file"><b>JPG</b><span>Bhumi_Launch_Post_01.jpg</span></div>
-          </div>
-          <span class="easy-no">04</span>
-          <h3>Receive every file</h3>
-          <p>Print-ready, social-ready and web-ready, named clearly and organised so your team can use them.</p>
-        </article>
-      </div>
-    </section>
-
-    <!-- SERVICES with cursor-following previews -->
-    <section id="services" class="services" data-services aria-labelledby="services-title">
-      <div class="services-head shell">
-        <p class="kicker" data-rise>Services</p>
-        <h2 id="services-title" data-words>What we make.</h2>
-      </div>
-      <ul class="service-list shell">
-        <li data-img="assets/portfolio/page-31.jpg"><span class="sl-no">01</span><strong>Brand identity</strong><em>Logo, colour, type, patterns and a guide your team can follow.</em><img src="assets/portfolio/page-31.jpg" alt="" loading="lazy"></li>
-        <li data-img="assets/portfolio/page-36.jpg"><span class="sl-no">02</span><strong>Logo design</strong><em>A mark with a reason behind it, built to work small and large.</em><img src="assets/portfolio/page-36.jpg" alt="" loading="lazy"></li>
-        <li data-img="assets/portfolio/page-59.jpg"><span class="sl-no">03</span><strong>Packaging</strong><em>Pouches, boxes, labels and cartons, ready for the printer.</em><img src="assets/portfolio/page-59.jpg" alt="" loading="lazy"></li>
-        <li data-img="assets/portfolio/page-49.jpg"><span class="sl-no">04</span><strong>Social media &amp; ads</strong><em>Post sets, offers, banners and covers that look like one brand.</em><img src="assets/portfolio/page-49.jpg" alt="" loading="lazy"></li>
-        <li data-img="assets/portfolio/page-54.jpg"><span class="sl-no">05</span><strong>Campaigns &amp; outdoor</strong><em>Billboards, bus stops and event backdrops that read at a glance.</em><img src="assets/portfolio/page-54.jpg" alt="" loading="lazy"></li>
-        <li data-img="assets/portfolio/page-30.jpg"><span class="sl-no">06</span><strong>Merch &amp; print</strong><em>Bags, uniforms, cards, letterheads and badges.</em><img src="assets/portfolio/page-30.jpg" alt="" loading="lazy"></li>
-      </ul>
-      <div class="service-preview" aria-hidden="true"><img alt=""></div>
-    </section>
-
-    <!-- CONTACT -->
+    <!-- =====================================================================
+         07. CONTACT: Direct WhatsApp & Honest Email Inquiry
+         ===================================================================== -->
     <section id="contact" class="contact" aria-labelledby="contact-title">
-      <img class="balloon cb1" src="assets/portfolio/yellow-star.png" alt="" aria-hidden="true">
-      <img class="balloon cb2" src="assets/portfolio/yellow-star.png" alt="" aria-hidden="true">
-      <div class="contact-grid shell">
-        <div class="contact-copy">
-          <p class="kicker" data-rise>Start a project</p>
+      <div class="shell contact-grid">
+        <div class="contact-copy" data-rise>
+          <p class="kicker"><span class="kicker-dot"></span>Start a project</p>
           <h2 id="contact-title" data-words>Got a brief? Let's make it visible.</h2>
-          <p data-rise>Tell us what you are building and what needs to look better. You will hear back from Julkarnine directly.</p>
-          <div class="contact-links" data-rise>
-            <a href="https://wa.me/8801531184169" target="_blank" rel="noreferrer"><span>WhatsApp</span>+880 1531 184169 <svg class="ico"><use href="#i-arrow-up"/></svg></a>
-            <a href="mailto:julkarnineXdesigndaily@gmail.com"><span>Email</span>julkarnineXdesigndaily@gmail.com <svg class="ico"><use href="#i-arrow-up"/></svg></a>
+          <p class="contact-lede">
+            Tell us what you are building and what needs to look better. You will hear back from Julkarnine directly within 24 hours.
+          </p>
+          <div class="contact-direct-links">
+            <a href="https://wa.me/8801531184169" target="_blank" rel="noreferrer" class="direct-link glass-card">
+              <div class="direct-link-head">
+                <span class="pulse-indicator green"></span>
+                <strong>WhatsApp Direct</strong>
+              </div>
+              <span class="direct-link-val">+880 1531 184169 <svg class="ico"><use href="#i-arrow-up"/></svg></span>
+              <small>Fastest response · voice notes welcomed</small>
+            </a>
+            <a href="mailto:julkarnineXdesigndaily@gmail.com" class="direct-link glass-card">
+              <div class="direct-link-head">
+                <span class="pulse-indicator gold"></span>
+                <strong>Email Address</strong>
+              </div>
+              <span class="direct-link-val">julkarnineXdesigndaily@gmail.com <svg class="ico"><use href="#i-arrow-up"/></svg></span>
+              <small>Send decks, briefs &amp; specifications</small>
+            </a>
           </div>
         </div>
-        <form id="enquiry-form" class="contact-form" data-rise>
+
+        <form id="enquiry-form" class="contact-form glass-card" data-rise>
           <div class="form-row">
             <label>Name<input name="name" autocomplete="name" placeholder="Your name" required></label>
-            <label>Business<input name="business" autocomplete="organization" placeholder="Brand or company" required></label>
+            <label>Business / Brand<input name="business" autocomplete="organization" placeholder="Brand name" required></label>
           </div>
           <fieldset class="chips">
-            <legend>What do you need?</legend>
-            <label><input type="checkbox" name="need" value="Logo / identity"><span>Logo / identity</span></label>
-            <label><input type="checkbox" name="need" value="Packaging"><span>Packaging</span></label>
-            <label><input type="checkbox" name="need" value="Social media"><span>Social media</span></label>
-            <label><input type="checkbox" name="need" value="Campaign / outdoor"><span>Campaign / outdoor</span></label>
+            <legend>What disciplines do you need?</legend>
+            <label><input type="checkbox" name="need" value="Brand Identity"><span>Brand Identity</span></label>
+            <label><input type="checkbox" name="need" value="Packaging Suite"><span>Packaging Suite</span></label>
+            <label><input type="checkbox" name="need" value="Monthly Social Retainer"><span>Social Retainer (৳18k)</span></label>
+            <label><input type="checkbox" name="need" value="Campaign & Outdoor"><span>Campaign & Outdoor</span></label>
           </fieldset>
-          <label>Tell us a little more<textarea name="message" rows="4" placeholder="What you sell, who buys it, and when you need it." required></textarea></label>
-          <button class="button button-dark" type="submit">Send the brief <svg class="ico"><use href="#i-arrow"/></svg></button>
-          <p class="form-note">This opens your email app with everything filled in.</p>
+          <label>Tell us about your project<textarea name="message" rows="4" placeholder="What you sell, who buys it, and your timeline." required></textarea></label>
+          <button class="button button-dark" type="submit">
+            <span>Send the brief</span>
+            <svg class="ico"><use href="#i-arrow"/></svg>
+          </button>
+          <p class="form-note">Submitting this form prepares your message directly in your email client with zero data tracking.</p>
         </form>
       </div>
     </section>
   </main>
 
-  <footer class="footer shell">
+  <!-- LIGHTBOX MODAL: Full Resolution Artwork Inspection -->
+  <dialog id="artwork-dialog" class="artwork-dialog" aria-labelledby="dialog-title" aria-modal="true">
+    <div class="dialog-chrome">
+      <div class="dialog-meta-header">
+        <span class="dialog-tag">Full Resolution Master Artwork</span>
+        <h3 id="dialog-title" class="dialog-title">Artwork Viewer</h3>
+        <p id="dialog-desc" class="dialog-desc"></p>
+      </div>
+      <div class="dialog-actions">
+        <a id="dialog-open-original" href="#" target="_blank" rel="noopener" class="btn-dialog-ext">Open Original ↗</a>
+        <button type="button" id="dialog-close-btn" class="btn-dialog-close" aria-label="Close artwork viewer">Close ✕</button>
+      </div>
+    </div>
+    <div class="dialog-stage">
+      <img id="dialog-stage-img" src="" alt="Full size artwork view">
+    </div>
+  </dialog>
+
+<footer class="footer shell">
     <a href="#top" class="footer-mark">design daily<img src="assets/designdaily-mark.svg" alt="Design Daily" width="56" height="68"></a>
     <div class="footer-row">
       <span>Julkarnine Arabi · Dhaka, Bangladesh</span>
