@@ -679,91 +679,104 @@
     { name: 'Sandbox Lounge', href: 'case-sandbox.html' }
   ];
 
-  const updateFlow = () => {
-    if (!flowSection || !flowObjects.length) return;
-    const isDesktop = window.innerWidth > 980 && !reduceMotion.matches;
-    if (!isDesktop) {
-      flowObjects.forEach(obj => {
-        obj.style.removeProperty('--flow-x');
-        obj.style.removeProperty('--flow-y');
-        obj.style.removeProperty('--flow-z');
-        obj.style.removeProperty('--flow-r');
-        obj.style.removeProperty('--flow-scale');
-        obj.style.removeProperty('--flow-opacity');
-        obj.style.removeProperty('pointer-events');
-        obj.style.removeProperty('z-index');
+    const renderActiveBrand = (active) => {
+      flowObjects.forEach((object, index) => {
+        const distance = index - active;
+        const absDist = Math.abs(distance);
+
+        if (absDist > 2) {
+          object.style.setProperty('--flow-opacity', '0');
+          object.style.setProperty('pointer-events', 'none');
+          object.style.zIndex = '0';
+          object.classList.remove('is-active');
+          return;
+        }
+
+        object.style.setProperty('--flow-x', `${distance * 34}px`);
+        object.style.setProperty('--flow-y', `${absDist * 16}px`);
+        object.style.setProperty('--flow-z', `${-absDist * 135}px`);
+        object.style.setProperty('--flow-r', `${distance * -2.8}deg`);
+        object.style.setProperty('--flow-scale', `${1 - Math.min(0.14, absDist * 0.045)}`);
+        object.style.setProperty('--flow-opacity', `${clamp(1.1 - absDist * 0.32, 0.15, 1)}`);
+        object.style.setProperty('pointer-events', index === active ? 'auto' : 'none');
+        object.style.zIndex = index === active ? '20' : `${10 - absDist}`;
+        object.classList.toggle('is-active', index === active);
       });
-      return;
-    }
 
-    const headerOffset = flowSection.querySelector('.flow-header')?.offsetHeight || 120;
-    const totalTravel = Math.max(1, flowSection.offsetHeight - window.innerHeight);
-    const effectiveTravel = Math.max(1, totalTravel - headerOffset);
-    const scrolled = -flowSection.getBoundingClientRect().top - headerOffset;
-    const progress = clamp(scrolled / effectiveTravel);
-    const active = clamp(Math.floor(progress * flowObjects.length), 0, flowObjects.length - 1);
+      // Synchronize left & right satellite brand collateral
+      const satCards = flowSection.querySelectorAll('[data-sat-brand]');
+      satCards.forEach(card => {
+        const isMatch = Number(card.dataset.satBrand) === active;
+        card.classList.toggle('is-active', isMatch);
+      });
 
-    flowObjects.forEach((object, index) => {
-      const distance = index - active;
-      const absDist = Math.abs(distance);
+      flowTags.forEach((tag, index) => {
+        const isActive = index === active;
+        tag.classList.toggle('is-active', isActive);
+        tag.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
 
-      if (absDist > 2) {
-        object.style.setProperty('--flow-opacity', '0');
-        object.style.setProperty('pointer-events', 'none');
-        object.style.zIndex = '0';
-        object.classList.remove('is-active');
+      if (brandData[active]) {
+        if (dockCta) {
+          dockCta.href = brandData[active].href;
+          dockCta.setAttribute('aria-label', `Explore ${brandData[active].name} full case study`);
+        }
+        if (dockBtnText && dockBtnText.textContent !== `Explore ${brandData[active].name}`) {
+          dockBtnText.textContent = `Explore ${brandData[active].name}`;
+        }
+      }
+    };
+
+    const updateFlow = () => {
+      if (!flowSection || !flowObjects.length) return;
+      const isDesktop = window.innerWidth > 980 && !reduceMotion.matches;
+      if (!isDesktop) {
+        flowObjects.forEach(obj => {
+          obj.style.removeProperty('--flow-x');
+          obj.style.removeProperty('--flow-y');
+          obj.style.removeProperty('--flow-z');
+          obj.style.removeProperty('--flow-r');
+          obj.style.removeProperty('--flow-scale');
+          obj.style.removeProperty('--flow-opacity');
+          obj.style.removeProperty('pointer-events');
+          obj.style.removeProperty('z-index');
+        });
         return;
       }
 
-      object.style.setProperty('--flow-x', `${distance * 34}px`);
-      object.style.setProperty('--flow-y', `${absDist * 16}px`);
-      object.style.setProperty('--flow-z', `${-absDist * 135}px`);
-      object.style.setProperty('--flow-r', `${distance * -2.8}deg`);
-      object.style.setProperty('--flow-scale', `${1 - Math.min(0.14, absDist * 0.045)}`);
-      object.style.setProperty('--flow-opacity', `${clamp(1.1 - absDist * 0.32, 0.15, 1)}`);
-      object.style.setProperty('pointer-events', index === active ? 'auto' : 'none');
-      object.style.zIndex = index === active ? '20' : `${10 - absDist}`;
-      object.classList.toggle('is-active', index === active);
-    });
+      const headerOffset = flowSection.querySelector('.flow-header')?.offsetHeight || 120;
+      const totalTravel = Math.max(1, flowSection.offsetHeight - window.innerHeight);
+      const effectiveTravel = Math.max(1, totalTravel - headerOffset);
+      const scrolled = -flowSection.getBoundingClientRect().top - headerOffset;
+      const progress = clamp(scrolled / effectiveTravel);
+      const active = clamp(Math.floor(progress * flowObjects.length), 0, flowObjects.length - 1);
 
-    flowTags.forEach((tag, index) => {
-      const isActive = index === active;
-      tag.classList.toggle('is-active', isActive);
-      tag.setAttribute('aria-selected', isActive ? 'true' : 'false');
-    });
+      renderActiveBrand(active);
+    };
 
-    if (brandData[active]) {
-      if (dockCta) {
-        dockCta.href = brandData[active].href;
-        dockCta.setAttribute('aria-label', `Explore ${brandData[active].name} full case study`);
-      }
-      if (dockBtnText && dockBtnText.textContent !== `Explore ${brandData[active].name}`) {
-        dockBtnText.textContent = `Explore ${brandData[active].name}`;
-      }
-    }
-  };
-
-  flowTags.forEach(tag => {
-    tag.addEventListener('click', () => {
-      if (!flowSection) return;
-      const index = Number(tag.dataset.flowStep);
-      const isDesktop = window.innerWidth > 980 && !reduceMotion.matches;
-      if (isDesktop) {
-        const headerOffset = flowSection.querySelector('.flow-header')?.offsetHeight || 120;
-        const totalTravel = Math.max(1, flowSection.offsetHeight - window.innerHeight);
-        const effectiveTravel = Math.max(1, totalTravel - headerOffset);
-        const target = flowSection.offsetTop + headerOffset + effectiveTravel * ((index + 0.5) / flowObjects.length);
-        window.scrollTo({ top: target, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
-      } else {
-        const obj = flowObjects[index];
-        if (obj) {
-          const headerNavOffset = 80;
-          const target = obj.getBoundingClientRect().top + window.scrollY - headerNavOffset;
+    flowTags.forEach(tag => {
+      tag.addEventListener('click', () => {
+        if (!flowSection) return;
+        const index = Number(tag.dataset.flowStep);
+        const isDesktop = window.innerWidth > 980 && !reduceMotion.matches;
+        if (isDesktop) {
+          renderActiveBrand(index);
+          const headerOffset = flowSection.querySelector('.flow-header')?.offsetHeight || 120;
+          const totalTravel = Math.max(1, flowSection.offsetHeight - window.innerHeight);
+          const effectiveTravel = Math.max(1, totalTravel - headerOffset);
+          const sectionTop = flowSection.getBoundingClientRect().top + window.scrollY;
+          const target = sectionTop + headerOffset + effectiveTravel * ((index + 0.5) / flowObjects.length);
           window.scrollTo({ top: target, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+        } else {
+          const obj = flowObjects[index];
+          if (obj) {
+            const headerNavOffset = 80;
+            const target = obj.getBoundingClientRect().top + window.scrollY - headerNavOffset;
+            window.scrollTo({ top: target, behavior: reduceMotion.matches ? 'auto' : 'smooth' });
+          }
         }
-      }
+      });
     });
-  });
   // --- CLEAN TICKER & SMOOTH INITIALIZATION ---
   let isTicking = false;
   const onScroll = () => {
