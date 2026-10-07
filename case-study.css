@@ -1,0 +1,415 @@
+/* ==========================================================================
+   Design Daily — Case Study Stylesheet (case-study.css)
+   Rebuilt on the unified brand-led light system:
+   Warm off-white canvas, crisp white cards, slate typography & coral accents.
+   ========================================================================== */
+
+/* ---------- CASE HERO ---------- */
+.case-hero {
+  padding-top: calc(var(--nav-h) + 60px);
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.case-tag-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-bottom: 20px;
+}
+.case-badge {
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--coral-50);
+  color: var(--coral-600);
+  border: 1px solid rgba(255, 76, 66, 0.2);
+}
+.case-scope-pill {
+  font-size: 13.5px;
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.case-title {
+  font-size: clamp(38px, 5.2vw, 74px);
+  line-height: 1.05;
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  margin-bottom: 20px;
+  max-width: 1080px;
+}
+
+.case-tagline {
+  font-size: clamp(17px, 1.4vw, 21px);
+  color: var(--ink-2);
+  line-height: 1.55;
+  max-width: 860px;
+  font-weight: 400;
+  margin-bottom: 44px;
+}
+
+/* Project Meta Strip */
+.case-meta-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  padding: 28px 32px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 4px 20px rgba(42, 43, 56, 0.04);
+  margin-bottom: 48px;
+}
+.meta-item dt {
+  font-size: 11.5px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+.meta-item dd {
+  margin: 0;
+  font-size: 15.5px;
+  font-weight: 600;
+  color: var(--ink);
+}
+
+/* Full Bleed Hero Media */
+.case-hero-media {
+  position: relative;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 24px 60px rgba(42, 43, 56, 0.08);
+  background: var(--surface);
+}
+.case-hero-media img {
+  width: 100%;
+  height: auto;
+  max-height: none;
+  object-fit: contain;
+  display: block;
+}
+
+/* ---------- CASE SECTIONS ---------- */
+.case-section {
+  padding: clamp(70px, 8vw, 110px) 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.case-grid-split {
+  display: grid;
+  grid-template-columns: 1fr 1.6fr;
+  gap: clamp(40px, 6vw, 100px);
+  align-items: start;
+}
+
+.case-section-heading {
+  font-size: clamp(28px, 3.2vw, 46px);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+  margin-bottom: 20px;
+}
+
+.case-prose {
+  font-size: clamp(15.5px, 1.15vw, 18px);
+  color: var(--ink-2);
+  line-height: 1.7;
+}
+.case-prose p + p {
+  margin-top: 18px;
+}
+.case-prose strong {
+  color: var(--ink);
+  font-weight: 600;
+}
+
+/* ---------- BRAND COLOR PALETTE MODULE ---------- */
+.palette-board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+  gap: 16px;
+  margin-top: 36px;
+}
+.swatch-card {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 16px rgba(42, 43, 56, 0.04);
+  transition: transform .3s var(--ease), box-shadow .3s;
+}
+.swatch-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 24px rgba(42, 43, 56, 0.08);
+}
+.swatch-color {
+  height: 110px;
+  width: 100%;
+}
+.swatch-info {
+  padding: 14px 16px;
+}
+.swatch-name {
+  font-size: 13.5px;
+  font-weight: 600;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+.swatch-hex {
+  font-size: 12.5px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  color: var(--muted);
+}
+
+/* ---------- ASSET SHOWCASE GRIDS ---------- */
+.asset-gallery {
+  display: grid;
+  gap: 28px;
+  margin-top: 44px;
+}
+.gallery-2col {
+  grid-template-columns: repeat(2, 1fr);
+}
+.gallery-3col {
+  grid-template-columns: repeat(3, 1fr);
+}
+.gallery-card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(42, 43, 56, 0.06);
+  transition: transform .35s var(--ease), box-shadow .35s;
+}
+.gallery-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 50px rgba(42, 43, 56, 0.12);
+}
+.gallery-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform .5s var(--ease);
+}
+.gallery-card:hover img {
+  transform: scale(1.02);
+}
+.gallery-caption {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 16px 20px;
+  background: linear-gradient(to top, rgba(35, 36, 47, 0.9), transparent);
+  font-size: 13px;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+/* Full Bleed Artwork Banner */
+.bleed-artwork {
+  margin: 50px 0;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 20px 50px rgba(42, 43, 56, 0.08);
+}
+.bleed-artwork img {
+  width: 100%;
+  height: auto;
+}
+
+/* ---------- COMMERCIAL IMPACT BOX (Slate Contrast Accent) ---------- */
+.impact-box {
+  background: var(--dark);
+  color: var(--on-dark);
+  border-radius: var(--radius);
+  padding: clamp(34px, 5vw, 60px);
+  margin-top: 50px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  box-shadow: 0 24px 60px rgba(35, 36, 47, 0.15);
+}
+.impact-metric strong {
+  display: block;
+  font-size: clamp(32px, 3.6vw, 48px);
+  font-weight: 600;
+  color: var(--coral);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+.impact-metric span {
+  font-size: 14px;
+  color: var(--on-dark-muted);
+  line-height: 1.5;
+}
+
+/* ---------- CASE FOOTER CTA ---------- */
+.case-footer-cta {
+  padding: clamp(80px, 9vw, 130px) 0 clamp(60px, 7vw, 90px);
+  background: var(--dark);
+  color: var(--on-dark);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+.case-cta-box {
+  max-width: 760px;
+  margin: 0 auto;
+}
+.case-cta-heading {
+  font-size: clamp(32px, 4.4vw, 58px);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  line-height: 1.1;
+  color: var(--on-dark);
+  margin-bottom: 20px;
+}
+.case-cta-desc {
+  font-size: clamp(16px, 1.25vw, 19px);
+  color: var(--on-dark-muted);
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+.case-cta-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 50px;
+}
+.case-cta-actions .btn-secondary {
+  color: var(--on-dark);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+.case-cta-actions .btn-secondary:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: #FFFFFF;
+}
+
+/* Next / Prev Project Navigator */
+.case-nav-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  margin-top: 40px;
+}
+.nav-bottom-item {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.nav-bottom-item span {
+  font-size: 11.5px;
+  color: var(--on-dark-muted);
+  text-transform: uppercase;
+  letter-spacing: .08em;
+  font-weight: 500;
+}
+.nav-bottom-item strong {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--on-dark);
+  transition: color .2s;
+}
+.nav-bottom-item:hover strong {
+  color: var(--coral);
+}
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 960px) {
+  .case-grid-split {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .case-meta-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gallery-2col, .gallery-3col {
+    grid-template-columns: 1fr;
+  }
+  .impact-box {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+}
+@media (max-width: 640px) {
+  .case-meta-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Lightbox modal for case study images */
+.case-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(18, 16, 14, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  flex-direction: column;
+  padding: 24px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+.case-lightbox.is-open {
+  opacity: 1;
+  pointer-events: auto;
+}
+.case-lightbox-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 16px;
+  color: #fff;
+}
+.case-lightbox-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: #f3efe6;
+}
+.case-lightbox-close {
+  background: var(--coral-500, #ff4c42);
+  color: #fff;
+  border: 0;
+  padding: 8px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.case-lightbox-stage {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: auto;
+}
+.case-lightbox-img {
+  max-width: 95vw;
+  max-height: 86vh;
+  object-fit: contain;
+  border-radius: 8px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.case-hero-media, .gallery-card, .bleed-artwork {
+  cursor: zoom-in;
+}

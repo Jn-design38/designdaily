@@ -1,0 +1,9 @@
+.tmp/
+*.tmp
+.DS_Store
+Thumbs.db
+assets/hero-3d/
+assets/hero-cuts/
+assets/marquee/
+assets/social-extracted/
+assets/tripty-hero/
