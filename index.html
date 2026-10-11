@@ -27,7 +27,7 @@
   <header class="site-header">
     <a class="brand" href="#top" aria-label="Design Daily, back to top"><img src="assets/designdaily-logo-nav.png" alt="Design Daily" width="28" height="34">design daily</a>
     <nav class="nav" aria-label="Main navigation">
-      <a href="#work">Work</a><a href="#social">Campaigns</a><a href="#marks">Marks</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
+      <a href="#work">Work</a><a href="#apparel">Apparel</a><a href="#social">Campaigns</a><a href="#marks">Marks</a><a href="#studio">Studio</a><a href="#contact">Contact</a>
     </nav>
     <a class="header-cta" href="#contact">Start a project <svg class="ico"><use href="#i-arrow-up"/></svg></a>
     <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false"><span></span><span></span></button>
@@ -459,6 +459,182 @@
             <span class="dock-btn-text">Explore Tripty Foods</span>
             <svg class="ico"><use href="#i-arrow"/></svg>
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =====================================================================
+         03b. GOODY BRO APPAREL: 360° Rotating Streetwear T-Shirt Showcase
+         ===================================================================== -->
+    <section id="apparel" class="apparel-section" aria-labelledby="apparel-title">
+      <div class="shell apparel-header" data-rise>
+        <div class="apparel-header-top">
+          <p class="kicker"><span class="kicker-dot"></span>Graphic Apparel &amp; Culture Drops</p>
+          <div class="apparel-collab-badge">
+            <span class="badge-label">Collaboration</span>
+            <img src="assets/goodybro/goody-collab-mark.png" alt="JN x Goody Bro" class="collab-img" width="130" height="28">
+          </div>
+        </div>
+        <h2 id="apparel-title" class="apparel-title" data-words>Goody Bro graphic streetwear: 360° wearable statements.</h2>
+        <p class="apparel-sub">
+          Turning existential design concepts into heavy-cotton apparel drops. Scroll to rotate the model and inspect dual-sided front &amp; back graphics, screenprint separations, and print-ready master files.
+        </p>
+
+        <!-- Capsule Quick Selector Tabs -->
+        <div class="apparel-capsule-nav" role="tablist" aria-label="Select T-shirt design capsule">
+          <button type="button" class="capsule-nav-btn is-active" data-capsule-idx="0" role="tab" aria-selected="true">
+            <span class="capsule-num">01</span>
+            <span class="capsule-name">Chaotic World</span>
+            <span class="capsule-angle-tag">Front &amp; Back</span>
+          </button>
+          <button type="button" class="capsule-nav-btn" data-capsule-idx="1" role="tab" aria-selected="false">
+            <span class="capsule-num">02</span>
+            <span class="capsule-name">Create Goodness</span>
+            <span class="capsule-angle-tag">Front &amp; Back</span>
+          </button>
+          <button type="button" class="capsule-nav-btn" data-capsule-idx="2" role="tab" aria-selected="false">
+            <span class="capsule-num">03</span>
+            <span class="capsule-name">Style vs Goodness</span>
+            <span class="capsule-angle-tag">Front &amp; Back</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Scroll Track Container for Sticky 3D Experience -->
+      <div class="apparel-scroll-track" id="apparelScrollTrack">
+        <div class="apparel-sticky-stage">
+          <div class="shell apparel-stage-grid">
+
+            <!-- LEFT COLUMN: Design Explanation & Print-Ready Snapshot -->
+            <div class="apparel-intel-col">
+              
+              <!-- Dynamic State Header -->
+              <div class="intel-state-pillbox">
+                <span class="intel-step-counter" id="apparelStepCounter">Drop 01 of 03</span>
+                <span class="intel-view-indicator" id="apparelViewIndicator">
+                  <span class="indicator-pulse" aria-hidden="true"></span>
+                  <span class="indicator-label" id="apparelIndicatorLabel">Front Chest Lockup</span>
+                </span>
+              </div>
+
+              <!-- Design Explanation Text Block -->
+              <div class="intel-narrative-box">
+                <h3 class="intel-capsule-title" id="apparelCapsuleTitle">Chaotic World</h3>
+                <p class="intel-capsule-tagline" id="apparelCapsuleTagline">Deconstructivist typography reflecting modern information overload and existential rebellion.</p>
+                
+                <div class="intel-spec-chips" id="apparelSpecChips">
+                  <span class="spec-chip">240 GSM Combed Cotton</span>
+                  <span class="spec-chip">High-Density Discharge Ink</span>
+                  <span class="spec-chip">Acid Orange &amp; Cyan</span>
+                  <span class="spec-chip">Oversized Boxy Cut</span>
+                </div>
+
+                <p class="intel-detail-text" id="apparelDetailText">
+                  The front features an off-center deconstructivist chest lockup with minimal branding, establishing tension and anticipation for the back.
+                </p>
+              </div>
+
+              <!-- Interactive Angle Toggle Buttons -->
+              <div class="apparel-angle-controls" aria-label="Switch front and back view">
+                <span class="angle-label">360° Angle:</span>
+                <div class="angle-btn-group">
+                  <button type="button" class="angle-btn is-active" id="btnViewFront" data-angle="front">
+                    <svg class="ico-angle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>
+                    <span>Front (0°)</span>
+                  </button>
+                  <button type="button" class="angle-btn" id="btnViewBack" data-angle="back">
+                    <svg class="ico-angle" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8"/><path d="M3 3v5h5"/></svg>
+                    <span>Back (180°)</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Design Print-Ready Snapshot Card -->
+              <div class="apparel-print-card glass-card">
+                <div class="print-card-header">
+                  <div class="print-card-meta">
+                    <span class="print-badge">Production Asset</span>
+                    <strong class="print-card-title" id="apparelPrintTitle">Print-Ready Vector Master Artwork</strong>
+                  </div>
+                  <span class="print-zoom-hint">Click to inspect ↗</span>
+                </div>
+                <div class="print-card-media" id="apparelPrintMedia" data-zoom-src="assets/goodybro/goody-01-chaotic-print-master.png" data-zoom-title="Chaotic World · Full Vector Print-Ready Master" data-zoom-desc="High-resolution vector screenprint separation file calibrated for textile screen printing on 240 GSM combed cotton.">
+                  <img id="apparelPrintImg" src="assets/goodybro/goody-01-chaotic-print-preview.jpg" alt="Chaotic World print-ready artwork snapshot" width="600" height="400" loading="lazy">
+                  <span class="tile-zoom-badge" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg></span>
+                </div>
+              </div>
+
+              <!-- Case Study Action Link -->
+              <div class="apparel-actions-row">
+                <a href="case-goodybro.html" class="button button-outline" id="apparelCaseLink">
+                  <span>Explore Goody Bro Case Study</span>
+                  <svg class="ico"><use href="#i-arrow"/></svg>
+                </a>
+              </div>
+
+            </div>
+
+            <!-- RIGHT COLUMN: 3D Rotating Model Stage -->
+            <div class="apparel-model-col">
+              <div class="model-stage-podium">
+                
+                <!-- Atmosphere: Studio Pedestal Spotlight & Rim Glow -->
+                <div class="podium-halo" aria-hidden="true"></div>
+                <div class="podium-shadow" aria-hidden="true"></div>
+                <div class="podium-brand-pill">
+                  <span class="pill-dot"></span>
+                  <span class="pill-text" id="podiumPillText">Goody Bro · Capsule 01</span>
+                </div>
+
+                <!-- 3D Model Turntable Container -->
+                <div class="model-turntable-wrapper" id="modelTurntableWrapper">
+                  <div class="model-turntable" id="modelTurntable">
+                    
+                    <!-- Design 1: Chaotic World -->
+                    <div class="model-card is-active" data-design-card="0">
+                      <div class="model-face face-front">
+                        <img src="assets/goodybro/goody-01-chaotic-front.png" alt="Model wearing Goody Bro Chaotic World T-shirt front" width="1286" height="1800" class="model-img" loading="eager">
+                      </div>
+                      <div class="model-face face-back">
+                        <img src="assets/goodybro/goody-01-chaotic-back.png" alt="Model wearing Goody Bro Chaotic World T-shirt back" width="1286" height="1800" class="model-img" loading="lazy">
+                      </div>
+                    </div>
+
+                    <!-- Design 2: Create Goodness -->
+                    <div class="model-card" data-design-card="1">
+                      <div class="model-face face-front">
+                        <img src="assets/goodybro/goody-02-goodness-front.png" alt="Model wearing Goody Bro Create Goodness T-shirt front" width="1286" height="1800" class="model-img" loading="lazy">
+                      </div>
+                      <div class="model-face face-back">
+                        <img src="assets/goodybro/goody-02-goodness-back.png" alt="Model wearing Goody Bro Create Goodness T-shirt back" width="1286" height="1800" class="model-img" loading="lazy">
+                      </div>
+                    </div>
+
+                    <!-- Design 3: Style vs Goodness -->
+                    <div class="model-card" data-design-card="2">
+                      <div class="model-face face-front">
+                        <img src="assets/goodybro/goody-03-style-front.png" alt="Model wearing Goody Bro Style vs Goodness T-shirt front" width="1286" height="1800" class="model-img" loading="lazy">
+                      </div>
+                      <div class="model-face face-back">
+                        <img src="assets/goodybro/goody-03-style-back.png" alt="Model wearing Goody Bro Style vs Goodness T-shirt back" width="1286" height="1800" class="model-img" loading="lazy">
+                      </div>
+                    </div>
+
+                  </div>
+                </div>
+
+                <!-- 3D Rotation Prompt / Scrub Indicator -->
+                <div class="model-rotation-gauge" aria-hidden="true">
+                  <div class="gauge-ring">
+                    <div class="gauge-arrow" id="gaugeArrow"></div>
+                  </div>
+                  <span class="gauge-caption" id="gaugeCaption">Scroll or tap to rotate 180°</span>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </section>

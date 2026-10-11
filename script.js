@@ -566,6 +566,213 @@
     });
   });
 
+  // --- GOODY BRO 360° APPAREL ROTATION CONTROLLER ---
+  const goodyDesigns = [
+    {
+      index: 0,
+      name: 'Chaotic World',
+      numLabel: 'Drop 01 of 03',
+      tagline: 'Deconstructivist typography reflecting modern information overload and existential rebellion.',
+      specs: ['240 GSM Combed Cotton', 'High-Density Discharge Ink', 'Acid Orange & Cyan', 'Oversized Boxy Cut'],
+      detailFront: 'The front features an off-center deconstructivist chest lockup with minimal branding, establishing tension and anticipation for the back.',
+      detailBack: 'The back features a full-bleed, oversized existential typographic statement with high-energy volcanic flares, calibrated for tactile silkscreen print without stiffness.',
+      printTitle: 'Print-Ready Vector Master Artwork',
+      printImg: 'assets/goodybro/goody-01-chaotic-print-preview.jpg',
+      printZoomSrc: 'assets/goodybro/goody-01-chaotic-print-master.png',
+      printZoomTitle: 'Chaotic World · Full Vector Print-Ready Master',
+      printZoomDesc: 'High-resolution vector screenprint separation file calibrated for textile screen printing on 240 GSM combed cotton.',
+      podiumBadge: 'Goody Bro · Capsule 01'
+    },
+    {
+      index: 1,
+      name: 'Create Goodness',
+      numLabel: 'Drop 02 of 03',
+      tagline: 'Dynamic positive rebellion turning optimism into high-contrast street culture graphics.',
+      specs: ['260 GSM Heavyweight Cotton', 'High-Density Discharge White', 'Electric Cyan Ink', 'Drop-Shoulder Cut'],
+      detailFront: 'The front chest displays the iconic Goody Bro circular crest with sharp typography and cyber-cyan accents.',
+      detailBack: 'The back features the large-scale "Create Goodness" manifesto layout, combining distressed letterforms, editorial grids, and streetwear attitude.',
+      printTitle: 'Lookbook & Screenprint Separation Board',
+      printImg: 'assets/goodybro/goody-02-goodness-print.jpg',
+      printZoomSrc: 'assets/goodybro/goody-02-goodness-print.jpg',
+      printZoomTitle: 'Create Goodness · Master Lookbook & Print Sheet',
+      printZoomDesc: 'Comprehensive commercial streetwear presentation displaying print separations, colorway variants, and garment mockup.',
+      podiumBadge: 'Goody Bro · Capsule 02'
+    },
+    {
+      index: 2,
+      name: 'Style vs Goodness',
+      numLabel: 'Drop 03 of 03',
+      tagline: 'Ironic cultural commentary questioning the intersection of modern aesthetics and moral substance.',
+      specs: ['240 GSM Vintage Off-White', 'Black Plastisol + Lime Ink', 'Dual Spot-Color Silkscreen', 'Relaxed Streetwear Silhouette'],
+      detailFront: 'Minimalist typography lockup positioned on the front chest, offering clean wearable subtlety.',
+      detailBack: 'The back showcases the bold conceptual comparison graphic with raw typographic layering and distinctive acid lime accents.',
+      printTitle: 'Silkscreen Color Separation Sheet',
+      printImg: 'assets/goodybro/goody-03-style-print.jpg',
+      printZoomSrc: 'assets/goodybro/goody-03-style-print.jpg',
+      printZoomTitle: 'Style vs Goodness · Silkscreen Print Separation',
+      printZoomDesc: 'High-contrast 2-color spot silkscreen artwork file with precise trap lines and registration marks.',
+      podiumBadge: 'Goody Bro · Capsule 03'
+    }
+  ];
+
+  const apparelSection = document.getElementById('apparel');
+  const apparelTrack = document.getElementById('apparelScrollTrack');
+  const capsuleNavBtns = [...document.querySelectorAll('.capsule-nav-btn')];
+  const modelCards = [...document.querySelectorAll('.model-card')];
+  const modelTurntable = document.getElementById('modelTurntable');
+  const modelTurntableWrapper = document.getElementById('modelTurntableWrapper');
+  const stepCounterEl = document.getElementById('apparelStepCounter');
+  const indicatorLabelEl = document.getElementById('apparelIndicatorLabel');
+  const capsuleTitleEl = document.getElementById('apparelCapsuleTitle');
+  const capsuleTaglineEl = document.getElementById('apparelCapsuleTagline');
+  const specChipsEl = document.getElementById('apparelSpecChips');
+  const detailTextEl = document.getElementById('apparelDetailText');
+  const btnViewFront = document.getElementById('btnViewFront');
+  const btnViewBack = document.getElementById('btnViewBack');
+  const printTitleEl = document.getElementById('apparelPrintTitle');
+  const printImgEl = document.getElementById('apparelPrintImg');
+  const printMediaEl = document.getElementById('apparelPrintMedia');
+  const podiumPillEl = document.getElementById('podiumPillText');
+  const gaugeArrowEl = document.getElementById('gaugeArrow');
+  const gaugeCaptionEl = document.getElementById('gaugeCaption');
+
+  let activeDesignIdx = 0;
+  let activeIsBack = false;
+
+  const renderApparelState = (idx, isBack, manualAngle) => {
+    const data = goodyDesigns[idx];
+    if (!data) return;
+
+    const angle = manualAngle !== undefined ? manualAngle : (isBack ? 180 : 0);
+
+    // Update active design index
+    if (activeDesignIdx !== idx) {
+      activeDesignIdx = idx;
+      capsuleNavBtns.forEach((btn, i) => {
+        const isActive = i === idx;
+        btn.classList.toggle('is-active', isActive);
+        btn.setAttribute('aria-selected', String(isActive));
+      });
+
+      modelCards.forEach((card, i) => {
+        card.classList.toggle('is-active', i === idx);
+      });
+
+      if (stepCounterEl) stepCounterEl.textContent = data.numLabel;
+      if (capsuleTitleEl) capsuleTitleEl.textContent = data.name;
+      if (capsuleTaglineEl) capsuleTaglineEl.textContent = data.tagline;
+
+      if (specChipsEl) {
+        specChipsEl.innerHTML = data.specs.map(s => `<span class="spec-chip">${s}</span>`).join('');
+      }
+
+      if (printTitleEl) printTitleEl.textContent = data.printTitle;
+      if (printImgEl) {
+        printImgEl.src = data.printImg;
+        printImgEl.alt = `${data.name} print-ready artwork snapshot`;
+      }
+      if (printMediaEl) {
+        printMediaEl.dataset.zoomSrc = data.printZoomSrc;
+        printMediaEl.dataset.zoomTitle = data.printZoomTitle;
+        printMediaEl.dataset.zoomDesc = data.printZoomDesc;
+      }
+      if (podiumPillEl) podiumPillEl.textContent = data.podiumBadge;
+    }
+
+    // Update view angle
+    activeIsBack = isBack;
+    if (indicatorLabelEl) {
+      indicatorLabelEl.textContent = isBack ? 'Oversized Back Print (180°)' : 'Front Chest Lockup (0°)';
+    }
+    if (detailTextEl) {
+      detailTextEl.textContent = isBack ? data.detailBack : data.detailFront;
+    }
+    if (btnViewFront) btnViewFront.classList.toggle('is-active', !isBack);
+    if (btnViewBack) btnViewBack.classList.toggle('is-active', isBack);
+
+    if (modelTurntable) {
+      modelTurntable.style.transform = `rotateY(${angle}deg)`;
+    }
+    if (gaugeArrowEl) {
+      gaugeArrowEl.style.transform = `rotate(${angle}deg)`;
+    }
+    if (gaugeCaptionEl) {
+      gaugeCaptionEl.textContent = isBack ? 'Back View (180°)' : 'Front View (0°)';
+    }
+  };
+
+  const updateApparel = () => {
+    if (!apparelTrack) return;
+    const isDesktop = window.innerWidth > 900 && !reduceMotion.matches;
+    if (!isDesktop) return;
+
+    const rect = apparelTrack.getBoundingClientRect();
+    const totalTravel = apparelTrack.offsetHeight - window.innerHeight;
+    if (totalTravel <= 100) return;
+
+    const scrolled = -rect.top;
+    if (scrolled < -100 || scrolled > totalTravel + 100) return;
+
+    const progress = clamp(scrolled / totalTravel, 0, 1);
+    const d = clamp(Math.floor(progress * 3), 0, 2);
+    const t = (progress * 3) - d; // 0 to 1
+
+    if (t < 0.22) {
+      renderApparelState(d, false, 0);
+    } else if (t >= 0.22 && t <= 0.78) {
+      const f = (t - 0.22) / 0.56;
+      const easeF = f < 0.5 ? 2 * f * f : 1 - Math.pow(-2 * f + 2, 2) / 2;
+      const ang = Math.round(easeF * 180);
+      renderApparelState(d, easeF >= 0.5, ang);
+    } else {
+      renderApparelState(d, true, 180);
+    }
+  };
+
+  // Nav buttons click
+  capsuleNavBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = Number(btn.dataset.capsuleIdx);
+      const isDesktop = window.innerWidth > 900 && !reduceMotion.matches;
+      if (isDesktop && apparelTrack) {
+        const totalTravel = apparelTrack.offsetHeight - window.innerHeight;
+        const trackTop = apparelTrack.getBoundingClientRect().top + window.scrollY;
+        const targetScroll = trackTop + totalTravel * ((idx + 0.1) / 3);
+        window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+      }
+      renderApparelState(idx, false, 0);
+    });
+  });
+
+  // Angle toggle buttons
+  btnViewFront?.addEventListener('click', () => {
+    const isDesktop = window.innerWidth > 900 && !reduceMotion.matches;
+    if (isDesktop && apparelTrack) {
+      const totalTravel = apparelTrack.offsetHeight - window.innerHeight;
+      const trackTop = apparelTrack.getBoundingClientRect().top + window.scrollY;
+      const targetScroll = trackTop + totalTravel * ((activeDesignIdx + 0.1) / 3);
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    }
+    renderApparelState(activeDesignIdx, false, 0);
+  });
+
+  btnViewBack?.addEventListener('click', () => {
+    const isDesktop = window.innerWidth > 900 && !reduceMotion.matches;
+    if (isDesktop && apparelTrack) {
+      const totalTravel = apparelTrack.offsetHeight - window.innerHeight;
+      const trackTop = apparelTrack.getBoundingClientRect().top + window.scrollY;
+      const targetScroll = trackTop + totalTravel * ((activeDesignIdx + 0.85) / 3);
+      window.scrollTo({ top: targetScroll, behavior: 'smooth' });
+    }
+    renderApparelState(activeDesignIdx, true, 180);
+  });
+
+  // Tap or click on the 3D model flips it 180°
+  modelTurntableWrapper?.addEventListener('click', () => {
+    const nextIsBack = !activeIsBack;
+    renderApparelState(activeDesignIdx, nextIsBack, nextIsBack ? 180 : 0);
+  });
+
   // --- UNIVERSAL ARTWORK LIGHTBOX MODAL ---
   const dialog = document.getElementById('artwork-dialog');
   const dialogImg = document.getElementById('dialog-stage-img');
@@ -783,6 +990,7 @@
     updateHeader();
     updateHero();
     updateFlow();
+    updateApparel();
     isTicking = false;
   };
 
