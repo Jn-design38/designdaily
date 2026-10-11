@@ -15,6 +15,9 @@ for (const [, id] of html.matchAll(/href="#([^"]+)"/g)) {
 for (const [, file] of html.matchAll(/(?:src|href)="((?:assets\/|styles\.css|script\.js)[^"]*)"/g)) {
   assert(fs.existsSync(path.join(root, file.split('?')[0])), `Missing local asset: ${file}`);
 }
+for (const [, file] of html.matchAll(/data-zoom-src="([^"]+)"/g)) {
+  assert(fs.existsSync(path.join(root, file)), `Missing zoom asset: ${file}`);
+}
 for (const [, file] of css.matchAll(/url\(['"]?([^'"\)]+)['"]?\)/g)) {
   if (!/^(?:data:|https?:)/.test(file)) assert(fs.existsSync(path.join(root, file)), `Missing CSS asset: ${file}`);
 }
